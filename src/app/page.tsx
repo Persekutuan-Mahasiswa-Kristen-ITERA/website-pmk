@@ -10,7 +10,7 @@ export default function Home() {
                     <li className="mb-2">Halo 👋, selamat datang di website PMK ITERA!</li>
                     <li>
                         <code className="bg-black/[.05] text-sm dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-                            Salam dari Biro IT PMK ITERA
+                            Salam dari Biro IT PMK ITERA!
                         </code>
                     </li>
                     <li>
