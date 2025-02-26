@@ -1,6 +1,24 @@
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+    function getDateTime() {
+        const date = new Date()
+        const options = { locales: "id-ID", weekday: "long" as const, year: "numeric", month: "long", day: "numeric" }
+        const time = date.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+        const datetime = `${date.toLocaleDateString("id-ID", options)} ${time}`
+        return datetime
+    }
+
+    const [timedate, settimedate] = useState(getDateTime())
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            settimedate(getDateTime())
+        }, 1000)
+        return () => clearInterval(interval)
+    }, [])
+
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
             <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -12,6 +30,7 @@ export default function Home() {
                             Salam dari Biro IT PMK ITERA
                         </code>
                     </li>
+                    <li></li>
                 </ul>
 
                 <div className="flex gap-4 items-center flex-col sm:flex-row">
