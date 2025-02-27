@@ -14,7 +14,8 @@ jobs:
                   token: ${{ secrets.VERCEL_TOKEN }}
                   teamId: ${{ secrets.ORG_ID }}
                   projectName: website-pmk
-                  envVariableKeys: CLIENT_EMAIL,PRIVATE_KEY,SPREADSHEET_ID
+                  envVariableKeys: CLIENT_EMAIL
+                #   envVariableKeys: CLIENT_EMAIL,PRIVATE_KEY,SPREADSHEET_ID
               env:
                   CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
                   TARGET_CLIENT_EMAIL: preview,development,production
