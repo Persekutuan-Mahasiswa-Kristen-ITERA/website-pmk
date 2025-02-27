@@ -20,13 +20,13 @@ jobs:
                   TARGET_CLIENT_EMAIL: preview,development,production
                   TYPE_CLIENT_EMAIL: encrypted
 
-                  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-                  TARGET_PRIVATE_KEY: preview,development,production
-                  TYPE_PRIVATE_KEY: encrypted
+                #   PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+                #   TARGET_PRIVATE_KEY: preview,development,production
+                #   TYPE_PRIVATE_KEY: encrypted
 
-                  SPREADSHEET_ID: ${{ secrets.EVENTS_APP_SPREADSHEET_ID }}
-                  TARGET_SPREADSHEET_ID: preview,development,production
-                  TYPE_SPREADSHEET_ID: encrypted
+                #   SPREADSHEET_ID: ${{ secrets.EVENTS_APP_SPREADSHEET_ID }}
+                #   TARGET_SPREADSHEET_ID: preview,development,production
+                #   TYPE_SPREADSHEET_ID: encrypted
 
             - uses: amondnet/vercel-action@v25
               with:
