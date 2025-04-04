@@ -1,1 +1,136 @@
-{"version":3,"pages404":true,"caseSensitive":false,"basePath":"","redirects":[{"source":"/:path+/","destination":"/:path+","internal":true,"statusCode":308,"regex":"^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"}],"headers":[],"dynamicRoutes":[],"staticRoutes":[{"page":"/","regex":"^/(?:/)?$","routeKeys":{},"namedRegex":"^/(?:/)?$"},{"page":"/_not-found","regex":"^/_not\\-found(?:/)?$","routeKeys":{},"namedRegex":"^/_not\\-found(?:/)?$"},{"page":"/favicon.ico","regex":"^/favicon\\.ico(?:/)?$","routeKeys":{},"namedRegex":"^/favicon\\.ico(?:/)?$"}],"dataRoutes":[],"rsc":{"header":"RSC","varyHeader":"RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch","prefetchHeader":"Next-Router-Prefetch","didPostponeHeader":"x-nextjs-postponed","contentTypeHeader":"text/x-component","suffix":".rsc","prefetchSuffix":".prefetch.rsc"},"rewrites":[]}
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/artikel/[slug]",
+      "regex": "^/artikel/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/artikel/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/artikel",
+      "regex": "^/admin/artikel(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/artikel(?:/)?$"
+    },
+    {
+      "page": "/admin/dokumentasi",
+      "regex": "^/admin/dokumentasi(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/dokumentasi(?:/)?$"
+    },
+    {
+      "page": "/admin/pengurus",
+      "regex": "^/admin/pengurus(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/pengurus(?:/)?$"
+    },
+    {
+      "page": "/admin/persembahan",
+      "regex": "^/admin/persembahan(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/persembahan(?:/)?$"
+    },
+    {
+      "page": "/admin/renungan",
+      "regex": "^/admin/renungan(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/renungan(?:/)?$"
+    },
+    {
+      "page": "/artikel",
+      "regex": "^/artikel(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/artikel(?:/)?$"
+    },
+    {
+      "page": "/dokumentasi",
+      "regex": "^/dokumentasi(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dokumentasi(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/pengurus",
+      "regex": "^/pengurus(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pengurus(?:/)?$"
+    },
+    {
+      "page": "/persembahan",
+      "regex": "^/persembahan(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/persembahan(?:/)?$"
+    },
+    {
+      "page": "/profil",
+      "regex": "^/profil(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profil(?:/)?$"
+    },
+    {
+      "page": "/renungan",
+      "regex": "^/renungan(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/renungan(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

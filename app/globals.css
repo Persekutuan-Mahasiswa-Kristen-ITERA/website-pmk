@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+:root {
+    --background: 30 30% 99%;
+    --foreground: 25 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 30% 10%;
+
+    --primary: 25 35% 40%;
+    --primary-foreground: 30 20% 98%;
+
+    --secondary: 20 20% 90%;
+    --secondary-foreground: 25 35% 25%;
+
+    --muted: 25 10% 92%;
+    --muted-foreground: 25 10% 40%;
+
+    --accent: 20 20% 90%;
+    --accent-foreground: 25 35% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 15% 85%;
+    --input: 25 15% 85%;
+    --ring: 25 35% 50%;
+
+    --radius: 0.5rem;
+}
+
+.dark {
+    --background: 20 30% 10%;
+    --foreground: 25 10% 95%;
+
+    --card: 20 30% 12%;
+    --card-foreground: 25 10% 95%;
+
+    --popover: 20 30% 12%;
+    --popover-foreground: 25 10% 95%;
+
+    --primary: 25 35% 50%;
+    --primary-foreground: 20 20% 10%;
+
+    --secondary: 25 20% 25%;
+    --secondary-foreground: 25 10% 95%;
+
+    --muted: 25 20% 20%;
+    --muted-foreground: 25 10% 70%;
+
+    --accent: 25 20% 25%;
+    --accent-foreground: 25 10% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 20% 25%;
+    --input: 25 20% 25%;
+    --ring: 25 35% 60%;
+}
+
+* {
+    @apply border-[hsl(var(--border))];
+}
+
+body {
+    @apply bg-background text-foreground;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-serif;
+}
+
+p,
+a,
+li,
+span,
+button {
+    @apply font-sans;
+}
+
+.bible-verse {
+    @apply italic text-brown-700 border-l-4 border-brown-300 pl-4 py-2 my-4;
+}
+
+.section-title {
+    @apply font-serif text-brown-800 text-3xl md:text-4xl mb-6 relative inline-block;
+}
+
+.section-title::after {
+    content: "";
+    @apply block absolute bottom-0 left-0 w-1/2 h-1 bg-brown-400 rounded-full mt-2;
+}
+
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 2em;
+}

@@ -1,1 +1,18 @@
-{"/_not-found/page":"/_not-found","/favicon.ico/route":"/favicon.ico","/page":"/"}
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/admin/artikel/page": "/admin/artikel",
+  "/admin/dokumentasi/page": "/admin/dokumentasi",
+  "/admin/persembahan/page": "/admin/persembahan",
+  "/admin/renungan/page": "/admin/renungan",
+  "/admin/page": "/admin",
+  "/artikel/[slug]/page": "/artikel/[slug]",
+  "/admin/pengurus/page": "/admin/pengurus",
+  "/artikel/page": "/artikel",
+  "/dokumentasi/page": "/dokumentasi",
+  "/pengurus/page": "/pengurus",
+  "/page": "/",
+  "/persembahan/page": "/persembahan",
+  "/profil/page": "/profil",
+  "/renungan/page": "/renungan"
+}
