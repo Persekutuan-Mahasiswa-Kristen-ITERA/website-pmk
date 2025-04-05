@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Calendar, CircleUser, Clock, MapPin } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import Image from "next/image"
-import { events } from "@/data/event"
 import Link from "next/link"
 import { articles } from "@/data/article"
 

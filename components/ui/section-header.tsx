@@ -1,4 +1,5 @@
 import React from "react"
+import AOSWrapper from "./aos-wrapper"
 
 interface SectionHeaderProps {
     title: string

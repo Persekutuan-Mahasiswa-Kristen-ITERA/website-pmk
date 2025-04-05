@@ -11,37 +11,41 @@ export const About = () => {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <SectionHeader
-                            title="Tentang PMK ITERA"
-                            subtitle="Persekutuan Mahasiswa Kristen (PMK) ITERA adalah komunitas yang menjadi wadah pertumbuhan iman bagi mahasiswa Kristen ITERA, dengan menjadikan Alkitab sebagai pedoman hidup dan Kristus sebagai teladan utama. PMK ITERA hadir untuk menolong mahasiswa mengenal Tuhan Yesus Kristus lebih dalam, serta membentuk karakter yang serupa dengan-Nya."
-                        />
+                        <SectionHeader title="Tentang PMK ITERA" subtitle="" />
 
-                        <div className="space-y-2 mb-8">
-                            <p className="text-brown-700">PMK ITERA memiliki komitmen untuk:</p>
+                        <p className="text-brown-700 mt-2 text-justify">
+                            Persekutuan Mahasiswa Kristen (PMK) ITERA adalah komunitas yang menjadi wadah pertumbuhan
+                            iman bagi mahasiswa Kristen ITERA, dengan menjadikan Alkitab sebagai pedoman hidup dan
+                            Kristus sebagai teladan utama. PMK ITERA hadir untuk menolong mahasiswa mengenal Tuhan Yesus
+                            Kristus lebih dalam, serta membentuk karakter yang serupa dengan-Nya.
+                        </p>
+
+                        <div className="space-y-2 mb-8 text-brown-700 mt-4">
+                            <p className="">PMK ITERA memiliki komitmen untuk:</p>
                             <ul className="space-y-2">
                                 <li className="flex items-start">
-                                    <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
-                                    <span className="text-brown-700">
+                                    <Check className="h-5 w-5 mr-2 mt-0.5" />
+                                    <span className="">
                                         Membangun persekutuan yang hangat dan membangun iman antar mahasiswa Kristen di
                                         ITERA
                                     </span>
                                 </li>
                                 <li className="flex items-start">
-                                    <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
-                                    <span className="text-brown-700">
+                                    <Check className="h-5 w-5 mr-2 mt-0.5" />
+                                    <span className="">
                                         Mendorong pertumbuhan rohani melalui pendalaman Alkitab dan pembentukan karakter
                                         Kristus
                                     </span>
                                 </li>
                                 <li className="flex items-start">
-                                    <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
-                                    <span className="text-brown-700">
+                                    <Check className="h-5 w-5 mr-2 mt-0.5" />
+                                    <span className="">
                                         Menumbuhkan integritas rohani yang selaras dengan kehidupan akademik mahasiswa
                                     </span>
                                 </li>
                                 <li className="flex items-start">
-                                    <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
-                                    <span className="text-brown-700">
+                                    <Check className="h-5 w-5 mr-2 mt-0.5" />
+                                    <span className="">
                                         Menjadi terang dan berkat bagi masyarakat melalui pelayanan yang nyata dan penuh
                                         kasih
                                     </span>

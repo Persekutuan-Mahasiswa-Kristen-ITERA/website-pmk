@@ -29,18 +29,18 @@ export const RecentDevotions = () => {
                                 </div>
                                 <h3 className="text-xl font-serif text-brown-800 mb-2">{devotion.title}</h3>
                                 <BibleVerse className="text-sm" text={devotion.preview} verse={devotion.verse} />
-                                <div className="flex justify-between items-center text-sm text-brown-500 mt-4">
+                                <div className="flex justify-between items-center text-sm text-brown-500 mt-2">
                                     <span>{devotion.author}</span>
                                     <span>{devotion.date}</span>
                                 </div>
                                 <Button
                                     asChild
                                     variant="ghost"
-                                    className="w-full justify-between mt-4 text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
+                                    className="w-full justify-between text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
                                 >
                                     <Link
                                         href={`/devotional/${devotion.id}`}
-                                        className="flex items-center w-full pt-3 pb-1"
+                                        className="flex items-center w-full pt-2 pb-1"
                                     >
                                         <span>Baca Selengkapnya</span>
                                         <ChevronRight className="h-4 w-4" />
