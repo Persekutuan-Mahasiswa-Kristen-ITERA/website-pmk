@@ -7,13 +7,15 @@ import { About } from '@/components/home/About';
 import { RecentDevotions } from '@/components/home/RecentDevotions';
 import { Testimonials } from '@/components/home/Testimonials';
 import { CallToAction } from '@/components/home/CallToAction';
+import { RecentArticles } from '@/components/home/RecentArticles';
 
 const Index = () => {
   return (
     <MainLayout>
       <Hero />
-      <UpcomingEvents />
       <About />
+      <UpcomingEvents />
+      <RecentArticles />
       <RecentDevotions />
       <Testimonials />
       <CallToAction />

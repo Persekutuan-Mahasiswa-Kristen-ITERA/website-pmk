@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import BibleVerse from "../bible-verse"
+import DailyVerse from "../daily-verse"
 
 export const Hero = () => {
     return (
@@ -18,20 +20,21 @@ export const Hero = () => {
             <div className="container mx-auto px-4 py-20 md:py-40 relative z-10">
                 <div className="max-w-2xl">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
-                        Persekutuan Mahasiswa Kristcen ITERA
+                        Persekutuan Mahasiswa Kristen ITERA
                     </h1>
                     <p className="mt-6 text-lg text-gray-200">
                         Menjadi generasi mahasiswa Kristen yang menjadi garam dan terang dunia, meneladani Kristus dalam
                         hikmat, pengetahuan, dan persekutuan
                     </p>
-                    <div className="bible-verse mt-8 border-white/30 text-brown-500 bg-black/40 backdrop-blur">
-                        &quot;Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam nama Bapa
-                        dan Anak dan Roh Kudus,&quot;
-                        <span className="block mt-1 text-sm">— Matius 28:19</span>
-                    </div>
+                    <DailyVerse
+                        text="Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam nama Bapa
+                        dan Anak dan Roh Kudus"
+                        verse="Matius 28:19"
+                        className="mt-8 border-white/30 text-brown-500 bg-black/50 backdrop-blur "
+                    />
                     <div className="mt-8 flex flex-wrap gap-4">
                         <Button asChild className="bg-brown-700 hover:bg-brown-800 text-white shadow-lg" size="lg">
-                            <Link href="/profil">Tentang Kami</Link>
+                            <Link href="#about">Tentang Kami</Link>
                         </Button>
                         <Button
                             asChild
@@ -39,7 +42,7 @@ export const Hero = () => {
                             className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-lg"
                             size="lg"
                         >
-                            <Link href="/persembahan">Persembahan</Link>
+                            <Link href="/contribution">Renungan Harian</Link>
                         </Button>
                     </div>
                 </div>

@@ -33,11 +33,11 @@ const DashboardCard = ({
 const Dashboard = () => {
     // In a real app, this data would come from an API
     const stats = [
-        { title: "Pengurus", count: 12, icon: Users, href: "/admin/pengurus" },
-        { title: "Renungan", count: 24, icon: BookOpen, href: "/admin/renungan" },
-        { title: "Artikel", count: 18, icon: FileText, href: "/admin/artikel" },
-        { title: "Dokumentasi", count: 45, icon: ImageIcon, href: "/admin/dokumentasi" },
-        { title: "Persembahan", count: 32, icon: CreditCard, href: "/admin/persembahan" },
+        { title: "Pengurus", count: 12, icon: Users, href: "/admin/management" },
+        { title: "Renungan", count: 24, icon: BookOpen, href: "/admin/devotional" },
+        { title: "Artikel", count: 18, icon: FileText, href: "/admin/article" },
+        { title: "Dokumentasi", count: 45, icon: ImageIcon, href: "/admin/documentation" },
+        { title: "Persembahan", count: 32, icon: CreditCard, href: "/admin/contribution" },
     ]
 
     return (

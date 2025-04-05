@@ -7,41 +7,43 @@ import Image from "next/image"
 
 export const About = () => {
     return (
-        <section className="py-16 bg-brown-50">
+        <section className="py-24 bg-brown-50" id="about">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <SectionHeader
                             title="Tentang PMK ITERA"
-                            subtitle="Persekutuan Mahasiswa Kristen (PMK) ITERA adalah wadah bagi mahasiswa Kristen untuk bertumbuh dalam iman dan pengenalan akan Kristus."
+                            subtitle="Persekutuan Mahasiswa Kristen (PMK) ITERA adalah komunitas yang menjadi wadah pertumbuhan iman bagi mahasiswa Kristen ITERA, dengan menjadikan Alkitab sebagai pedoman hidup dan Kristus sebagai teladan utama. PMK ITERA hadir untuk menolong mahasiswa mengenal Tuhan Yesus Kristus lebih dalam, serta membentuk karakter yang serupa dengan-Nya."
                         />
 
-                        <div className="space-y-4 mb-8">
+                        <div className="space-y-2 mb-8">
                             <p className="text-brown-700">PMK ITERA memiliki komitmen untuk:</p>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2">
                                 <li className="flex items-start">
                                     <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
                                     <span className="text-brown-700">
-                                        Membangun persekutuan yang sehat dan berkelanjutan bagi mahasiswa Kristen di
+                                        Membangun persekutuan yang hangat dan membangun iman antar mahasiswa Kristen di
                                         ITERA
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
                                     <span className="text-brown-700">
-                                        Mendorong pertumbuhan kerohanian melalui pemahaman Alkitab dan penerapannya
+                                        Mendorong pertumbuhan rohani melalui pendalaman Alkitab dan pembentukan karakter
+                                        Kristus
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
                                     <span className="text-brown-700">
-                                        Menjadi sarana pelayanan dan kesaksian di lingkungan kampus
+                                        Menumbuhkan integritas rohani yang selaras dengan kehidupan akademik mahasiswa
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <Check className="h-5 w-5 text-brown-600 mr-2 mt-0.5" />
                                     <span className="text-brown-700">
-                                        Mempersiapkan mahasiswa Kristen untuk menjadi pemimpin yang melayani
+                                        Menjadi terang dan berkat bagi masyarakat melalui pelayanan yang nyata dan penuh
+                                        kasih
                                     </span>
                                 </li>
                             </ul>
@@ -49,14 +51,14 @@ export const About = () => {
 
                         <div className="flex flex-wrap gap-4">
                             <Button asChild className="bg-brown-700 hover:bg-brown-800 text-white">
-                                <Link href="/profil">Pelajari Lebih Lanjut</Link>
+                                <Link href="/profile">Kenali Lebih Dalam</Link>
                             </Button>
                             <Button
                                 asChild
                                 variant="outline"
                                 className="border-brown-300 text-brown-700 hover:bg-brown-100"
                             >
-                                <Link href="/pengurus">Lihat Pengurus</Link>
+                                <Link href="/management">Struktur Kepengurusan</Link>
                             </Button>
                         </div>
                     </div>

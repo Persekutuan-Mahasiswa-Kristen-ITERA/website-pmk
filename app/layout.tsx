@@ -35,7 +35,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="id" suppressHydrationWarning>
+        <html lang="id" suppressHydrationWarning style={{ scrollBehavior: "smooth" }} className="scroll-smooth">
             <body
                 className={`${defaultFont.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
             >

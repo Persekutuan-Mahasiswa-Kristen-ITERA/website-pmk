@@ -16,14 +16,14 @@ import { articles } from "@/data/article"
 
 const ArtikelDetail = () => {
     const { slug } = useParams()
-    const [artikel, setArtikel] = useState<Article | null>(null)
+    const [article, setArticle] = useState<Article | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         setIsLoading(true)
-        const foundArtikel = articles.find((item) => item.slug === slug)
-        if (foundArtikel) {
-            setArtikel(foundArtikel)
+        const foundArticle = articles.find((item) => item.slug === slug)
+        if (foundArticle) {
+            setArticle(foundArticle)
         }
 
         setIsLoading(false)
@@ -41,7 +41,7 @@ const ArtikelDetail = () => {
         )
     }
 
-    if (!artikel) {
+    if (!article) {
         return (
             <MainLayout>
                 <div className="container mx-auto px-4 py-12">
@@ -49,7 +49,7 @@ const ArtikelDetail = () => {
                         <h2 className="text-2xl font-serif text-brown-800 mb-4">Artikel tidak ditemukan</h2>
                         <p className="text-brown-600 mb-6">Maaf, artikel yang Anda cari tidak dapat ditemukan.</p>
                         <Button asChild variant="default" className="bg-brown-700 hover:bg-brown-800">
-                            <Link href="/artikel">Kembali ke Daftar Artikel</Link>
+                            <Link href="/article">Kembali ke Daftar Artikel</Link>
                         </Button>
                     </div>
                 </div>
@@ -62,10 +62,10 @@ const ArtikelDetail = () => {
             {/* Hero section with article title and image */}
             <div className="relative h-[40vh] md:h-[50vh] w-full bg-brown-900">
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-900/80 to-brown-900/40">
-                    {artikel.imageUrl && (
+                    {article.imageUrl && (
                         <Image
-                            src={artikel.imageUrl}
-                            alt={artikel.title}
+                            src={article.imageUrl}
+                            alt={article.title}
                             className="w-full h-full object-cover opacity-60"
                             width={1200}
                             height={700}
@@ -80,20 +80,20 @@ const ArtikelDetail = () => {
                             size="sm"
                             className="mb-6 bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20"
                         >
-                            <Link href="/artikel" className="flex items-center">
+                            <Link href="/article" className="flex items-center">
                                 <ChevronLeft className="h-4 w-4 mr-1" />
                                 Semua Artikel
                             </Link>
                         </Button>
-                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{artikel.title}</h1>
+                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{article.title}</h1>
                         <div className="flex justify-center space-x-4 text-white/80">
                             <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-1" />
-                                <span className="text-sm">{artikel.date}</span>
+                                <span className="text-sm">{article.date}</span>
                             </div>
                             <div className="flex items-center">
                                 <Book className="h-4 w-4 mr-1" />
-                                <span className="text-sm">{artikel.readTime} menit membaca</span>
+                                <span className="text-sm">{article.readTime} menit membaca</span>
                             </div>
                         </div>
                     </div>
@@ -110,16 +110,16 @@ const ArtikelDetail = () => {
                                 <div className="mb-8 flex items-center justify-between">
                                     <div className="flex items-center">
                                         <Avatar className="h-10 w-10 mr-4">
-                                            <AvatarImage src={artikel.author.image} alt={artikel.author.name} />
+                                            <AvatarImage src={article.author.image} alt={article.author.name} />
                                             <AvatarFallback className="bg-brown-200 text-brown-800">
-                                                {artikel.author.name
+                                                {article.author.name
                                                     .split(" ")
                                                     .map((name) => name[0])
                                                     .join("")}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="font-medium text-brown-800">{artikel.author.name}</p>
+                                            <p className="font-medium text-brown-800">{article.author.name}</p>
                                         </div>
                                     </div>
 
@@ -136,12 +136,12 @@ const ArtikelDetail = () => {
 
                                 {/* Markdown content */}
                                 <div className="prose prose-brown max-w-none">
-                                    <ReactMarkdown>{artikel.content}</ReactMarkdown>
+                                    <ReactMarkdown>{article.content}</ReactMarkdown>
                                 </div>
 
                                 {/* Tags */}
                                 <div className="mt-8 flex flex-wrap gap-2">
-                                    {artikel.tags.map((tag) => (
+                                    {article.tags.map((tag) => (
                                         <Badge key={tag} variant="outline" className="border-brown-200 text-brown-600">
                                             {tag}
                                         </Badge>
@@ -159,16 +159,16 @@ const ArtikelDetail = () => {
                                     <h3 className="text-xl font-serif text-brown-800 mb-4">Tentang Penulis</h3>
                                     <div className="flex items-center mb-4">
                                         <Avatar className="h-16 w-16 mr-4">
-                                            <AvatarImage src={artikel.author.image} alt={artikel.author.name} />
+                                            <AvatarImage src={article.author.image} alt={article.author.name} />
                                             <AvatarFallback className="bg-brown-200 text-brown-800 text-lg">
-                                                {artikel.author.name
+                                                {article.author.name
                                                     .split(" ")
                                                     .map((name) => name[0])
                                                     .join("")}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="font-medium text-brown-800 text-lg">{artikel.author.name}</p>
+                                            <p className="font-medium text-brown-800 text-lg">{article.author.name}</p>
                                             <p className="text-brown-600 text-sm">Penulis</p>
                                         </div>
                                     </div>
@@ -184,12 +184,12 @@ const ArtikelDetail = () => {
                                     <h3 className="text-xl font-serif text-brown-800 mb-4">Artikel Terkait</h3>
                                     <div className="space-y-4">
                                         {articles
-                                            .filter((item) => item.id !== artikel.id)
+                                            .filter((item) => item.id !== article.id)
                                             .slice(0, 3)
                                             .map((item) => (
                                                 <Link
                                                     key={item.id}
-                                                    href={`/artikel/${item.slug}`}
+                                                    href={`/article/${item.slug}`}
                                                     className="block group"
                                                 >
                                                     <div className="flex items-start space-x-3">

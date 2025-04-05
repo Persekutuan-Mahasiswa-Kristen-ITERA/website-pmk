@@ -21,7 +21,7 @@ export const CallToAction = () => {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                     <Button asChild size="lg" className="bg-brown-700 hover:bg-brown-800 text-white">
-                        <Link href="/profil">Pelajari Lebih Lanjut</Link>
+                        <Link href="/profile">Pelajari Lebih Lanjut</Link>
                     </Button>
                     <Button
                         asChild
@@ -29,7 +29,7 @@ export const CallToAction = () => {
                         size="lg"
                         className="border-white/30 text-white hover:bg-white/10"
                     >
-                        <Link href="/persembahan">Dukung Pelayanan Kami</Link>
+                        <Link href="/contribution">Dukung Pelayanan Kami</Link>
                     </Button>
                 </div>
             </div>

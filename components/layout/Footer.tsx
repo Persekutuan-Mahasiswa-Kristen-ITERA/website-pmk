@@ -49,32 +49,35 @@ export const Footer = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/profil" className="text-gray-300 hover:text-white transition-colors">
+                                <Link href="/profile" className="text-gray-300 hover:text-white transition-colors">
                                     Profil
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/pengurus" className="text-gray-300 hover:text-white transition-colors">
+                                <Link href="/management" className="text-gray-300 hover:text-white transition-colors">
                                     Pengurus
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/renungan" className="text-gray-300 hover:text-white transition-colors">
+                                <Link href="/devotional" className="text-gray-300 hover:text-white transition-colors">
                                     Renungan
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/artikel" className="text-gray-300 hover:text-white transition-colors">
+                                <Link href="/article" className="text-gray-300 hover:text-white transition-colors">
                                     Artikel
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/persembahan" className="text-gray-300 hover:text-white transition-colors">
+                                <Link href="/contribution" className="text-gray-300 hover:text-white transition-colors">
                                     Persembahan
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/dokumentasi" className="text-gray-300 hover:text-white transition-colors">
+                                <Link
+                                    href="/documentation"
+                                    className="text-gray-300 hover:text-white transition-colors"
+                                >
                                     Dokumentasi
                                 </Link>
                             </li>

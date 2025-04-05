@@ -12,12 +12,12 @@ import { ModeToggle } from "../ui/mode-toggle"
 
 const NAV_ITEMS = [
     { name: "Beranda", path: "/" },
-    { name: "Profil", path: "/profil" },
-    { name: "Pengurus", path: "/pengurus" },
-    { name: "Renungan", path: "/renungan" },
-    { name: "Artikel", path: "/artikel" },
-    { name: "Persembahan", path: "/persembahan" },
-    { name: "Dokumentasi", path: "/dokumentasi" },
+    { name: "Profil", path: "/profile" },
+    { name: "Pengurus", path: "/management" },
+    { name: "Renungan", path: "/devotional" },
+    { name: "Artikel", path: "/article" },
+    { name: "Persembahan", path: "/contribution" },
+    { name: "Dokumentasi", path: "/documentation" },
 ]
 
 export const Navbar = () => {
@@ -88,7 +88,7 @@ export const Navbar = () => {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
                                     <DropdownMenuItem>
-                                        <Link href="/profile" className="w-full">
+                                        <Link href="/profilee" className="w-full">
                                             Profil
                                         </Link>
                                     </DropdownMenuItem>
@@ -113,7 +113,6 @@ export const Navbar = () => {
                     </div> */}
 
                     <ModeToggle />
-
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden">
@@ -154,7 +153,7 @@ export const Navbar = () => {
                                 {isLoggedIn ? (
                                     <>
                                         <Link
-                                            href="/profile"
+                                            href="/profilee"
                                             className="block p-3 text-brown-700"
                                             onClick={() => setIsOpen(false)}
                                         >

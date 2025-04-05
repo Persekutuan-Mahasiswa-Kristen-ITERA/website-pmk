@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useState } from "react"
 import { MainLayout } from "@/components/layout/MainLayout"
@@ -9,10 +9,6 @@ import { Input } from "@/components/ui/input"
 import { BookOpen, Calendar, User, Search } from "lucide-react"
 import Link from "next/link"
 import { devotionals } from "@/data/devotional"
-
-
-
-
 
 const CATEGORIES = ["Semua", "Kasih", "Pertumbuhan", "Iman", "Pengharapan", "Kesaksian", "Sukacita"]
 
@@ -99,7 +95,7 @@ const RenunganPage = () => {
                                         className="w-full justify-between mt-4 text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
                                     >
                                         <Link
-                                            href={`/renungan/${renungan.id}`}
+                                            href={`/devotional/${renungan.id}`}
                                             className="flex items-center w-full pt-3 pb-1"
                                         >
                                             <span>Baca Selengkapnya</span>

@@ -3,8 +3,8 @@ import tailwindcssAnimate from "tailwindcss-animate"
 import typography from "@tailwindcss/typography"
 
 export default {
-    darkMode: ["class", ""],
-    content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+    darkMode: "class",
+    content: ["./components/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
     prefix: "",
     theme: {
         container: {
@@ -73,61 +73,11 @@ export default {
                     ring: "hsl(var(--sidebar-ring))",
                 },
             },
-            borderRadius: {
-                lg: "var(--radius)",
-                md: "calc(var(--radius) - 2px)",
-                sm: "calc(var(--radius) - 4px)",
-            },
-            keyframes: {
-                "accordion-down": {
-                    from: {
-                        height: "0",
-                    },
-                    to: {
-                        height: "var(--radix-accordion-content-height)",
-                    },
-                },
-                "accordion-up": {
-                    from: {
-                        height: "var(--radix-accordion-content-height)",
-                    },
-                    to: {
-                        height: "0",
-                    },
-                },
-                "fade-in": {
-                    "0%": {
-                        opacity: "0",
-                        transform: "translateY(10px)",
-                    },
-                    "100%": {
-                        opacity: "1",
-                        transform: "translateY(0)",
-                    },
-                },
-                "fade-out": {
-                    "0%": {
-                        opacity: "1",
-                        transform: "translateY(0)",
-                    },
-                    "100%": {
-                        opacity: "0",
-                        transform: "translateY(10px)",
-                    },
-                },
-            },
-            animation: {
-                "accordion-down": "accordion-down 0.2s ease-out",
-                "accordion-up": "accordion-up 0.2s ease-out",
-                "fade-in": "fade-in 0.3s ease-out",
-                "fade-out": "fade-out 0.3s ease-out",
-            },
             fontFamily: {
                 serif: ["Playfair Display", "serif"],
                 sans: ["DM Sans", "Inter", "sans-serif"],
             },
         },
     },
-
     plugins: [tailwindcssAnimate, typography],
 } satisfies Config

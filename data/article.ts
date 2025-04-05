@@ -1,6 +1,57 @@
-import { Article } from "@/types/article";
+import { Article } from "@/types/article"
 
 export const articles: Article[] = [
+    {
+        id: 4,
+        title: "Mengatasi Keraguan Iman di Lingkungan Akademis",
+        slug: "mengatasi-keraguan-iman-di-lingkungan-akademis",
+        excerpt:
+            "Bagaimana menghadapi tantangan intelektual terhadap iman Kristen di lingkungan kampus yang seringkali sekular.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        date: "20 Juni 2023",
+        author: {
+            name: "Rebecca Situmorang",
+            image: "https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
+        },
+        tags: ["Apologetika", "Akademik", "Keraguan"],
+        readTime: 8,
+        imageUrl:
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
+    },
+    {
+        id: 5,
+        title: "Pelayanan Sosial sebagai Wujud Kasih Kristus",
+        slug: "pelayanan-sosial-sebagai-wujud-kasih",
+        excerpt:
+            "Pentingnya keterlibatan mahasiswa Kristen dalam aksi sosial sebagai bentuk nyata dari iman yang hidup.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        date: "15 Juni 2023",
+        author: {
+            name: "Samuel Pakpahan",
+            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
+        },
+        tags: ["Sosial", "Pelayanan", "Kasih"],
+        readTime: 5,
+        imageUrl:
+            "https://images.unsplash.com/photo-1488521787991-ed7bbafc3ceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
+    },
+    {
+        id: 6,
+        title: "Membangun Kebiasaan Doa dan Pembacaan Alkitab",
+        slug: "membangun-kebiasaan-doa-dan-pembacaan-alkitab",
+        excerpt:
+            "Panduan praktis untuk mahasiswa Kristen dalam mengembangkan disiplin rohani di tengah kesibukan kuliah.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        date: "8 Juni 2023",
+        author: {
+            name: "Maria Hutapea",
+            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
+        },
+        tags: ["Disiplin Rohani", "Doa", "Alkitab"],
+        readTime: 6,
+        imageUrl:
+            "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
+    },
     {
         id: 1,
         title: "The Reformation Rescued the Gospel (Reformasi Menyelamatkan Injil)",
@@ -138,56 +189,5 @@ Komunitas Kristen yang inklusif tidak berarti mengorbankan kebenaran, tetapi jus
         readTime: 6,
         imageUrl:
             "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
-    },
-    {
-        id: 4,
-        title: "Mengatasi Keraguan Iman di Lingkungan Akademis",
-        slug: "mengatasi-keraguan-iman-di-lingkungan-akademis",
-        excerpt:
-            "Bagaimana menghadapi tantangan intelektual terhadap iman Kristen di lingkungan kampus yang seringkali sekular.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        date: "20 Juni 2023",
-        author: {
-            name: "Rebecca Situmorang",
-            image: "https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
-        },
-        tags: ["Apologetika", "Akademik", "Keraguan"],
-        readTime: 8,
-        imageUrl:
-            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
-    },
-    {
-        id: 5,
-        title: "Pelayanan Sosial sebagai Wujud Kasih Kristus",
-        slug: "pelayanan-sosial-sebagai-wujud-kasih",
-        excerpt:
-            "Pentingnya keterlibatan mahasiswa Kristen dalam aksi sosial sebagai bentuk nyata dari iman yang hidup.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        date: "15 Juni 2023",
-        author: {
-            name: "Samuel Pakpahan",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
-        },
-        tags: ["Sosial", "Pelayanan", "Kasih"],
-        readTime: 5,
-        imageUrl:
-            "https://images.unsplash.com/photo-1488521787991-ed7bbafc3ceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
-    },
-    {
-        id: 6,
-        title: "Membangun Kebiasaan Doa dan Pembacaan Alkitab",
-        slug: "membangun-kebiasaan-doa-dan-pembacaan-alkitab",
-        excerpt:
-            "Panduan praktis untuk mahasiswa Kristen dalam mengembangkan disiplin rohani di tengah kesibukan kuliah.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        date: "8 Juni 2023",
-        author: {
-            name: "Maria Hutapea",
-            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80",
-        },
-        tags: ["Disiplin Rohani", "Doa", "Alkitab"],
-        readTime: 6,
-        imageUrl:
-            "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80",
     },
 ]

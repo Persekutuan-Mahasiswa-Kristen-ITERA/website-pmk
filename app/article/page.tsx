@@ -12,36 +12,20 @@ import { FileText, Search, Calendar, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import { articles } from "@/data/article"
 
-export type ArtikelData = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    content: string
-    date: string
-    author: {
-        name: string
-        image?: string
-    }
-    tags: string[]
-    readTime: number
-    imageUrl: string
-}
-
-const ALL_TAGS = Array.from(new Set(articles.flatMap((artikel) => artikel.tags)))
+const ALL_TAGS = Array.from(new Set(articles.flatMap((article) => article.tags)))
 
 const ArtikelPage = () => {
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
-    const filteredArtikels = articles.filter((artikel) => {
+    const filteredArticles = articles.filter((article) => {
         const matchesSearch =
             searchQuery === "" ||
-            artikel.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            artikel.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            artikel.author.name.toLowerCase().includes(searchQuery.toLowerCase())
+            article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            article.author.name.toLowerCase().includes(searchQuery.toLowerCase())
 
-        const matchesTag = selectedTag === null || artikel.tags.includes(selectedTag)
+        const matchesTag = selectedTag === null || article.tags.includes(selectedTag)
 
         return matchesSearch && matchesTag
     })
@@ -100,16 +84,16 @@ const ArtikelPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {filteredArtikels.map((artikel) => (
+                        {filteredArticles.map((article) => (
                             <Card
-                                key={artikel.id}
+                                key={article.id}
                                 className="border-brown-100 overflow-hidden hover:shadow-md transition-shadow"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-3 h-full">
                                     <div className="h-48 md:h-full bg-brown-200">
                                         <Image
-                                            src={artikel.imageUrl}
-                                            alt={artikel.title}
+                                            src={article.imageUrl}
+                                            alt={article.title}
                                             className="w-full h-full object-cover"
                                             width={500}
                                             height={300}
@@ -120,16 +104,16 @@ const ArtikelPage = () => {
                                             <div className="flex items-center mb-3">
                                                 <FileText className="h-4 w-4 text-brown-400 mr-2" />
                                                 <span className="text-xs text-brown-500">
-                                                    {artikel.readTime} menit membaca
+                                                    {article.readTime} menit membaca
                                                 </span>
                                             </div>
-                                            <h3 className="text-xl font-serif text-brown-800 mb-2">{artikel.title}</h3>
+                                            <h3 className="text-xl font-serif text-brown-800 mb-2">{article.title}</h3>
                                             <p className="text-brown-600 text-sm mb-4 line-clamp-2">
-                                                {artikel.excerpt}
+                                                {article.excerpt}
                                             </p>
 
                                             <div className="flex flex-wrap gap-2 mb-4">
-                                                {artikel.tags.map((tag) => (
+                                                {article.tags.map((tag) => (
                                                     <Badge
                                                         key={tag}
                                                         variant="outline"
@@ -144,22 +128,22 @@ const ArtikelPage = () => {
                                                 <div className="flex items-center">
                                                     <Avatar className="h-8 w-8 mr-2">
                                                         <AvatarImage
-                                                            src={artikel.author.image}
-                                                            alt={artikel.author.name}
+                                                            src={article.author.image}
+                                                            alt={article.author.name}
                                                         />
                                                         <AvatarFallback className="bg-brown-200 text-brown-700 text-xs">
-                                                            {artikel.author.name
+                                                            {article.author.name
                                                                 .split(" ")
                                                                 .map((name) => name[0])
                                                                 .join("")}
                                                         </AvatarFallback>
                                                     </Avatar>
                                                     <div>
-                                                        <p className="text-sm text-brown-700">{artikel.author.name}</p>
+                                                        <p className="text-sm text-brown-700">{article.author.name}</p>
                                                         <div className="flex items-center">
                                                             <Calendar className="h-3 w-3 text-brown-400 mr-1" />
                                                             <span className="text-xs text-brown-500">
-                                                                {artikel.date}
+                                                                {article.date}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -172,7 +156,7 @@ const ArtikelPage = () => {
                                                     className="text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
                                                 >
                                                     <Link
-                                                        href={`/artikel/${artikel.slug}`}
+                                                        href={`/article/${article.slug}`}
                                                         className="flex items-center"
                                                     >
                                                         <span className="mr-1">Baca</span>
@@ -187,7 +171,7 @@ const ArtikelPage = () => {
                         ))}
                     </div>
 
-                    {filteredArtikels.length === 0 && (
+                    {filteredArticles.length === 0 && (
                         <div className="text-center py-16">
                             <p className="text-brown-600">Tidak ada artikel yang sesuai dengan kriteria pencarian.</p>
                         </div>
