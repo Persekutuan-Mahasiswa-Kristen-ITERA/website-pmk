@@ -8,25 +8,26 @@ export const Hero = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage:
-                            "url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&h=2048&q=80')",
+                        backgroundImage: "url('/img/cross.webp')",
                         filter: "brightness(0.4)",
+                        transform: "scaleX(-1)",
                     }}
                 ></div>
             </div>
 
-            <div className="container mx-auto px-4 py-16 md:py-32 relative z-10">
+            <div className="container mx-auto px-4 py-20 md:py-40 relative z-10">
                 <div className="max-w-2xl">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
-                        Persekutuan Mahasiswa Kristen ITERA
+                        Persekutuan Mahasiswa Kristcen ITERA
                     </h1>
-                    <p className="mt-6 text-xl text-gray-200">
-                        Bertumbuh bersama dalam kasih Kristus di tengah kehidupan perkuliahan
+                    <p className="mt-6 text-lg text-gray-200">
+                        Menjadi generasi mahasiswa Kristen yang menjadi garam dan terang dunia, meneladani Kristus dalam
+                        hikmat, pengetahuan, dan persekutuan
                     </p>
-                    <div className="bible-verse mt-8 border-white/30 text-white/90">
-                        &quot;Sebab di mana dua atau tiga orang berkumpul dalam Nama-Ku, di situ Aku ada di
-                        tengah-tengah mereka.&quot;
-                        <span className="block mt-1 text-sm">— Matius 18:20</span>
+                    <div className="bible-verse mt-8 border-white/30 text-brown-500 bg-black/40 backdrop-blur">
+                        &quot;Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam nama Bapa
+                        dan Anak dan Roh Kudus,&quot;
+                        <span className="block mt-1 text-sm">— Matius 28:19</span>
                     </div>
                     <div className="mt-8 flex flex-wrap gap-4">
                         <Button asChild className="bg-brown-700 hover:bg-brown-800 text-white shadow-lg" size="lg">

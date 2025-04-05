@@ -50,7 +50,7 @@ export const Navbar = () => {
     return (
         <header
             className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-                scrolled ? "bg-white/95 shadow-md backdrop-blur-sm" : "bg-transparent"
+                scrolled ? "bg-white/90 shadow-md backdrop-blur" : "bg-white/90"
             }`}
         >
             <nav className="container mx-auto px-4 py-4">
@@ -68,7 +68,7 @@ export const Navbar = () => {
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className={`transition-colors duration-200 text-sm font-medium hover:text-brown-600 ${
+                                className={`transition-colors duration-200 text-sm font-medium hover:text-brown-800 ${
                                     pathname === item.path ? "text-brown-800 font-semibold" : "text-brown-600"
                                 }`}
                             >
@@ -78,7 +78,7 @@ export const Navbar = () => {
                     </div>
 
                     {/* Auth Buttons - Desktop */}
-                    <div className="hidden md:flex items-center space-x-3">
+                    {/* <div className="hidden md:flex items-center space-x-3">
                         {isLoggedIn ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -110,8 +110,10 @@ export const Navbar = () => {
                                 Masuk
                             </Button>
                         )}
-                        <ModeToggle />
-                    </div>
+                    </div> */}
+
+                    <ModeToggle />
+
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden">
@@ -148,7 +150,7 @@ export const Navbar = () => {
                                     {item.name}
                                 </Link>
                             ))}
-                            <div className="pt-4 border-t border-brown-100 mt-4">
+                            {/* <div className="pt-4 border-t border-brown-100 mt-4">
                                 {isLoggedIn ? (
                                     <>
                                         <Link
@@ -188,7 +190,7 @@ export const Navbar = () => {
                                         Masuk
                                     </Button>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 )}

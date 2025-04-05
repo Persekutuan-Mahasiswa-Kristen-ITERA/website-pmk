@@ -1,18 +1,26 @@
 import type { Metadata } from "next"
-import "./globals.css"
+import "./index.css"
 
 export const metadata: Metadata = {
     title: "Persekutuan Mahasiswa Kristen ITERA",
     description: "Persekutuan Mahasiswa Kristen ITERA",
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon.ico",
+        apple: "/favicon.ico",
+    },
+    keywords: "Persekutuan Mahasiswa Kristen, ITERA, Christian Student Fellowship",
+    authors: [{ name: "Persekutuan Mahasiswa Kristen ITERA", url: "https://pmkitera.com" }],
+    robots: "index, follow",
 }
 
-import { Inter, Playfair_Display } from "next/font/google"
+import { DM_Sans, Inter, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/AuthContext"
 
-const inter = Inter({
+const defaultFont = DM_Sans({
     subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
+    weight: ["400", "500", "600", "700"],
 })
 
 const playfairDisplay = Playfair_Display({
@@ -29,7 +37,7 @@ export default function RootLayout({
     return (
         <html lang="id" suppressHydrationWarning>
             <body
-                className={`${inter.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
+                className={`${defaultFont.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
             >
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
                     <AuthProvider>{children}</AuthProvider>
