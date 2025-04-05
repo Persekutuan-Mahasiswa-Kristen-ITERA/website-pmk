@@ -69,23 +69,27 @@ export const About = () => {
 
                     <div className="relative">
                         <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
-                            <Image
-                                src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=900&q=80"
-                                alt="PMK ITERA"
-                                className="w-full h-full object-cover object-center"
-                                width={1200}
-                                height={900}
-                            />
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src="/img/image1.webp"
+                                    alt="PMK ITERA"
+                                    className="w-full h-full object-cover object-center"
+                                    width={1200}
+                                    height={900}
+                                />
+                                <div className="absolute inset-0 bg-brown-300 opacity-20" />
+                            </div>
                         </div>
                         <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-brown-100 rounded-lg shadow-lg hidden md:block">
-                            <div className="w-full h-full overflow-hidden rounded-lg">
+                            <div className="relative w-full h-full">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80"
-                                    alt="PMK ITERA Activities"
-                                    className="w-full h-full object-cover"
-                                    width={800}
-                                    height={800}
+                                    src="/img/image2.webp"
+                                    alt="PMK ITERA"
+                                    className="w-full h-full object-cover object-center"
+                                    width={400}
+                                    height={400}
                                 />
+                                <div className="absolute inset-0 bg-brown-300 opacity-20" />
                             </div>
                         </div>
                     </div>
