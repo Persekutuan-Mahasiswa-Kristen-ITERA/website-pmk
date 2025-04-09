@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState, useEffect } from "react"
 import { BaseEntity, CrudConfig } from "@/types/common"
 import { Button } from "@/components/ui/button"
@@ -76,7 +77,6 @@ function CrudProvider<T extends BaseEntity>({ config, fields, columns, entityNam
     return (
         <div className="space-y-4">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold">{entityName}</h2>
                 <Button onClick={handleCreate} variant="default">
                     <Plus className="mr-2 h-4 w-4" />
                     {entityName} Baru
@@ -104,15 +104,15 @@ function CrudProvider<T extends BaseEntity>({ config, fields, columns, entityNam
                 onSubmit={handleFormSubmit}
                 item={selectedItem}
                 fields={fields}
-                title={selectedItem ? `Edit ${entityName}` : `Create ${entityName}`}
+                title={selectedItem ? `Edit ${entityName}` : `Buat ${entityName} Baru`}
             />
 
             <DeleteConfirmation
                 isOpen={isDeleteDialogOpen}
                 onClose={() => setIsDeleteDialogOpen(false)}
                 onConfirm={handleConfirmDelete}
-                title={`Delete ${entityName}`}
-                description={`Are you sure you want to delete this ${entityName.toLowerCase()}? This action cannot be undone.`}
+                title={`Hapus ${entityName}`}
+                description={`Yakin ingin menghapus ${entityName.toLowerCase()}?`}
             />
         </div>
     )

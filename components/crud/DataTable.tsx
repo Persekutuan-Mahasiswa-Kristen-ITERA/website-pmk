@@ -107,7 +107,7 @@ function DataTable<T extends BaseEntity>({
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Input
-                        className="max-w-sm"
+                        className="max-w-xl border-brown-400"
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -124,14 +124,15 @@ function DataTable<T extends BaseEntity>({
                             <SelectItem value="10">10</SelectItem>
                             <SelectItem value="20">20</SelectItem>
                             <SelectItem value="50">50</SelectItem>
+                            <SelectItem value="50">100</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
             </div>
 
-            <div className="rounded-md border">
+            <div className="rounded-sm border border-brown-400">
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-brown-700 text-white">
                         <TableRow>
                             {columns.map((column) => (
                                 <TableHead
@@ -165,7 +166,8 @@ function DataTable<T extends BaseEntity>({
                             filteredData.map((item) => (
                                 <TableRow
                                     key={item.id}
-                                    className={onRowClick ? "cursor-pointer" : ""}
+                                    className={`hover:bg-brown-50 transition ${onRowClick ? "cursor-pointer" : ""}`}
+                                    
                                     onClick={onRowClick ? () => onRowClick(item) : undefined}
                                 >
                                     {columns.map((column) => (
@@ -180,6 +182,7 @@ function DataTable<T extends BaseEntity>({
                                             {onEdit && (
                                                 <Button
                                                     variant="ghost"
+                                                    className="bg-brown-100 hover:bg-brown-200 text-brown-700 hover:text-brown-900"
                                                     size="icon"
                                                     onClick={(e) => {
                                                         e.stopPropagation()
@@ -192,6 +195,7 @@ function DataTable<T extends BaseEntity>({
                                             {onDelete && (
                                                 <Button
                                                     variant="ghost"
+                                                    className="bg-brown-100 hover:bg-brown-200 text-brown-700 hover:text-brown-900"
                                                     size="icon"
                                                     onClick={(e) => {
                                                         e.stopPropagation()

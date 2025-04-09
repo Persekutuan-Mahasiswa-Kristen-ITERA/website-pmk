@@ -47,7 +47,13 @@ export const RecentArticles = () => {
                                         <CircleUser className="h-4 w-4 mr-2" />
                                         <span>{article.author.name}</span>
                                     </div>
-                                    <span>{article.date}</span>
+                                    <span>
+                                        {article.createdAt?.toLocaleDateString("id-ID", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        })}
+                                    </span>
                                 </div>
                             </CardContent>
                             <CardFooter className="pt-2 pb-6">

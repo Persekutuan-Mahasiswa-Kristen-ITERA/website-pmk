@@ -38,7 +38,7 @@ export const UpcomingEvents = () => {
                                 <div className="space-y-2 text-sm text-brown-700">
                                     <div className="flex items-center">
                                         <Calendar className="h-4 w-4 mr-2 text-brown-500" />
-                                        <span>{event.date}</span>
+                                        <span>{event.createdAt?.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric",})}</span>
                                     </div>
                                     <div className="flex items-center">
                                         <Clock className="h-4 w-4 mr-2 text-brown-500" />

@@ -86,7 +86,13 @@ const RenunganPage = () => {
                                         </div>
                                         <div className="flex items-center">
                                             <Calendar className="h-4 w-4 mr-1" />
-                                            <span>{renungan.date}</span>
+                                            <span>
+                                                {renungan.createdAt?.toLocaleDateString("id-ID", {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                })}
+                                            </span>
                                         </div>
                                     </div>
                                     <Button

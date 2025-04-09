@@ -89,7 +89,13 @@ const ArtikelDetail = () => {
                         <div className="flex justify-center space-x-4 text-white/80">
                             <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-1" />
-                                <span className="text-sm">{article.date}</span>
+                                <span className="text-sm">
+                                    {article.createdAt?.toLocaleDateString("id-ID", {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    })}
+                                </span>
                             </div>
                             <div className="flex items-center">
                                 <Book className="h-4 w-4 mr-1" />
@@ -206,7 +212,13 @@ const ArtikelDetail = () => {
                                                             <h4 className="text-sm font-medium text-brown-800 group-hover:text-brown-600 line-clamp-2">
                                                                 {item.title}
                                                             </h4>
-                                                            <p className="text-xs text-brown-500 mt-1">{item.date}</p>
+                                                            <p className="text-xs text-brown-500 mt-1">
+                                                                {item.createdAt?.toLocaleDateString("id-ID", {
+                                                                    year: "numeric",
+                                                                    month: "long",
+                                                                    day: "numeric",
+                                                                })}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </Link>

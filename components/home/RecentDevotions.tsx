@@ -44,7 +44,7 @@ export const RecentDevotions = () => {
                                     <span className="text-sm text-brown-500">{devotion.verse}</span>
                                 </div>
                                 <h3 className="text-xl font-serif text-brown-800 mb-2">{devotion.title}</h3>
-                                <BibleVerse className="text-sm" text={devotion.preview} verse={devotion.verse} />
+                                <BibleVerse className="text-sm" text={devotion.preview} verse={devotion.verse} />   
                                 <div className="flex justify-between items-center text-sm text-brown-500 mt-2">
                                     <span>{devotion.author}</span>
                                     <span>

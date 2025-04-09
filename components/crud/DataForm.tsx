@@ -182,7 +182,7 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
                 control={form.control}
                 name={field.name}
                 render={({ field: formField }) => (
-                    <FormItem className="mb-4">
+                    <FormItem className="mb-4 font-sans">
                         <FormLabel>{field.label}</FormLabel>
                         <FormControl>
                             <div>
@@ -228,21 +228,23 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
     }
 
     return (
-        <Dialog open={isOpen} onOpenChange={isSubmitting ? undefined : onClose}>
-            <DialogContent className="sm:max-w-[500px]">
+        <Dialog open={isOpen} onOpenChange={isSubmitting ? undefined : onClose} >
+            <DialogContent className="sm:max-w-[500px] bg-white font-sans">
                 <DialogHeader>
-                    <DialogTitle>{title}</DialogTitle>
+                    <DialogTitle>
+                        <span className="font-bold text-lg">{title}</span>
+                    </DialogTitle>
                 </DialogHeader>
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
                         <div className="space-y-2">{fields.map(renderField)}</div>
 
-                        <DialogFooter>
-                            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+                        <DialogFooter className="flex gap-2 w-full">
+                            <Button type="button" className="grow" variant="outline" onClick={onClose} disabled={isSubmitting}>
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={isSubmitting}>
+                            <Button type="submit" className="grow" disabled={isSubmitting}>
                                 {isSubmitting ? "Saving..." : "Save"}
                             </Button>
                         </DialogFooter>
