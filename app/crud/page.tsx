@@ -8,20 +8,21 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const DevotionalManagement: React.FC = () => {
     const collectionName = "devotionals"
+    const title = "Data Renungan Harian"
+    const description = "Atur renungan harian yang tampil pada halaman utama website"
 
     return (
         <div className="container mx-auto p-6">
-            <h1 className="text-3xl font-bold mb-6">CRUD Demonstration</h1>
+            <h1 className="text-3xl font-bold mb-6">{title}</h1>
             <p className="text-muted-foreground mb-8">
-                A generic CRUD interface that can be used with any data model. This example uses a User entity, but the
-                components can be reused with any entity type.
+                {description}
             </p>
 
             <Card>
                 <CardContent className="pt-6">
                     <CrudProvider<Devotional>
                         config={{
-                            collection: "devotionals",
+                            collection: collectionName,
                             defaultSort: { field: "createdAt", direction: "desc" },
                             defaultPageSize: 20,
                         }}

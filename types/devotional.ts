@@ -7,7 +7,6 @@ export interface Devotional extends BaseEntity {
     verse: string
     preview: string
     content: string
-    date: string
     author: string
     category: string
 }
@@ -18,7 +17,6 @@ export const devotionalSchema = z.object({
     verse: z.string(),
     preview: z.string(),
     content: z.string(),
-    date: z.string(),
     author: z.string(),
     category: z.string(),
 });
@@ -29,7 +27,7 @@ export const devotionalColumns = [
     { key: 'verse' as keyof Devotional, header: 'Verse', sortable: true },
     { key: 'preview' as keyof Devotional, header: 'Preview', sortable: true },
     { key: 'content' as keyof Devotional, header: 'Content', sortable: true },
-    { key: 'date' as keyof Devotional, header: 'Date', sortable: true },
+    { key: 'createdAt' as keyof Devotional, header: 'Date', sortable: true },
     { key: 'author' as keyof Devotional, header: 'Author', sortable: true },
     { key: 'category' as keyof Devotional, header: 'Category', sortable: true },
 ];
@@ -65,7 +63,7 @@ export const devotionalConfig: FieldConfig[] = [
         validation: z.string().min(1, { message: "Content is required" })
     },
     {
-        name: 'date',
+        name: 'createdAt',
         label: 'Date',
         type: 'date',
         required: true,

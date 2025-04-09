@@ -1,12 +1,28 @@
+"use client"
+
 import { SectionHeader } from "@/components/ui/section-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { BookOpen, ChevronRight } from "lucide-react"
 import BibleVerse from "../bible-verse"
-import { devotionals } from "@/data/devotional"
+import { FirebaseService } from "@/services/firebase-service"
+import { useEffect, useState } from "react"
+import { Devotional } from "@/types/devotional"
 
 export const RecentDevotions = () => {
+    const devotionalsService = new FirebaseService<Devotional>("devotionals")
+    const [devotionals, setDevotionals] = useState<Devotional[]>([])
+
+    useEffect(() => {
+        const fetchDevotionals = async () => {
+            const response = (await devotionalsService.getAll()).items
+            setDevotionals(response)
+        }
+
+        fetchDevotionals()
+    })
+
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
@@ -31,7 +47,13 @@ export const RecentDevotions = () => {
                                 <BibleVerse className="text-sm" text={devotion.preview} verse={devotion.verse} />
                                 <div className="flex justify-between items-center text-sm text-brown-500 mt-2">
                                     <span>{devotion.author}</span>
-                                    <span>{devotion.date}</span>
+                                    <span>
+                                        {devotion.createdAt?.toLocaleDateString("id-ID", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        })}
+                                    </span>
                                 </div>
                                 <Button
                                     asChild

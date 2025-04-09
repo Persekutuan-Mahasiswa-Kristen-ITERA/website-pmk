@@ -77,7 +77,7 @@ function CrudProvider<T extends BaseEntity>({ config, fields, columns, entityNam
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold">{entityName}</h2>
-                <Button onClick={handleCreate}>
+                <Button onClick={handleCreate} variant="default">
                     <Plus className="mr-2 h-4 w-4" />
                     {entityName} Baru
                 </Button>
