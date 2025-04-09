@@ -1,4 +1,4 @@
-import { Management } from "@/types/Management"
+import { Management } from "@/types/management"
 
 export const management: Management[] = [
     {

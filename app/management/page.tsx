@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/section-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { management } from "@/data/management"
-import { Management } from "@/types/Management"
+import { Management } from "@/types/management"
 
 const Pengurus = () => {
     const groupedPengurus = management.reduce((acc, curr) => {

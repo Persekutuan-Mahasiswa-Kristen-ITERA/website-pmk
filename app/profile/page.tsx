@@ -6,7 +6,7 @@ import Image from 'next/image';
 const Profil = () => {
   return (
     <MainLayout>
-      <div className="bg-brown-100 py-20">
+      <div className="bg-brown-100 py-28">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-brown-800 text-center">
             Profil PMK ITERA
