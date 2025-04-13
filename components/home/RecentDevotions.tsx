@@ -11,15 +11,10 @@ import { useEffect, useState } from "react"
 import { Devotional } from "@/types/devotional"
 
 export const RecentDevotions = () => {
-    const devotionalsService = new FirebaseService<Devotional>("devotionals")
+    
     const [devotionals, setDevotionals] = useState<Devotional[]>([])
 
     useEffect(() => {
-        const fetchDevotionals = async () => {
-            const response = (await devotionalsService.getAll()).items
-            setDevotionals(response)
-        }
-
         fetchDevotionals()
     })
 

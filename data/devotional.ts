@@ -1,127 +1,30 @@
 import { Devotional } from "@/types/devotional"
-
-// services/book.service.ts
-import { firestore } from "@/lib/firebase"
-import {
-    collection,
-    addDoc,
-    getDocs,
-    updateDoc,
-    deleteDoc,
-    doc,
-    orderBy,
-    query,
-    limit,
-    startAfter,
-    getDoc,
-    Firestore,
-    QuerySnapshot,
-    DocumentSnapshot,
-} from "firebase/firestore"
+import { FirebaseService } from "@/services/firebase-service"
 
 const collectionName = "devotionals"
-const booksCollection = collection(firestore, collectionName)
+const devotionalsService = new FirebaseService<Devotional>(collectionName)
 
-export async function getDevotionals(limitCount = 50, lastDocRef: Devotional | null = null) {
-    const q = lastDocRef
-        ? query(booksCollection, orderBy("title"), startAfter(lastDocRef), limit(limitCount))
-        : query(booksCollection, orderBy("title"), limit(limitCount))
-
-    const snapshot = (await getDocs(q)) as QuerySnapshot<Devotional>
-    const devotionals = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-    })) as Devotional[]
-
-    return {
-        devotionals: devotionals,
-        lastDoc: snapshot.docs[snapshot.docs.length - 1] || null,
-    }
+async function getDevotionals() {
+    const response = (await devotionalsService.getAll()).items
+    return response
 }
 
-export async function createDevotional(data: Devotional) {
-    const docRef = await addDoc(booksCollection, data)
-    const newDoc = (await getDoc(docRef)) as DocumentSnapshot<Devotional>
-    return newDoc.data()
+async function getDevotionalById(id: string) {
+    const response = await devotionalsService.getById(id)
+    return response
 }
 
-export async function updateDevotional(id: string, data: Devotional) {
-    const docRef = doc(firestore, collectionName, id)
-    await updateDoc(docRef, { ...data })
-    const updatedDoc = (await getDoc(docRef)) as DocumentSnapshot<Devotional>
-    return updatedDoc.data()
+async function addDevotional(devotional: Devotional) {
+    const response = await devotionalsService.create(devotional)
+    return response
 }
 
-export async function deleteDevotional(id: string) {
-    const docRef = doc(firestore, collectionName, id)
-    await deleteDoc(docRef)
-    return true
+async function updateDevotional(id: string, devotional: Partial<Devotional>) {
+    const response = await devotionalsService.update(id, devotional)
+    return response
 }
 
-// export const devotionals: Devotional[] = [
-//     {
-//         id: 1,
-//         title: "Kasih yang Tidak Berkesudahan",
-//         verse: "Yeremia 31:3",
-//         preview:
-//             'TUHAN menampakkan diri dari jauh kepada umat-Nya: "Aku mengasihi engkau dengan kasih yang kekal, sebab itu Aku melanjutkan kasih setia-Ku kepadamu."',
-//         content: "Dalam perikop ini, kita diingatkan bahwa kasih Allah kepada kita adalah kasih yang kekal...",
-//         date: "5 Juli 2023",
-//         author: "Pdt. Samuel Wijaya",
-//         category: "Kasih",
-//     },
-//     {
-//         id: 2,
-//         title: "Bertumbuh dalam Pengenalan akan Kristus",
-//         verse: "2 Petrus 3:18",
-//         preview:
-//             "Tetapi bertumbuhlah dalam kasih karunia dan dalam pengenalan akan Tuhan dan Juruselamat kita, Yesus Kristus. Bagi-Nya kemuliaan, sekarang dan sampai selama-lamanya.",
-//         content: "Petrus mengakhiri suratnya dengan nasihat agar kita terus bertumbuh dalam kasih karunia...",
-//         date: "3 Juli 2023",
-//         author: "Pdt. Maria Handoko",
-//         category: "Pertumbuhan",
-//     },
-//     {
-//         id: 3,
-//         title: "Menghadapi Tantangan dengan Iman",
-//         verse: "Yakobus 1:2-4",
-//         preview:
-//             "Saudara-saudaraku, anggaplah sebagai suatu kebahagiaan, apabila kamu jatuh ke dalam berbagai-bagai pencobaan, sebab kamu tahu, bahwa ujian terhadap imanmu itu menghasilkan ketekunan.",
-//         content: "Yakobus memberikan perspektif yang berbeda tentang pencobaan yang kita hadapi...",
-//         date: "1 Juli 2023",
-//         author: "Ev. Daniel Susanto",
-//         category: "Iman",
-//     },
-//     {
-//         id: 4,
-//         title: "Hidup dalam Pengharapan",
-//         verse: "Roma 15:13",
-//         preview:
-//             "Semoga Allah, sumber pengharapan, memenuhi kamu dengan segala sukacita dan damai sejahtera dalam iman kamu, supaya oleh kekuatan Roh Kudus kamu berlimpah-limpah dalam pengharapan.",
-//         content: "Pengharapan Kristen bukanlah sekadar optimisme manusiawi...",
-//         date: "28 Juni 2023",
-//         author: "Pdt. Thomas Sibarani",
-//         category: "Pengharapan",
-//     },
-//     {
-//         id: 5,
-//         title: "Menjadi Garam dan Terang Dunia",
-//         verse: "Matius 5:13-16",
-//         preview:
-//             '"Kamu adalah garam dunia. Jika garam itu menjadi tawar, dengan apakah ia diasinkan? Tidak ada lagi gunanya selain dibuang dan diinjak orang."',
-//         content: "Yesus menggunakan dua metafora kuat untuk menggambarkan peran kita sebagai pengikut-Nya...",
-//         date: "25 Juni 2023",
-//         author: "Pdt. Sarah Hutapea",
-//         category: "Kesaksian",
-//     },
-//     {
-//         id: 6,
-//         title: "Sukacita dalam Penderitaan",
-//         verse: "Filipi 1:29",
-//         preview:
-//             "Sebab kepada kamu dikaruniakan bukan saja untuk percaya kepada Kristus, melainkan juga untuk menderita untuk Dia.",
-//         content: "Paulus mengingatkan bahwa menderita karena Kristus adalah suatu hak istimewa...",
-//         date: "22 Juni 2023",
-//         author: "Ev. Daniel Susanto",
-//         category: "Sukacita",
-//     },
-// ]
+async function deleteDevotional(id: string) {
+    const response = await devotionalsService.delete(id)
+    return response
+}

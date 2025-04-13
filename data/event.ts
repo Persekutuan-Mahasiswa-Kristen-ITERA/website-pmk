@@ -1,31 +1,30 @@
+import { FirebaseService } from "@/services/firebase-service"
 import { Event } from "@/types/event"
 
-export const events: Event[] = [
-    {
-        id: 1,
-        title: "Ibadah Persekutuan Mingguan",
-        date: "7 Juli 2023",
-        time: "18:30 - 20:30",
-        location: "RIMA ITERA",
-        image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=800&q=80",
-        description: 'Ibadah persekutuan rutin minggu ini dengan tema "Kasih yang Mempersatukan".',
-    },
-    {
-        id: 2,
-        title: "Kelompok Studi Alkitab",
-        date: "10 Juli 2023",
-        time: "19:00 - 21:00",
-        location: "Ruang Diskusi Perpustakaan",
-        image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=800&q=80",
-        description: "Pendalaman Alkitab bersama mengenai Kitab Kisah Para Rasul.",
-    },
-    {
-        id: 3,
-        title: "Retret Mahasiswa Baru",
-        date: "15-17 Juli 2023",
-        time: "Seharian",
-        location: "Villa Asri, Kaliurang",
-        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=800&q=80",
-        description: "Kegiatan pengenalan dan pembekalan rohani untuk mahasiswa Kristen baru.",
-    },
-]
+const collectionName = "events"
+const eventsService = new FirebaseService<Event>(collectionName)
+
+async function getEvents() {
+    const response = (await eventsService.getAll()).items
+    return response
+}
+
+async function getEventById(id: string) {
+    const response = await eventsService.getById(id)
+    return response
+}
+
+async function addEvent(event: Event) {
+    const response = await eventsService.create(event)
+    return response
+}
+
+async function updateEvent(id: string, event: Partial<Event>) {
+    const response = await eventsService.update(id, event)
+    return response
+}
+
+async function deleteEvent(id: string) {
+    const response = await eventsService.delete(id)
+    return response
+}
