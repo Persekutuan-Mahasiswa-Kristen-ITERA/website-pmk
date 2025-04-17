@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback, useMemo } from "react"
 import { BaseEntity } from "@/types/common"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 
-export type FieldType = "text" | "number" | "date" | "boolean" | "select" | "textarea"
+export type FieldType = "text" | "number" | "date" | "boolean" | "select" | "textarea" | "string-array"
 
 export interface FieldConfig {
     name: string
@@ -21,6 +21,7 @@ export interface FieldConfig {
     options?: { label: string; value: string }[]
     validation?: z.ZodTypeAny // For custom Zod validation
     hidden?: boolean // For fields like id that shouldn't be displayed
+    arrayItemLabel?: string // Label for array items (used when type is "string-array")
 }
 
 interface DataFormProps<T extends BaseEntity> {
@@ -34,17 +35,31 @@ interface DataFormProps<T extends BaseEntity> {
 
 function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, fields, title }: DataFormProps<T>) {
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [stringArrays, setStringArrays] = useState<Record<string, string[]>>({})
+    const [arrayInputs, setArrayInputs] = useState<Record<string, string>>({})
 
-    // Dynamically generate Zod schema based on fields
-    const generateSchema = () => {
+    // Memoize the schema generation
+    const schema = useMemo(() => {
         const schemaMap: Record<string, any> = {}
 
         fields.forEach((field) => {
             if (field.hidden) return
 
-            // Use provided custom validation or generate default validation
+            const fieldParts = field.name.split(".")
+            let currentSchema = schemaMap
+
+            for (let i = 0; i < fieldParts.length - 1; i++) {
+                const part = fieldParts[i]
+                if (!currentSchema[part]) {
+                    currentSchema[part] = z.object({})
+                }
+                currentSchema = currentSchema[part].shape || currentSchema[part]
+            }
+
+            const fieldName = fieldParts[fieldParts.length - 1]
+
             if (field.validation) {
-                schemaMap[field.name] = field.validation
+                currentSchema[fieldName] = field.validation
                 return
             }
 
@@ -52,6 +67,7 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
 
             switch (field.type) {
                 case "text":
+                case "textarea":
                     baseValidation = z.string().trim()
                     break
                 case "number":
@@ -72,93 +88,162 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
                     baseValidation = z.string().optional()
             }
 
-            if (field.required) {
-                if (field.type === "text" || field.type === "select") {
+            if (field.required && field.type !== "string-array") {
+                if (field.type === "text" || field.type === "select" || field.type === "textarea") {
                     if (baseValidation instanceof z.ZodString) {
-                        schemaMap[field.name] = baseValidation.min(1, { message: `${field.label} is required` })
+                        currentSchema[fieldName] = baseValidation.min(1, { message: `${field.label} is required` })
                     } else {
-                        schemaMap[field.name] = baseValidation
+                        currentSchema[fieldName] = baseValidation
                     }
                 } else {
-                    schemaMap[field.name] = baseValidation
+                    currentSchema[fieldName] = baseValidation
                 }
             } else {
                 if (field.type === "number") {
-                    schemaMap[field.name] = z.number().optional()
+                    currentSchema[fieldName] = z.number().optional()
                 } else if (field.type === "boolean") {
-                    schemaMap[field.name] = z.boolean().optional()
+                    currentSchema[fieldName] = z.boolean().optional()
+                } else if (field.type === "string-array") {
+                    currentSchema[fieldName] = z.array(z.string().trim()).optional()
                 } else {
-                    schemaMap[field.name] = baseValidation.optional()
+                    currentSchema[fieldName] = baseValidation.optional()
                 }
             }
         })
 
         return z.object(schemaMap)
+    }, [fields])
+
+    const getNestedValue = (obj: any, path: string) => {
+        return path.split(".").reduce((acc, part) => acc && acc[part], obj)
     }
 
-    const schema = generateSchema()
+    const setNestedValue = (obj: any, path: string, value: any) => {
+        const parts = path.split(".")
+        const last = parts.pop()
+        let current = obj
 
-    const generateDefaultValues = useCallback(() => {
-        const defaultValues: Record<string, any> = {}
+        for (const part of parts) {
+            if (!current[part]) {
+                current[part] = {}
+            }
+            current = current[part]
+        }
+
+        if (last) {
+            current[last] = value
+        }
+    }
+
+    // Memoize the default values generation
+    const defaultValues = useMemo(() => {
+        const values: Record<string, any> = {}
+        const initialArrays: Record<string, string[]> = {}
 
         fields.forEach((field) => {
-            if (item && Object.prototype.hasOwnProperty.call(item, field.name)) {
-                // Handle date fields - convert to string format for input
-                if (field.type === "date" && item[field.name as keyof T] instanceof Date) {
-                    const date = item[field.name as keyof T] as unknown as Date
-                    defaultValues[field.name] = date.toISOString().split("T")[0]
+            if (field.type === "string-array") {
+                const value = item ? getNestedValue(item, field.name) || [] : []
+                initialArrays[field.name] = Array.isArray(value) ? value : []
+                return
+            }
+
+            if (item && getNestedValue(item, field.name) !== undefined) {
+                const value = getNestedValue(item, field.name)
+
+                if (field.type === "date" && value instanceof Date) {
+                    setNestedValue(values, field.name, value.toISOString().split("T")[0])
                 } else {
-                    defaultValues[field.name] = item[field.name as keyof T]
+                    setNestedValue(values, field.name, value)
                 }
             } else {
-                // Set default values for new items
                 switch (field.type) {
                     case "boolean":
-                        defaultValues[field.name] = false
+                        setNestedValue(values, field.name, false)
                         break
                     case "number":
-                        defaultValues[field.name] = 0
+                        setNestedValue(values, field.name, 0)
                         break
                     case "date":
-                        defaultValues[field.name] = new Date().toISOString().split("T")[0]
+                        setNestedValue(values, field.name, new Date().toISOString().split("T")[0])
                         break
                     case "text":
                     case "textarea":
                     case "select":
-                        defaultValues[field.name] = ""
+                        setNestedValue(values, field.name, "")
                         break
                 }
             }
         })
 
-        return defaultValues
+        setStringArrays(initialArrays)
+        return values
     }, [fields, item])
 
     const form = useForm<any>({
         resolver: zodResolver(schema),
-        defaultValues: generateDefaultValues(),
+        defaultValues,
     })
 
     useEffect(() => {
         if (isOpen) {
-            // Reset form with new values when dialog opens or item changes
-            form.reset(generateDefaultValues())
+            form.reset(defaultValues)
         }
-    }, [isOpen, item, form, generateDefaultValues])
+    }, [isOpen, defaultValues, form])
+
+    const handleAddToArray = (fieldName: string) => {
+        const currentInput = arrayInputs[fieldName] || ""
+        if (!currentInput.trim()) return
+
+        const newArray = [...(stringArrays[fieldName] || []), currentInput.trim()]
+
+        setStringArrays((prev) => ({
+            ...prev,
+            [fieldName]: newArray,
+        }))
+
+        setArrayInputs((prev) => ({ ...prev, [fieldName]: "" }))
+
+        // Update the form value
+        form.setValue(fieldName, newArray)
+
+        // Trigger validation
+        form.trigger(fieldName)
+    }
+
+    const handleRemoveFromArray = (fieldName: string, index: number) => {
+        const newArray = [...(stringArrays[fieldName] || [])]
+        newArray.splice(index, 1)
+
+        setStringArrays((prev) => ({ ...prev, [fieldName]: newArray }))
+
+        // Update the form value
+        form.setValue(fieldName, newArray)
+
+        // Trigger validation
+        form.trigger(fieldName)
+    }
 
     const handleSubmit = async (data: any) => {
         setIsSubmitting(true)
 
         try {
-            // Convert string dates to Date objects
+            // Process all fields before submission
             fields.forEach((field) => {
-                if (field.type === "date" && data[field.name]) {
-                    data[field.name] = new Date(data[field.name])
+                if (field.type === "date" && getNestedValue(data, field.name)) {
+                    setNestedValue(data, field.name, new Date(getNestedValue(data, field.name)))
                 }
 
                 // Convert string numbers to actual numbers
-                if (field.type === "number" && typeof data[field.name] === "string") {
-                    data[field.name] = Number(data[field.name])
+                if (field.type === "number") {
+                    const value = getNestedValue(data, field.name)
+                    if (typeof value === "string") {
+                        setNestedValue(data, field.name, Number(value))
+                    }
+                }
+
+                // Ensure string arrays are properly set
+                if (field.type === "string-array") {
+                    setNestedValue(data, field.name, stringArrays[field.name] || [])
                 }
             })
 
@@ -228,8 +313,8 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
     }
 
     return (
-        <Dialog open={isOpen} onOpenChange={isSubmitting ? undefined : onClose} >
-            <DialogContent className="sm:max-w-[500px] bg-white font-sans">
+        <Dialog open={isOpen} onOpenChange={isSubmitting ? undefined : onClose}>
+            <DialogContent className="sm:max-w-[500px] h-10/12 overflow-scroll bg-white font-sans">
                 <DialogHeader>
                     <DialogTitle>
                         <span className="font-bold text-lg">{title}</span>
@@ -241,7 +326,13 @@ function DataForm<T extends BaseEntity>({ isOpen, onClose, onSubmit, item, field
                         <div className="space-y-2">{fields.map(renderField)}</div>
 
                         <DialogFooter className="flex gap-2 w-full">
-                            <Button type="button" className="grow" variant="outline" onClick={onClose} disabled={isSubmitting}>
+                            <Button
+                                type="button"
+                                className="grow"
+                                variant="outline"
+                                onClick={onClose}
+                                disabled={isSubmitting}
+                            >
                                 Cancel
                             </Button>
                             <Button type="submit" className="grow" disabled={isSubmitting}>

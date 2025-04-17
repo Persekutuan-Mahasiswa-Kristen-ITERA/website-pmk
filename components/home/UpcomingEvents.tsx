@@ -1,13 +1,26 @@
-import React from "react"
+"use client"
+
+import React, { useEffect, useState } from "react"
 import { SectionHeader } from "@/components/ui/section-header"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, MapPin } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import Image from "next/image"
-import { events } from "@/data/event"
 import Link from "next/link"
+import { getEvents } from "@/data/event"
+import { Event } from "@/types/event"
 
 export const UpcomingEvents = () => {
+    const [events, setEvents] = useState<Event[]>([])
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const data = await getEvents()
+            setEvents(data)
+        }
+        fetchEvents()
+    }, [])
+
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
@@ -38,7 +51,13 @@ export const UpcomingEvents = () => {
                                 <div className="space-y-2 text-sm text-brown-700">
                                     <div className="flex items-center">
                                         <Calendar className="h-4 w-4 mr-2 text-brown-500" />
-                                        <span>{event.createdAt?.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric",})}</span>
+                                        <span>
+                                            {event.createdAt?.toLocaleDateString("id-ID", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            })}
+                                        </span>
                                     </div>
                                     <div className="flex items-center">
                                         <Clock className="h-4 w-4 mr-2 text-brown-500" />

@@ -107,19 +107,19 @@ function DataTable<T extends BaseEntity>({
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Input
-                        className="max-w-xl border-brown-400"
+                        className="max-w-xl border-brown-400 bg-white"
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">Rows per page:</span>
+                    <span className="text-sm text-muted-foreground">Baris per halaman:</span>
                     <Select value={String(pageSize)} onValueChange={(value) => onPageSizeChange(Number(value))}>
                         <SelectTrigger className="h-8 w-[70px]">
-                            <SelectValue placeholder={String(pageSize)} />
+                            <SelectValue className="bg-white" placeholder={String(pageSize)} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white">
                             <SelectItem value="5">5</SelectItem>
                             <SelectItem value="10">10</SelectItem>
                             <SelectItem value="20">20</SelectItem>
@@ -130,7 +130,7 @@ function DataTable<T extends BaseEntity>({
                 </div>
             </div>
 
-            <div className="rounded-sm border border-brown-400">
+            <div className="rounded-sm overflow-hidden border border-brown-400">
                 <Table>
                     <TableHeader className="bg-brown-700 text-white">
                         <TableRow>
@@ -149,7 +149,7 @@ function DataTable<T extends BaseEntity>({
                             <TableHead>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
-                    <TableBody>
+                    <TableBody className="bg-white">
                         {isLoading ? (
                             <TableRow>
                                 <TableCell colSpan={columns.length + 1} className="h-24 text-center">
@@ -166,7 +166,7 @@ function DataTable<T extends BaseEntity>({
                             filteredData.map((item) => (
                                 <TableRow
                                     key={item.id}
-                                    className={`hover:bg-brown-50 transition ${onRowClick ? "cursor-pointer" : ""}`}
+                                    className={`bg-white hover:bg-brown-50 transition ${onRowClick ? "cursor-pointer" : ""}`}
                                     
                                     onClick={onRowClick ? () => onRowClick(item) : undefined}
                                 >

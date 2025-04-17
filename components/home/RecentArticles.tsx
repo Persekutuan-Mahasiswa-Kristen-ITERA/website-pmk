@@ -1,13 +1,27 @@
-import React from "react"
+"use client"
+
+import React, { useEffect, useState } from "react"
 import { SectionHeader } from "@/components/ui/section-header"
 import { Button } from "@/components/ui/button"
 import { Calendar, CircleUser, Clock, MapPin } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
-import { articles } from "@/data/article"
+import { getArticles } from "@/data/article"
+import { Article } from "@/types/article"
 
 export const RecentArticles = () => {
+
+    const [articles, setArticles] = useState<Article[]>([])
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            const data = await getArticles()
+            setArticles(data)
+        }
+        fetchArticles()
+    }, [])
+
     return (
         <section className="py-16 bg-brown-50">
             <div className="container mx-auto px-4">

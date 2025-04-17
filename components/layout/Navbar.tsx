@@ -57,7 +57,7 @@ export const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                         <div className="text-brown-800 font-bold text-xl flex gap-4 place-items-center font-serif">
-                            <Image src="/logo.png" alt="PMK ITERA" className="w-10 h-10" width={10} height={10} />
+                            <Image src="/logo-128.png" alt="PMK ITERA" className="w-8 h-8" width={128} height={128} />
                             PMK ITERA
                         </div>
                     </Link>

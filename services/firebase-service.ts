@@ -18,6 +18,7 @@ import {
     startAfter,
     Timestamp,
     updateDoc,
+    where,
 } from "firebase/firestore"
 
 // Convert Firestore timestamp to Date
@@ -63,7 +64,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async getAll(
         sortOption?: SortOption<T>,
-        pagination?: PaginationState
+        pagination?: PaginationState,
     ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
             const collectionRef = collection(firestore, this.collectionName)
@@ -153,6 +154,27 @@ export class FirebaseService<T extends BaseEntity> {
             } as T
         } catch (error) {
             console.error("Error getting document:", error)
+            throw error
+        }
+    }
+
+    async getByField(field: keyof T, value: any): Promise<T[]> {
+        try {
+            const collectionRef = collection(firestore, this.collectionName)
+            const q = query(collectionRef, where(field.toString(), "==", value))
+            const querySnapshot = await getDocs(q)
+
+            const items: T[] = querySnapshot.docs.map((doc) => {
+                const data = doc.data()
+                return {
+                    id: doc.id,
+                    ...convertTimestampToDate(data),
+                } as T
+            })
+
+            return items
+        } catch (error) {
+            console.error("Error getting documents by field:", error)
             throw error
         }
     }

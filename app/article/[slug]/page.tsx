@@ -12,21 +12,33 @@ import { useParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { Article } from "@/types/article"
-import { articles } from "@/data/article"
+import { getArticleById, getArticleBySlug, getArticles, getLatestArticles } from "@/data/article"
 
 const ArtikelDetail = () => {
     const { slug } = useParams()
     const [article, setArticle] = useState<Article | null>(null)
+    const [articles, setArticles] = useState<Article[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        setIsLoading(true)
-        const foundArticle = articles.find((item) => item.slug === slug)
-        if (foundArticle) {
-            setArticle(foundArticle)
+        const fetchArticle = async () => {
+            setIsLoading(true)
+            const article = await getArticleBySlug(slug as string)
+            if (article && Array.isArray(article) && article.length > 0) {
+                setArticle(article[0]) // Assuming you want the first article
+            }
+            setIsLoading(false)
         }
 
-        setIsLoading(false)
+        const fetch3Articles = async () => {
+            const articles = await getLatestArticles(3)
+            if (articles && Array.isArray(articles)) {
+                setArticles(articles)
+            }
+        }
+
+        fetchArticle()
+        fetch3Articles()
     }, [slug])
 
     if (isLoading) {
@@ -60,13 +72,13 @@ const ArtikelDetail = () => {
     return (
         <MainLayout>
             {/* Hero section with article title and image */}
-            <div className="relative h-[40vh] md:h-[50vh] w-full bg-brown-900">
-                <div className="absolute inset-0 bg-gradient-to-t from-brown-900/80 to-brown-900/40">
+            <div className="relative h-[30vh] md:h-[40vh] w-full bg-brown-950">
+                <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
                     {article.imageUrl && (
                         <Image
                             src={article.imageUrl}
                             alt={article.title}
-                            className="w-full h-full object-cover opacity-60"
+                            className="w-full h-full object-cover opacity-30"
                             width={1200}
                             height={700}
                         />
@@ -74,17 +86,6 @@ const ArtikelDetail = () => {
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="container px-4 py-12 text-center">
-                        <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="mb-6 bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20"
-                        >
-                            <Link href="/article" className="flex items-center">
-                                <ChevronLeft className="h-4 w-4 mr-1" />
-                                Semua Artikel
-                            </Link>
-                        </Button>
                         <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{article.title}</h1>
                         <div className="flex justify-center space-x-4 text-white/80">
                             <div className="flex items-center">
@@ -102,6 +103,17 @@ const ArtikelDetail = () => {
                                 <span className="text-sm">{article.readTime} menit membaca</span>
                             </div>
                         </div>
+                        <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="mt-6 bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20 text-xs"
+                        >
+                            <Link href="/article" className="flex items-center">
+                                <ChevronLeft className="h-4 w-4 mr-1" />
+                                Semua Artikel
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -147,9 +159,9 @@ const ArtikelDetail = () => {
 
                                 {/* Tags */}
                                 <div className="mt-8 flex flex-wrap gap-2">
-                                    {article.tags.map((tag) => (
+                                    {article.tags.split(",").map((tag) => (
                                         <Badge key={tag} variant="outline" className="border-brown-200 text-brown-600">
-                                            {tag}
+                                            {tag.trim()}
                                         </Badge>
                                     ))}
                                 </div>
@@ -191,7 +203,6 @@ const ArtikelDetail = () => {
                                     <div className="space-y-4">
                                         {articles
                                             .filter((item) => item.id !== article.id)
-                                            .slice(0, 3)
                                             .map((item) => (
                                                 <Link
                                                     key={item.id}

@@ -1,6 +1,6 @@
 "use client"
 
-import { Devotional, devotionalColumns, devotionalConfig } from "@/types/devotional"
+import { Devotional, devotionalColumns, devotionalFields } from "@/types/devotional"
 import CrudProvider from "@/components/crud/CrudProvider"
 import { Card, CardContent } from "@/components/ui/card"
 import { AdminLayout } from "@/components/layout/AdminLayout"
@@ -21,7 +21,7 @@ const DevotionalManagement: React.FC = () => {
                     defaultSort: { field: "createdAt", direction: "desc" },
                     defaultPageSize: 20,
                 }}
-                fields={devotionalConfig}
+                fields={devotionalFields}
                 columns={devotionalColumns}
                 entityName="Renungan"
             />

@@ -28,10 +28,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar />
             <div className="flex flex-1 font-sans">
                 <Sidebar />
-                <main className="flex-1 p-6">{children}</main>
+                <main className="flex-1 p-12 bg-[url(/img/bg-pattern.jpg)] bg-repeat bg-[length:25%] bg-blend-lighten bg-opacity-80">{children}</main>
             </div>
         </div>
     )

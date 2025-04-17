@@ -11,7 +11,7 @@ import { RecentArticles } from '@/components/home/RecentArticles';
 
 const Index = () => {
   return (
-    <MainLayout>
+    <MainLayout fixedNavbar={true}>
       <Hero />
       <About />
       <UpcomingEvents />
