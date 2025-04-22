@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { MainLayout } from "@/components/layout/MainLayout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,13 +10,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
 import { FileText, Search, Calendar, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { articles } from "@/data/article"
-
-const ALL_TAGS = Array.from(new Set(articles.flatMap((article) => article.tags)))
+import { Article } from "@/types/article"
+import { getArticles } from "@/data/article"
 
 const ArtikelPage = () => {
+    const [articles, setArticles] = useState<Article[]>([])
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedTag, setSelectedTag] = useState<string | null>(null)
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            setArticles(await getArticles())
+        }
+
+        fetchArticles()
+    }, [])
 
     const filteredArticles = articles.filter((article) => {
         const matchesSearch =
@@ -64,7 +72,7 @@ const ArtikelPage = () => {
                             </div>
                         </div>
                         <div className="w-full md:w-1/3">
-                            <div className="flex flex-wrap gap-2">
+                            {/* <div className="flex flex-wrap gap-2">
                                 {ALL_TAGS.map((tag) => (
                                     <Badge
                                         key={tag}
@@ -79,7 +87,7 @@ const ArtikelPage = () => {
                                         {tag}
                                     </Badge>
                                 ))}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -112,7 +120,7 @@ const ArtikelPage = () => {
                                                 {article.excerpt}
                                             </p>
 
-                                            <div className="flex flex-wrap gap-2 mb-4">
+                                            {/* <div className="flex flex-wrap gap-2 mb-4">
                                                 {article.tags.map((tag) => (
                                                     <Badge
                                                         key={tag}
@@ -122,7 +130,7 @@ const ArtikelPage = () => {
                                                         {tag}
                                                     </Badge>
                                                 ))}
-                                            </div>
+                                            </div> */}
 
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center">

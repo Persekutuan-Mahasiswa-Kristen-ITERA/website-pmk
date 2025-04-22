@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { MainLayout } from "@/components/layout/MainLayout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -8,13 +8,23 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { BookOpen, Calendar, User, Search } from "lucide-react"
 import Link from "next/link"
-import { devotionals } from "@/data/devotional"
+import { getDevotionals } from "@/data/devotional"
+import { Devotional } from "@/types/devotional"
 
 const CATEGORIES = ["Semua", "Kasih", "Pertumbuhan", "Iman", "Pengharapan", "Kesaksian", "Sukacita"]
 
 const RenunganPage = () => {
+    const [devotionals, setDevotionals] = useState<Devotional[]>([])
     const [selectedCategory, setSelectedCategory] = useState("Semua")
     const [searchQuery, setSearchQuery] = useState("")
+
+    useEffect(() => {
+        const fetchDevotionals = async () => {
+            setDevotionals(await getDevotionals())
+        }
+
+        fetchDevotionals()
+    }, [])
 
     const filteredRenungan = devotionals.filter((renungan) => {
         const matchesCategory = selectedCategory === "Semua" || renungan.category === selectedCategory

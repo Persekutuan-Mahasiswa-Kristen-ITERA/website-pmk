@@ -1,68 +1,32 @@
 "use client"
 
-import React, { useState } from "react"
+import { Article, articleColumns, articleFields } from "@/types/article"
+import CrudProvider from "@/components/crud/CrudProvider"
+import { Card, CardContent } from "@/components/ui/card"
 import { AdminLayout } from "@/components/layout/AdminLayout"
-import { CrudTable } from "@/components/admin/CrudTable"
-import { useToast } from "@/hooks/use-toast"
-import { Event } from "@/types/event" // Update the import to Event
-import { events } from "@/data/event" // Update the import to events
 
-const EventAdmin = () => {
-    const { toast } = useToast()
-    const [event, setEvent] = useState<Event[]>(events) // Update state to Event
-
-    const handleAdd = (newEvent: Partial<Event>) => {
-        const newEventItem = {
-            ...newEvent,
-            id: Date.now(), // Change to number
-        } as Event
-
-        setEvent([...event, newEventItem])
-        toast({
-            title: "Berhasil menambahkan event",
-            description: `Event "${newEvent.title}" telah ditambahkan`,
-        })
-    }
-
-    const handleEdit = (id: number, data: Partial<Event>) => {
-        setEvent(event.map((event) => (event.id === id ? { ...event, ...data } : event)))
-        toast({
-            title: "Berhasil mengubah event",
-            description: `Event "${data.title}" telah diperbarui`,
-        })
-    }
-
-    const handleDelete = (id: number) => {
-        setEvent(event.filter((item) => item.id !== id))
-        toast({
-            title: "Berhasil menghapus event",
-            description: "Event telah dihapus",
-        })
-    }
-
-    const fields = [
-        { name: "judul", label: "Judul", type: "text" as const },
-        { name: "kategori", label: "Kategori", type: "text" as const },
-        { name: "isi", label: "Isi", type: "textarea" as const },
-        { name: "tanggal", label: "Tanggal", type: "date" as const },
-        { name: "penulis", label: "Penulis", type: "text" as const },
-        { name: "gambar", label: "Gambar", type: "image" as const },
-    ]
+const EventsManagement: React.FC = () => {
+    const collectionName = "events" // Changed from "articles" to "events"
+    const title = "Data Event" // Optional: Update title if needed
+    const description = "Atur event yang tampil pada halaman utama website" // Optional: Update description if needed
 
     return (
-        <div></div>
-        // <AdminLayout>
-        //     <CrudTable
-        //         title="Event"
-        //         data={event}
-        //         fields={fields}
-        //         onAdd={handleAdd}
-        //         onEdit={handleEdit}
-        //         onDelete={handleDelete}
-        //         getItemId={(item) => item.id}
-        //     />
-        // </AdminLayout>
+        <AdminLayout>
+            <span className="text-2xl font-bold mb-2 mt-12">{title}</span>
+            <p className="mb-8">{description}</p>
+
+            <CrudProvider<Article>
+                config={{
+                    collection: collectionName,
+                    defaultSort: { field: "createdAt", direction: "desc" },
+                    defaultPageSize: 20,
+                }}
+                fields={articleFields}
+                columns={articleColumns}
+                entityName="Event" // Changed from "Artikel" to "Event"
+            />
+        </AdminLayout>
     )
 }
 
-export default EventAdmin
+export default EventsManagement
