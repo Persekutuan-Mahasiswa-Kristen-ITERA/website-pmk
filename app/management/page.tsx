@@ -2,13 +2,11 @@ import { MainLayout } from "@/components/layout/MainLayout"
 import { SectionHeader } from "@/components/ui/section-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { management } from "@/data/management"
 import Image from "next/image"
+import { useEffect, useState } from "react"
+import { management } from "@/data/management"
 
 const Pengurus = () => {
-    const departments = Object.entries(management)
-    
-
     return (
         <MainLayout>
             <div className="bg-brown-100 py-20">
@@ -28,65 +26,31 @@ const Pengurus = () => {
                     <div className="mb-16">
                         <SectionHeader title="YESAKA" subtitle={`Kesekjenan PMK ITERA`} centered={true} />
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 place-content-center place-items-center">
-                            {
-                                // management.kesekjenan.map((pengurus) => (
-                                //     <Card key={pengurus.id} className="border-brown-100 hover:shadow-md transition-shadow">
-                                //         <CardContent className="pt-6">
-                                //             <div className="flex flex-col items-center text-center">
-                                //                 <Avatar className="h-32 w-32 mb-4">
-                                //                     <AvatarImage src={pengurus.image} alt={pengurus.name} />
-                                //                     <AvatarFallback className="bg-brown-200 text-brown-700 text-xl">
-                                //                         {pengurus.name
-                                //                             .split(" ")
-                                //                             .map((name) => name[0])
-                                //                             .join("")}
-                                //                     </AvatarFallback>
-                                //                 </Avatar>
-                                //                 <h3 className="text-xl font-serif text-brown-800">{pengurus.name}</h3>
-                                //                 <p className="text-brown-700 font-medium">{pengurus.position}</p>
-                                //                 <p className="text-brown-500 text-sm mb-4">{pengurus.department}</p>
-                                //                 <p className="text-brown-600 text-sm">{pengurus.description}</p>
-                                //             </div>
-                                //         </CardContent>
-                                //     </Card>
-                                // ))
-                            }
+                        <div className="flex flex-wrap gap-8 place-content-center place-items-center">
+                            {management.core.map((person) => (
+                                <Card
+                                    key={person.role}
+                                    className="border-brown-100 w-56 h-64 hover:shadow-md transition-shadow overflow-hidden rounded-sm"
+                                >
+                                    <CardContent className="pt-6 p-0">
+                                        <div className="flex flex-col items-center text-center">
+                                            <Image
+                                                src={person.photoUrl}
+                                                alt={person.name}
+                                                width={300}
+                                                height={256}
+                                                className="w-full h-36 object-center"
+                                            />
+                                            <div className="p-4">
+                                                <h3 className="text-lg font-serif text-brown-800">{person.name}</h3>
+                                                <p className="text-brown-700 text-sm font-medium">{person.role}</p>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
                         </div>
                     </div>
-
-                    {/* {Object.entries(management).map((department) => (
-                        <div key={department[0]} className="mb-16">
-                            <SectionHeader title={department[0]} subtitle={`Tim ${department} PMK ITERA`} />
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                                {department.map((pengurus) => (
-                                    <Card
-                                        key={pengurus.id}
-                                        className="border-brown-100 hover:shadow-md transition-shadow"
-                                    >
-                                        <CardContent className="pt-6">
-                                            <div className="flex flex-col items-center text-center">
-                                                <Avatar className="h-32 w-32 mb-4">
-                                                    <AvatarImage src={pengurus.image} alt={pengurus.name} />
-                                                    <AvatarFallback className="bg-brown-200 text-brown-700 text-xl">
-                                                        {pengurus.name
-                                                            .split(" ")
-                                                            .map((name) => name[0])
-                                                            .join("")}
-                                                    </AvatarFallback>
-                                                </Avatar>
-                                                <h3 className="text-xl font-serif text-brown-800">{pengurus.name}</h3>
-                                                <p className="text-brown-700 font-medium">{pengurus.position}</p>
-                                                <p className="text-brown-500 text-sm mb-4">{pengurus.department}</p>
-                                                <p className="text-brown-600 text-sm">{pengurus.description}</p>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </div>
-                        </div>
-                    ))} */}
                 </div>
             </section>
         </MainLayout>

@@ -1,214 +1,278 @@
-export const management = {
-    kesekjenan: [
-        { "Ketua Umum": { name: "Andre Hadiman Rotua Parhusip", image: "https://picsum.photos/200" } },
-        { "Sekretaris Jendral": { name: "Natanael Sinaga", image: "https://picsum.photos/200" } },
-        { "Sekretaris Umum 1": { name: "Olivia Margaretha Purba", image: "https://picsum.photos/200" } },
-        { "Sekretaris Umum 2": { name: "Vera Magdalena Sinaga", image: "https://picsum.photos/200" } },
-        { "Bendahara Umum 1": { name: "Jelly Cristin Manurung", image: "https://picsum.photos/200" } },
-        { "Bendahara Umum 2": { name: "Dinda Joycehana", image: "https://picsum.photos/200" } },
+export const management: OrganizationStructure = {
+    core: [
+        { name: "Andre Hadiman Rotua Parhusip", photoUrl: "", role: "Ketua Umum" },
+        { name: "Natanael Sinaga", photoUrl: "", role: "Sekretaris Jendral" },
+        { name: "Olivia Margaretha Purba", photoUrl: "", role: "Sekretaris Umum 1" },
+        { name: "Vera Magdalena Sinaga", photoUrl: "", role: "Sekretaris Umum 2" },
+        { name: "Jelly Cristin Manurung", photoUrl: "", role: "Bendahara Umum 1" },
+        { name: "Dinda Joycehana", photoUrl: "", role: "Bendahara Umum 2" },
     ],
-    "Departemen Internal": {
-        kepala: { name: "Dion Asian Manurung", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Dean Maria Belen", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                "Event Organizer": [
-                    { name: "Cerine", image: "https://picsum.photos/200" },
-                    { name: "Ariel Redita Wijaya", image: "https://picsum.photos/200" },
-                    { name: "Rama grace", image: "https://picsum.photos/200" },
-                    { name: "Cristiani Anjelina Purba", image: "https://picsum.photos/200" },
-                    { name: "Bintang Paris Ambarita", image: "https://picsum.photos/200" },
-                ],
-            },
-            {
-                Harmonisasi: [
-                    { name: "Radot Siregar", image: "https://picsum.photos/200" },
-                    { name: "Jonatal", image: "https://picsum.photos/200" },
-                    { name: "Sarah Sianturi", image: "https://picsum.photos/200" },
-                    { name: "Putri Aprilya Sagala", image: "https://picsum.photos/200" },
-                    { name: "Glory Auditha Gps", image: "https://picsum.photos/200" },
-                    { name: "Romi Julian Ananda M", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-    "Departemen Eksternal": {
-        kepala: { name: "Natanael Situmorang", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Elsania Lumbantoruan", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                "Ekstra Kampus": [
-                    { name: "Benget Backtiar Simamora", image: "https://picsum.photos/200" },
-                    { name: "Yunike Fujianti Aritonang", image: "https://picsum.photos/200" },
-                    { name: "Juliana Gloria Sitinjak", image: "https://picsum.photos/200" },
-                    { name: "Elza novitha Simanjuntak", image: "https://picsum.photos/200" },
-                    { name: "Anasthasya Uli Pasaribu", image: "https://picsum.photos/200" },
-                    { name: "Lestari Tesalonika", image: "https://picsum.photos/200" },
-                ],
-            },
-            {
-                "Divisi Intra Kampus": [
-                    { name: "William Christ Sijabat", image: "https://picsum.photos/200" },
-                    { name: "Ruth Eunike Regina Panjaitan", image: "https://picsum.photos/200" },
-                    { name: "Sarah Noviana C.Simatupang", image: "https://picsum.photos/200" },
-                    { name: "Vanessa br.Singarimbun", image: "https://picsum.photos/200" },
-                    { name: "Manotar Kristian Sianipar", image: "https://picsum.photos/200" },
-                ],
-            },
-            {
-                "Divisi Mission": [
-                    { name: "Annesya Debora Margaretha S", image: "https://picsum.photos/200" },
-                    { name: "Santa Olivia Pardosi", image: "https://picsum.photos/200" },
-                    { name: "Sherena Florencia", image: "https://picsum.photos/200" },
-                    { name: "Alio Harefa", image: "https://picsum.photos/200" },
-                    { name: "Jeremia Valentino Rajagukguk", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-    "Departemen Diakonia": {
-        kepala: { name: "Cinta Sri May Yemima Lumban Raja", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Adeline Shinta Marisi Purba", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                "Divisi Doa": [
-                    { name: "Nugraheni Sihombing", image: "https://picsum.photos/200" },
-                    { name: "Priscylia M Gloria Aritonang", image: "https://picsum.photos/200" },
-                    { name: "Jansen Theo Pascag Hutagalung", image: "https://picsum.photos/200" },
-                    { name: "Masta Hendri Setiawan Lature", image: "https://picsum.photos/200" },
-                ],
-                "Divisi Pemuridan": [
-                    { name: "Lidya Widiarti Asmoro", image: "https://picsum.photos/200" },
-                    { name: "Habel Junior Situngkir", image: "https://picsum.photos/200" },
-                    { name: "Esra Tesalonika Manik", image: "https://picsum.photos/200" },
-                    { name: "Samuel Oktavianus", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-    "Pelayanan Khusus": {
-        kepala: { name: "Elsa Dewani Simanjuntak", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Angelica Ayu Putri Herwina Sari", image: "https://picsum.photos/200" },
-        divisions: [
-            [
+    departments: [
+        {
+            name: "Departemen Internal",
+            head: { name: "Dion Asian Manurung", photoUrl: "" },
+            secretary: { name: "Dean Maria Belen", photoUrl: "" },
+            divisions: [
                 {
-                    "Divisi Musik": [
-                        { name: "Beltsazar P.L.G Dupe", image: "https://picsum.photos/200" },
-                        { name: "Bintang Marccelino Ruben Runtunuwu", image: "https://picsum.photos/200" },
-                        { name: "Rifki Prasetya", image: "https://picsum.photos/200" },
-                        { name: "Anderson Bualasaro Gulo", image: "https://picsum.photos/200" },
-                        { name: "Andreson Deco Situmorang", image: "https://picsum.photos/200" },
+                    name: "Event Organizer",
+                    head: { name: "Lena Novi Dwianty Siburian", photoUrl: "" },
+                    staff: [
+                        { name: "Cerine", photoUrl: "" },
+                        { name: "Ariel Redita Wijaya", photoUrl: "" },
+                        { name: "Rama grace", photoUrl: "" },
+                        { name: "Cristiani Anjelina Purba", photoUrl: "" },
+                        { name: "Bintang Paris Ambarita", photoUrl: "" },
                     ],
                 },
                 {
-                    "Divisi Worship": [
-                        { name: "Cecylia Millyardta Panjaitan", image: "https://picsum.photos/200" },
-                        { name: "Maruba Pandapotan Naibaho", image: "https://picsum.photos/200" },
-                        { name: "Allysia Arta Risqani Manurung", image: "https://picsum.photos/200" },
-                        { name: "Debora Arelia", image: "https://picsum.photos/200" },
-                    ],
-                },
-                {
-                    "Divisi Worship Creator": [
-                        { name: "Luccia Ribka Keswoyo", image: "https://picsum.photos/200" },
-                        { name: "Laura Mycele Simarmata", image: "https://picsum.photos/200" },
-                        { name: "Rodear Ibere Ni Purba", image: "https://picsum.photos/200" },
-                        { name: "Teo Andreas", image: "https://picsum.photos/200" },
-                        { name: "Gilbert Leonard S", image: "https://picsum.photos/200" },
+                    name: "Harmonisasi",
+                    head: { name: "Jesica Agustina Panjaitan", photoUrl: "" },
+
+                    staff: [
+                        { name: "Radot Siregar", photoUrl: "" },
+                        { name: "Jonatal", photoUrl: "" },
+                        { name: "Sarah Sianturi", photoUrl: "" },
+                        { name: "Putri Aprilya Sagala", photoUrl: "" },
+                        { name: "Glory Auditha Gps", photoUrl: "" },
+                        { name: "Romi Julian Ananda M", photoUrl: "" },
                     ],
                 },
             ],
-        ],
-    },
-    "Departemen Talenta": {
-        kepala: { name: "Jhon Tampubolon", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Theresia Simorangkir", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                "Art Interest": [
-                    { name: "Geofany Srydevy Sinambela", image: "https://picsum.photos/200" },
-                    { name: "Tamara Angeline Sitio", image: "https://picsum.photos/200" },
-                    { name: "Porman Sihombing", image: "https://picsum.photos/200" },
-                    { name: "Rosa verettina Pasaribu", image: "https://picsum.photos/200" },
-                    { name: "Yolita Fricilya Sitorus", image: "https://picsum.photos/200" },
-                    { name: "Andriano Rafael Manurung", image: "https://picsum.photos/200" },
-                ],
-            },
-            {
-                "Extra Youth": [
-                    { name: "Gabriel Rivandi Purba", image: "https://picsum.photos/200" },
-                    { name: "Amosta Yoel Sinaga", image: "https://picsum.photos/200" },
-                    { name: "Nicholas Tindaon", image: "https://picsum.photos/200" },
-                    { name: "Arnold Harvest Sinema Halawa", image: "https://picsum.photos/200" },
-                    { name: "Fery Moses Hutagaol", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-
-    "Departemen Operasional": {
-        kepala: { name: "Samuel Yohanes Caesar Simanjuntak", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Nurintan A.S.Sidauruk", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                Logistik: [
-                    { name: "Gerald Simbolon", image: "https://picsum.photos/200" },
-                    { name: "Jonatan Kristian Sitorus", image: "https://picsum.photos/200" },
-                    { name: "Ojahan Otniel Zelafehad Siagian", image: "https://picsum.photos/200" },
-                    { name: "Gabriel H.S Tampubolon", image: "https://picsum.photos/200" },
-                    { name: "Julius Nainggolan", image: "https://picsum.photos/200" },
-                ],
-                Akomodasi: [
-                    { name: "Salmon", image: "https://picsum.photos/200" },
-                    { name: "Helfreydo Sitorus", image: "https://picsum.photos/200" },
-                    { name: "Efapras Panjaitan", image: "https://picsum.photos/200" },
-                    { name: "Nicholas Hamonangan Situmeang", image: "https://picsum.photos/200" },
-                    { name: "Andika Prasetio Siregar", image: "https://picsum.photos/200" },
-                    { name: "Erwandi Pantun Pardede", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-    "Departemen Creative media": {
-        kepala: { name: "Hermawan Manurung", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Ivan Abraham", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                Desain: [
-                    { name: "David Marcellino Sianturi", image: "https://picsum.photos/200" },
-                    { name: "Daniella Gracia Christanty", image: "https://picsum.photos/200" },
-                    { name: "Yemima Hawila Septiani", image: "https://picsum.photos/200" },
-                    { name: "Vincent Gregori Imanuel Sihombing", image: "https://picsum.photos/200" },
-                    { name: "Gabriel Setiawan Tamba", image: "https://picsum.photos/200" },
-                ],
-                Pubdok: [
-                    { name: "Matthew Austin Laurentius", image: "https://picsum.photos/200" },
-                    { name: "Geraldi Turnip", image: "https://picsum.photos/200" },
-                    { name: "Ghealory Yosephine Purba", image: "https://picsum.photos/200" },
-                    { name: "Jojo Marpaung", image: "https://picsum.photos/200" },
-                    { name: "Vebizera Siahaan", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
-    "Biro IT": {
-        kepala: { name: "Joshua Palti Sinaga", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Devis Lazuardi Saduk", image: "https://picsum.photos/200" },
-        divisions: [{ "Biro IT": [{ name: "Febrian Yoel Anggara", image: "https://picsum.photos/200" }] }],
-    },
-    "Biro Kewirausahaan": {
-        kepala: { name: "Petra Hizkia Sitompul", image: "https://picsum.photos/200" },
-        sekretaris: { name: "Ribka Sinaga", image: "https://picsum.photos/200" },
-        divisions: [
-            {
-                "Biro Kewirausahaan": [
-                    { name: "Alfredo Radotama Simanjuntak", image: "https://picsum.photos/200" },
-                    { name: "Lasma Silalahi", image: "https://picsum.photos/200" },
-                    { name: "Karin Hutauruk", image: "https://picsum.photos/200" },
-                    { name: "Moranda Simbolon", image: "https://picsum.photos/200" },
-                    { name: "Cenny Ruben Siregar", image: "https://picsum.photos/200" },
-                ],
-            },
-        ],
-    },
+        },
+        {
+            name: "Departemen Eksternal",
+            head: { name: "Natanael Situmorang", photoUrl: "" },
+            secretary: { name: "Elsania Lumbantoruan", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Ekstra Kampus",
+                    head: { name: "Josua Michael Erlianro Hutagalung", photoUrl: "" },
+                    staff: [
+                        { name: "Benget Backtiar Simamora", photoUrl: "" },
+                        { name: "Yunike Fujianti Aritonang", photoUrl: "" },
+                        { name: "Juliana Gloria Sitinjak", photoUrl: "" },
+                        { name: "Elza novitha Simanjuntak", photoUrl: "" },
+                        { name: "Anasthasya Uli Pasaribu", photoUrl: "" },
+                        { name: "Lestari Tesalonika", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Intra Kampus",
+                    head: { name: "Deo Saarmo Hatiovande Sinamo", photoUrl: "" },
+                    staff: [
+                        { name: "William Christ Sijabat", photoUrl: "" },
+                        { name: "Ruth Eunike Regina Panjaitan", photoUrl: "" },
+                        { name: "Sarah Noviana C. Simatupang", photoUrl: "" },
+                        { name: "Vanessa br. Singarimbun", photoUrl: "" },
+                        { name: "Manotar Kristian Sianipar", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Mission",
+                    head: { name: "Yosua S. Lumban Gaol", photoUrl: "" },
+                    staff: [
+                        { name: "Annesya Debora Margaretha S", photoUrl: "" },
+                        { name: "Santa Olivia Pardosi", photoUrl: "" },
+                        { name: "Sherena Florencia", photoUrl: "" },
+                        { name: "Alio Harefa", photoUrl: "" },
+                        { name: "Jeremia Valentino Rajagukguk", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Departemen Talenta",
+            head: { name: "Jhon Tampubolon", photoUrl: "" },
+            secretary: { name: "Theresia Simorangkir", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Art Interest",
+                    head: { name: "Sharoon Evangelyne Sanamasse", photoUrl: "" },
+                    staff: [
+                        { name: "Geofany Srydevy Sinambela", photoUrl: "" },
+                        { name: "Tamara Angeline Sitio", photoUrl: "" },
+                        { name: "Porman Sihombing", photoUrl: "" },
+                        { name: "Rosa verettina Pasaribu", photoUrl: "" },
+                        { name: "Yolita Fricilya Sitorus", photoUrl: "" },
+                        { name: "Andriano Rafael Manurung", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Extra Youth",
+                    head: { name: "Hotman Revivo Manalu", photoUrl: "" },
+                    staff: [
+                        { name: "Gabriel Rivandi Purba", photoUrl: "" },
+                        { name: "Amosta Yoel Sinaga", photoUrl: "" },
+                        { name: "Nicholas Tindaon", photoUrl: "" },
+                        { name: "Arnold Harvest Sinema Halawa", photoUrl: "" },
+                        { name: "Fery Moses Hutagaol", photoUrl: "" },
+                        { name: "Kuta Marpaung", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Departemen Pelayanan Khusus",
+            head: { name: "Elsa Dewani Simanjuntak", photoUrl: "" },
+            secretary: { name: "Angelica Ayu Putri Herwina Sari", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Musik",
+                    head: { name: "Christian N. I. Naibaho", photoUrl: "" },
+                    staff: [
+                        { name: "Rifki Prasetya", photoUrl: "" },
+                        { name: "Bintang Marccelino Ruben Runtunuwu", photoUrl: "" },
+                        { name: "Beltsazar P.L.G Dupe", photoUrl: "" },
+                        { name: "Anderson Bualasaro Gulo", photoUrl: "" },
+                        { name: "Andreson Deco Situmorang", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Worship",
+                    head: { name: "Grace Ruth Aprilia Simatupang", photoUrl: "" },
+                    staff: [
+                        { name: "Cecylia Millyardta Panjaitan", photoUrl: "" },
+                        { name: "Maruba Pandapotan Naibaho", photoUrl: "" },
+                        { name: "Allysia Arta Risqani Manurung", photoUrl: "" },
+                        { name: "Debora Arelia", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Worship Creator",
+                    head: { name: "Yemima Ananta Siburian", photoUrl: "" },
+                    staff: [
+                        { name: "Luccia Ribka Keswoyo", photoUrl: "" },
+                        { name: "Laura Mycele Simarmata", photoUrl: "" },
+                        { name: "Rodear Ibere Ni Purba", photoUrl: "" },
+                        { name: "Teo Andreas", photoUrl: "" },
+                        { name: "Gilbert Leonard S", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Departemen Diakonia",
+            head: { name: "Cinta Sri May Yemima Lumban Raja", photoUrl: "" },
+            secretary: { name: "Adeline Shinta Marisi Purba", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Doa",
+                    head: { name: "Friska Sri Wahyuni A", photoUrl: "" },
+                    staff: [
+                        { name: "Nugraheni Sihoombing", photoUrl: "" },
+                        { name: "Priscylia M Gloria Aritonang", photoUrl: "" },
+                        { name: "Jansen Theo Pascag Hutagalung", photoUrl: "" },
+                        { name: "Masta Hendri Setiawan Lature", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Pemuridan",
+                    head: { name: "Greaces Hanania", photoUrl: "" },
+                    staff: [
+                        { name: "Lidya Widiarti Asmoro", photoUrl: "" },
+                        { name: "Habel Junior Situngkir", photoUrl: "" },
+                        { name: "Esra Tesalonika Manik", photoUrl: "" },
+                        { name: "Samuel Oktavianus", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Departemen Operasional",
+            head: { name: "Samuel Yohanes Caesar Simanjuntak", photoUrl: "" },
+            secretary: { name: "Nurintan A.S.Sidauruk", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Logistik",
+                    head: { name: "Martua Kevin A.M.H Lubis", photoUrl: "" },
+                    staff: [
+                        { name: "Gerald Simbolon", photoUrl: "" },
+                        { name: "Jonatan Kristian Sitorus", photoUrl: "" },
+                        { name: "Ojahan Otniel Zelafehad Siagian", photoUrl: "" },
+                        { name: "GABRIEL H.S TAMPUBOLON", photoUrl: "" },
+                        { name: "Julius Nainggolan", photoUrl: "" },
+                        { name: "Bhoas Mourinho Silalahi Sidebang", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Akomodasi",
+                    head: { name: "Benedict Andar Christiano Gultom", photoUrl: "" },
+                    staff: [
+                        { name: "Salmon", photoUrl: "" },
+                        { name: "Helfreydo Sitorus", photoUrl: "" },
+                        { name: "Efapras Panjaitan", photoUrl: "" },
+                        { name: "Nicholas Hamonangan Situmeang", photoUrl: "" },
+                        { name: "ANDIKA PRASETIO SIREGAR", photoUrl: "" },
+                        { name: "Erwandi Pantun Pardede", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Departemen Creative Media",
+            head: { name: "Hermawan Manurung", photoUrl: "" },
+            secretary: { name: "Ivan Abraham", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Desain",
+                    head: { name: "Wulan Lumbantoruan", photoUrl: "" },
+                    staff: [
+                        { name: "David Marcellino Sianturi", photoUrl: "" },
+                        { name: "Daniella Gracia Christanty", photoUrl: "" },
+                        { name: "Yemima Hawila Septiani", photoUrl: "" },
+                        { name: "Vincent Gregori Imanuel Sihombing", photoUrl: "" },
+                        { name: "Gabriel Setiawan Tamba", photoUrl: "" },
+                    ],
+                },
+                {
+                    name: "Pubdok",
+                    head: { name: "Clevanna Christatha", photoUrl: "" },
+                    staff: [
+                        { name: "Matthew Austin", photoUrl: "" },
+                        { name: "Laurentius", photoUrl: "" },
+                        { name: "Geraldi Turnip", photoUrl: "" },
+                        { name: "Ghealory Yosephine Purba", photoUrl: "" },
+                        { name: "Jojo Marpaung", photoUrl: "" },
+                        { name: "Vebizera Siahaan", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Biro IT",
+            head: { name: "Joshua Palti Sinaga", photoUrl: "" },
+            secretary: { name: "Devis Lazuardi Saduk", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Biro IT", // Bisa dihapus jika tidak ada sub-divisi
+                    head: { name: "", photoUrl: "" },
+                    staff: [{ name: "Febrian Yoel Anggara", photoUrl: "" }],
+                },
+            ],
+        },
+        {
+            name: "Biro Kewirausahaan",
+            head: { name: "Petra Hizkia Sitompul", photoUrl: "" },
+            secretary: { name: "Ribka Sinaga", photoUrl: "" },
+            divisions: [
+                {
+                    name: "Biro Kewirausahaan", // Bisa dihapus jika tidak ada sub-divisi
+                    head: { name: "", photoUrl: "" },
+                    staff: [
+                        { name: "Alfredo Radotama Simanjuntak", photoUrl: "" },
+                        { name: "Lasma Silalahi", photoUrl: "" },
+                        { name: "Karin Hutauruk", photoUrl: "" },
+                        { name: "Moranda Simbolon", photoUrl: "" },
+                        { name: "Cenny Ruben Siregar", photoUrl: "" },
+                    ],
+                },
+            ],
+        },
+    ],
 }
+
+export const departmentNames = management.departments.map((department) => department.name)
+
+export const divisionNames = management.departments.flatMap((department) =>
+    department.divisions.map((division) => division.name)
+)
