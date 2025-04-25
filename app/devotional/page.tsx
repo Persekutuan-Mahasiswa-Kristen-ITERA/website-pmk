@@ -39,19 +39,22 @@ const RenunganPage = () => {
 
     return (
         <MainLayout>
-            <div className="bg-brown-100 py-20">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-brown-800 text-center">Renungan</h1>
-                    <p className="text-center text-brown-600 mt-4 max-w-2xl mx-auto">
-                        Penguatan iman melalui perenungan firman Tuhan sehari-hari
+            <div className="bg-[url('/img/bg-bible.jpg')] bg-cover bg-center py-20 relative">
+                <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                <div className="container relative mx-auto px-4 z-10">
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
+                        Pengurus PMK ITERA
+                    </h1>
+                    <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
+                        Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya
                     </p>
                 </div>
             </div>
 
             <section className="py-16">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 w-full">
                     <div className="flex flex-col md:flex-row gap-6 mb-12">
-                        <div className="w-full md:w-2/3">
+                        <div className="w-full">
                             <div className="relative">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brown-400" />
                                 <Input
@@ -62,7 +65,7 @@ const RenunganPage = () => {
                                 />
                             </div>
                         </div>
-                        <div className="w-full md:w-1/3">
+                        {/* <div className="w-full md:w-1/3">
                             <Tabs defaultValue="Semua" value={selectedCategory} onValueChange={setSelectedCategory}>
                                 <TabsList className="w-full h-auto flex flex-wrap bg-brown-50 p-1">
                                     {CATEGORIES.map((category) => (
@@ -76,15 +79,15 @@ const RenunganPage = () => {
                                     ))}
                                 </TabsList>
                             </Tabs>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredRenungan.map((renungan) => (
                             <Card key={renungan.id} className="border-brown-100 hover:shadow-md transition-shadow">
                                 <CardContent className="pt-6">
-                                    <div className="flex items-center mb-4">
-                                        <BookOpen className="h-5 w-5 text-brown-400 mr-2" />
+                                    <div className="flex items-center mb-4 w-fit rounded">
+                                        <BookOpen className="h-4 w-4 text-brown-400 mr-2" />
                                         <span className="text-sm text-brown-500">{renungan.verse}</span>
                                     </div>
                                     <h3 className="text-xl font-serif text-brown-800 mb-2">{renungan.title}</h3>

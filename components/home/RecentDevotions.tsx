@@ -27,7 +27,7 @@ export const RecentDevotions = () => {
             <div className="container mx-auto px-4">
                 <SectionHeader
                     title="Renungan Terbaru"
-                    subtitle="Mari belajar mengenal Tuhan lebih dalam lewat firman-Nya"
+                    subtitle="Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya"
                     centered
                 />
 

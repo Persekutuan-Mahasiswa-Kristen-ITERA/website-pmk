@@ -5,18 +5,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { management } from "@/data/management"
+import { DepartmentTabs } from "@/components/department-tabs"
 
 const Pengurus = () => {
     return (
         <MainLayout>
-            <div className="bg-brown-100 py-20">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-brown-800 text-center">
-                        Pengurus PMK ITERA
+            <div className="bg-[url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=700&q=80')] bg-cover bg-center py-20 relative">
+                <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                <div className="container relative mx-auto px-4 z-10">
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
+                        Renungan
                     </h1>
-                    <p className="text-center text-brown-600 mt-4 max-w-2xl mx-auto">
-                        Mengenal lebih dekat para pengurus yang melayani di Persekutuan Mahasiswa Kristen ITERA periode
-                        2023-2024
+                    <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
+                        
                     </p>
                 </div>
             </div>
@@ -50,6 +51,11 @@ const Pengurus = () => {
                                 </Card>
                             ))}
                         </div>
+
+                        <div className="mt-12"></div>
+
+                        <SectionHeader title="Departemen dan Biro" subtitle={``} centered={true} />
+                        <DepartmentTabs />
                     </div>
                 </div>
             </section>

@@ -123,17 +123,17 @@ const Persembahan = () => {
 
     return (
         <MainLayout>
-            <div className="bg-brown-100 py-20">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-brown-800 text-center">
-                        Persembahan
-                    </h1>
-                    <p className="text-center text-brown-600 mt-4 max-w-2xl mx-auto">
-                        &quot;Hendaklah masing-masing memberikan menurut kerelaan hatinya, jangan dengan sedih hati atau
-                        karena paksaan, sebab Allah mengasihi orang yang memberi dengan sukacita.&quot;
-                        <br />
-                        <span className="text-sm italic">2 Korintus 9:7</span>
-                    </p>
+            <div className="bg-brown-100">
+                <div className="bg-[url('/img/bg-docs.jpg')] bg-cover bg-center py-20 relative">
+                    <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                    <div className="container relative mx-auto px-4 z-10">
+                        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
+                            Dokumentasi Kegiatan
+                        </h1>
+                        <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
+                            Foto dan Video dari kegiatan PMK ITERA yang telah terlaksana
+                        </p>
+                    </div>
                 </div>
             </div>
 

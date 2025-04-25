@@ -48,19 +48,22 @@ const ArtikelPage = () => {
 
     return (
         <MainLayout>
-            <div className="bg-brown-100 py-20">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-brown-800 text-center">Artikel</h1>
-                    <p className="text-center text-brown-600 mt-4 max-w-2xl mx-auto">
-                        Tulisan dan pemikiran seputar kehidupan Kristen di konteks kampus
-                    </p>
+            <div className="bg-brown-100">
+                <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
+                    <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                    <div className="container relative mx-auto px-4 z-10">
+                        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">Artikel</h1>
+                        <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
+                            Tulisan seputar kehidupan dan apologetika Kristen
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <section className="py-16">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row gap-6 mb-12">
-                        <div className="w-full md:w-2/3">
+                        <div className="w-full">
                             <div className="relative">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brown-400" />
                                 <Input
