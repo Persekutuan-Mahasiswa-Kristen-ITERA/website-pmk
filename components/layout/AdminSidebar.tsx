@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Users, BookOpen, ImageIcon, CreditCard, Home, Settings } from "lucide-react"
+import { FileText, Users, BookOpen, ImageIcon, CreditCard, Home, Settings, Book, Calendar } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 
@@ -9,6 +9,7 @@ const NAV_ITEMS = [
     { name: "Dashboard", path: "/admin", icon: Home },
     { name: "Pengurus", path: "/admin/management", icon: Users },
     { name: "Renungan", path: "/admin/devotional", icon: BookOpen },
+    { name: "Event", path: "/admin/event", icon: Calendar },
     { name: "Artikel", path: "/admin/article", icon: FileText },
     { name: "Dokumentasi", path: "/admin/documentation", icon: ImageIcon },
     { name: "Persembahan", path: "/admin/contribution", icon: CreditCard },
