@@ -6,10 +6,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { BookOpen, Calendar, User, Search } from "lucide-react"
+import { BookOpen, Calendar, User, Search, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { getDevotionals } from "@/data/devotional"
 import { Devotional } from "@/types/devotional"
+import DevotionCard from "@/components/devotion-card"
 
 const CATEGORIES = ["Semua", "Kasih", "Pertumbuhan", "Iman", "Pengharapan", "Kesaksian", "Sukacita"]
 
@@ -43,7 +44,7 @@ const RenunganPage = () => {
                 <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
                 <div className="container relative mx-auto px-4 z-10">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
-                        Pengurus PMK ITERA
+                        Renungan Harian
                     </h1>
                     <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
                         Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya
@@ -84,44 +85,11 @@ const RenunganPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredRenungan.map((renungan) => (
-                            <Card key={renungan.id} className="border-brown-100 hover:shadow-md transition-shadow">
-                                <CardContent className="pt-6">
-                                    <div className="flex items-center mb-4 w-fit rounded">
-                                        <BookOpen className="h-4 w-4 text-brown-400 mr-2" />
-                                        <span className="text-sm text-brown-500">{renungan.verse}</span>
-                                    </div>
-                                    <h3 className="text-xl font-serif text-brown-800 mb-2">{renungan.title}</h3>
-                                    <div className="text-sm text-brown-600 mb-4">&quot;{renungan.preview}&quot;</div>
-                                    <div className="flex justify-between items-center text-sm text-brown-500 mt-4">
-                                        <div className="flex items-center">
-                                            <User className="h-4 w-4 mr-1" />
-                                            <span>{renungan.author}</span>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <Calendar className="h-4 w-4 mr-1" />
-                                            <span>
-                                                {renungan.createdAt?.toLocaleDateString("id-ID", {
-                                                    year: "numeric",
-                                                    month: "long",
-                                                    day: "numeric",
-                                                })}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <Button
-                                        asChild
-                                        variant="ghost"
-                                        className="w-full justify-between mt-4 text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
-                                    >
-                                        <Link
-                                            href={`/devotional/${renungan.id}`}
-                                            className="flex items-center w-full pt-3 pb-1"
-                                        >
-                                            <span>Baca Selengkapnya</span>
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                            <DevotionCard
+                                key={renungan.id}
+                                devotion={renungan}
+                                className="transition-all duration-300"
+                            />
                         ))}
                     </div>
 
