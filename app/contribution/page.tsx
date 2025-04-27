@@ -128,7 +128,7 @@ const Persembahan = () => {
                     <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
                     <div className="container relative mx-auto px-4 z-10">
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
-                            Persembahan
+                            Persembahan Kasih
                         </h1>
                         <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
                             Mari berkontribusi melalui persembahan Anda untuk mendukung kegiatan kami dan pelayanan kami
@@ -140,183 +140,117 @@ const Persembahan = () => {
             <section className="py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
-                        <Tabs defaultValue="persembahan" className="w-full">
-                            <TabsList className="grid grid-cols-2 mb-8">
-                                <TabsTrigger
-                                    value="persembahan"
-                                    className="data-[state=active]:bg-brown-100 data-[state=active]:text-brown-800"
-                                >
-                                    <Gift className="h-4 w-4 mr-2" />
-                                    Persembahan
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="rekening"
-                                    className="data-[state=active]:bg-brown-100 data-[state=active]:text-brown-800"
-                                >
-                                    <CreditCard className="h-4 w-4 mr-2" />
-                                    Info Rekening
-                                </TabsTrigger>
-                            </TabsList>
-
-                            <TabsContent value="persembahan">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle className="font-serif text-brown-800">Berikan Persembahan</CardTitle>
-                                        <CardDescription>
-                                            Pilih nominal persembahan atau masukkan jumlah kustom
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <form onSubmit={handleSubmit}>
-                                            <div className="space-y-8">
-                                                <div className="space-y-4">
-                                                    <Label>Pilih Nominal</Label>
-                                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                        <DonationOption
-                                                            title="Persembahan Kecil"
-                                                            description="Untuk mendukung kegiatan mingguan"
-                                                            amount={50000}
-                                                            onClick={() => handleSetAmount(50000)}
-                                                        />
-                                                        <DonationOption
-                                                            title="Persembahan Sedang"
-                                                            description="Untuk program semester"
-                                                            amount={100000}
-                                                            onClick={() => handleSetAmount(100000)}
-                                                        />
-                                                        <DonationOption
-                                                            title="Persembahan Besar"
-                                                            description="Untuk kegiatan tahunan"
-                                                            amount={500000}
-                                                            onClick={() => handleSetAmount(500000)}
-                                                        />
-                                                    </div>
-
-                                                    <div className="mt-6">
-                                                        <Label htmlFor="custom-amount">Nominal Kustom</Label>
-                                                        <div className="flex items-center">
-                                                            <span className="mr-2 text-brown-700">Rp</span>
-                                                            <Input
-                                                                id="custom-amount"
-                                                                value={customAmount}
-                                                                onChange={handleCustomAmountChange}
-                                                                className="border-brown-200"
-                                                                placeholder="Masukkan nominal persembahan"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="space-y-4">
-                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                        <div className="space-y-2">
-                                                            <Label htmlFor="name">Nama</Label>
-                                                            <Input
-                                                                id="name"
-                                                                value={name}
-                                                                onChange={(e) => setName(e.target.value)}
-                                                                className="border-brown-200"
-                                                                placeholder="Nama lengkap"
-                                                            />
-                                                        </div>
-                                                        <div className="space-y-2">
-                                                            <Label htmlFor="email">Email</Label>
-                                                            <Input
-                                                                id="email"
-                                                                type="email"
-                                                                value={email}
-                                                                onChange={(e) => setEmail(e.target.value)}
-                                                                className="border-brown-200"
-                                                                placeholder="Email Anda"
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="space-y-2">
-                                                        <Label htmlFor="message">Pesan (Opsional)</Label>
-                                                        <Textarea
-                                                            id="message"
-                                                            value={message}
-                                                            onChange={(e) => setMessage(e.target.value)}
-                                                            className="border-brown-200"
-                                                            placeholder="Ucapan atau doa"
-                                                            rows={4}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <Button
-                                                type="submit"
-                                                className="w-full mt-8 bg-brown-700 hover:bg-brown-800"
-                                            >
-                                                <Gift className="mr-2 h-4 w-4" />
-                                                Berikan Persembahan
-                                            </Button>
-                                        </form>
-                                    </CardContent>
-                                </Card>
-                            </TabsContent>
-
-                            <TabsContent value="rekening">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle className="font-serif text-brown-800">Informasi Rekening</CardTitle>
-                                        <CardDescription>
-                                            Silakan transfer persembahan ke salah satu rekening berikut
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-6">
-                                            <div>
-                                                <h3 className="text-lg font-medium text-brown-800 mb-3">
-                                                    Rekening PMK ITERA
-                                                </h3>
-                                                <BankAccount
-                                                    bank="Bank BCA"
-                                                    accountNumber="1234567890"
-                                                    accountName="PMK ITERA"
-                                                />
-                                                <BankAccount
-                                                    bank="Bank Mandiri"
-                                                    accountNumber="0987654321"
-                                                    accountName="PMK ITERA"
-                                                />
-                                                <BankAccount
-                                                    bank="Bank BRI"
-                                                    accountNumber="1357924680"
-                                                    accountName="PMK ITERA"
-                                                />
-                                            </div>
-
-                                            <div className="bg-brown-50 p-4 rounded-md">
-                                                <div className="flex items-start">
-                                                    <FileText className="h-5 w-5 text-brown-600 mr-3 mt-1" />
-                                                    <div>
-                                                        <h4 className="font-medium text-brown-800">Catatan Penting</h4>
-                                                        <ul className="text-sm text-brown-600 mt-2 space-y-2">
-                                                            <li>
-                                                                Setelah melakukan transfer, silakan konfirmasi dengan
-                                                                mengirimkan bukti transfer ke nomor WhatsApp:{" "}
-                                                                <span className="font-medium">+62 812-3456-7890</span>
-                                                            </li>
-                                                            <li>
-                                                                Sertakan informasi nama dan tujuan persembahan pada saat
-                                                                transfer atau pada pesan konfirmasi
-                                                            </li>
-                                                            <li>
-                                                                Semua persembahan akan dikelola dengan transparan dan
-                                                                dipertanggungjawabkan
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                        <Card>
+                            <CardContent>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="space-y-8">
+                                        <div className="space-y-4">
+                                            <div className="mt-6">
+                                                <Label htmlFor="custom-amount">Nominal Kustom</Label>
+                                                <div className="flex items-center">
+                                                    <span className="mr-2 text-brown-700">Rp</span>
+                                                    <Input
+                                                        id="custom-amount"
+                                                        value={customAmount}
+                                                        onChange={handleCustomAmountChange}
+                                                        className="border-brown-200"
+                                                        placeholder="Masukkan nominal persembahan"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
-                                    </CardContent>
-                                </Card>
-                            </TabsContent>
-                        </Tabs>
+
+                                        <div className="space-y-4">
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="space-y-2">
+                                                    <Label htmlFor="name">Nama</Label>
+                                                    <Input
+                                                        id="name"
+                                                        value={name}
+                                                        onChange={(e) => setName(e.target.value)}
+                                                        className="border-brown-200"
+                                                        placeholder="Nama lengkap"
+                                                    />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <Label htmlFor="email">Email</Label>
+                                                    <Input
+                                                        id="email"
+                                                        type="email"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                        className="border-brown-200"
+                                                        placeholder="Email Anda"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <Label htmlFor="message">Pesan (Opsional)</Label>
+                                                <Textarea
+                                                    id="message"
+                                                    value={message}
+                                                    onChange={(e) => setMessage(e.target.value)}
+                                                    className="border-brown-200"
+                                                    placeholder="Ucapan atau doa"
+                                                    rows={4}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <Button type="submit" className="w-full mt-8 bg-brown-700 hover:bg-brown-800">
+                                        <Gift className="mr-2 h-4 w-4" />
+                                        Berikan Persembahan
+                                    </Button>
+                                </form>
+
+                                <div className="space-y-6">
+                                    <div>
+                                        <h3 className="text-lg font-medium text-brown-800 mb-3">Rekening PMK ITERA</h3>
+                                        <BankAccount
+                                            bank="Bank BCA"
+                                            accountNumber="1234567890"
+                                            accountName="PMK ITERA"
+                                        />
+                                        <BankAccount
+                                            bank="Bank Mandiri"
+                                            accountNumber="0987654321"
+                                            accountName="PMK ITERA"
+                                        />
+                                        <BankAccount
+                                            bank="Bank BRI"
+                                            accountNumber="1357924680"
+                                            accountName="PMK ITERA"
+                                        />
+                                    </div>
+
+                                    <div className="bg-brown-50 p-4 rounded-md">
+                                        <div className="flex items-start">
+                                            <FileText className="h-5 w-5 text-brown-600 mr-3 mt-1" />
+                                            <div>
+                                                <h4 className="font-medium text-brown-800">Catatan Penting</h4>
+                                                <ul className="text-sm text-brown-600 mt-2 space-y-2">
+                                                    <li>
+                                                        Setelah melakukan transfer, silakan konfirmasi dengan
+                                                        mengirimkan bukti transfer ke nomor WhatsApp:{" "}
+                                                        <span className="font-medium">+62 812-3456-7890</span>
+                                                    </li>
+                                                    <li>
+                                                        Sertakan informasi nama dan tujuan persembahan pada saat
+                                                        transfer atau pada pesan konfirmasi
+                                                    </li>
+                                                    <li>
+                                                        Semua persembahan akan dikelola dengan transparan dan
+                                                        dipertanggungjawabkan
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </section>

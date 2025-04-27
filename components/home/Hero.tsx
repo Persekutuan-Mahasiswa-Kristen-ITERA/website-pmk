@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import BibleVerse from "../bible-verse"
 import DailyVerse from "../daily-verse"
+import { Devotional } from "@/types/devotional"
+import { useState } from "react"
+import LatestDevotional from "../hero/latest-devotional"
 
 export const Hero = () => {
     return (
@@ -26,12 +29,7 @@ export const Hero = () => {
                         Menjadi generasi mahasiswa Kristen yang menjadi garam dan terang dunia, meneladani Kristus dalam
                         hikmat, pengetahuan, dan persekutuan
                     </p>
-                    <DailyVerse
-                        text="Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam nama Bapa
-                        dan Anak dan Roh Kudus"
-                        verse="Matius 28:19"
-                        className="mt-8 border-white/30 text-brown-500 bg-black/50 backdrop-blur "
-                    />
+                    <LatestDevotional />
                     <div className="mt-8 flex flex-wrap gap-4">
                         <Button asChild className="bg-brown-700 hover:bg-brown-800 text-white shadow-lg" size="lg">
                             <Link href="#about">Tentang Kami</Link>
@@ -42,7 +40,7 @@ export const Hero = () => {
                             className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-lg"
                             size="lg"
                         >
-                            <Link href="/contribution">Renungan Harian</Link>
+                            <Link href="/devotinals">Renungan Harian</Link>
                         </Button>
                     </div>
                 </div>
