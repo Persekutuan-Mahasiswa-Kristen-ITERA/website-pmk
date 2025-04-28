@@ -20,9 +20,12 @@ with open('devotionals_formatted.json', 'r', encoding='utf-8') as file:
 # Upload each devotional entry to Firestore
 for idx, devotional in enumerate(devotionals, start=1):
     try:
-        # If 'created_at' is a string, convert it to a datetime object
-        if isinstance(devotional.get('created_at'), str):
-            devotional['created_at'] = datetime.fromisoformat(devotional['created_at'].replace('Z', '+00:00'))
+        # If 'createdAt' is a string, convert it to a datetime object
+        if isinstance(devotional.get('createdAt'), str):
+            devotional['createdAt'] = datetime.fromisoformat(devotional['createdAt'].replace('Z', '+00:00'))
+        # If 'updatedAt' is a string, convert it to a datetime object
+        if isinstance(devotional.get('updatedAt'), str):
+            devotional['updatedAt'] = datetime.fromisoformat(devotional['updatedAt'].replace('Z', '+00:00'))
 
         # Add the devotional entry to the 'devotionals' collection
         db.collection('devotionals').add(devotional)

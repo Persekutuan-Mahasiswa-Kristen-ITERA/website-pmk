@@ -139,75 +139,100 @@ const Persembahan = () => {
 
             <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
-                        <Card>
-                            <CardContent>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="space-y-8">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            {/* Form Persembahan */}
+                            <Card className="h-fit">
+                                <CardHeader>
+                                    <CardTitle className="text-2xl font-serif text-brown-800">
+                                        Form Persembahan
+                                    </CardTitle>
+                                    <CardDescription>
+                                        Silakan isi form di bawah ini untuk memberikan persembahan Anda
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <form onSubmit={handleSubmit} className="space-y-6">
                                         <div className="space-y-4">
-                                            <div className="mt-6">
-                                                <Label htmlFor="custom-amount">Nominal Kustom</Label>
-                                                <div className="flex items-center">
-                                                    <span className="mr-2 text-brown-700">Rp</span>
+                                            <div>
+                                                <Label htmlFor="custom-amount" className="text-brown-700">
+                                                    Nominal Persembahan
+                                                </Label>
+                                                <div className="flex items-center mt-2">
+                                                    <span className="mr-2 text-brown-700 font-medium">Rp</span>
                                                     <Input
                                                         id="custom-amount"
                                                         value={customAmount}
                                                         onChange={handleCustomAmountChange}
-                                                        className="border-brown-200"
+                                                        className="border-brown-200 focus:border-brown-400"
                                                         placeholder="Masukkan nominal persembahan"
                                                     />
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="space-y-4">
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="name">Nama</Label>
+                                                    <Label htmlFor="name" className="text-brown-700">
+                                                        Nama
+                                                    </Label>
                                                     <Input
                                                         id="name"
                                                         value={name}
                                                         onChange={(e) => setName(e.target.value)}
-                                                        className="border-brown-200"
+                                                        className="border-brown-200 focus:border-brown-400"
                                                         placeholder="Nama lengkap"
                                                     />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="email">Email</Label>
+                                                    <Label htmlFor="email" className="text-brown-700">
+                                                        Email
+                                                    </Label>
                                                     <Input
                                                         id="email"
                                                         type="email"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
-                                                        className="border-brown-200"
+                                                        className="border-brown-200 focus:border-brown-400"
                                                         placeholder="Email Anda"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="message">Pesan (Opsional)</Label>
+                                                <Label htmlFor="message" className="text-brown-700">
+                                                    Pesan (Opsional)
+                                                </Label>
                                                 <Textarea
                                                     id="message"
                                                     value={message}
                                                     onChange={(e) => setMessage(e.target.value)}
-                                                    className="border-brown-200"
+                                                    className="border-brown-200 focus:border-brown-400"
                                                     placeholder="Ucapan atau doa"
                                                     rows={4}
                                                 />
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <Button type="submit" className="w-full mt-8 bg-brown-700 hover:bg-brown-800">
-                                        <Gift className="mr-2 h-4 w-4" />
-                                        Berikan Persembahan
-                                    </Button>
-                                </form>
+                                        <Button type="submit" className="w-full bg-brown-700 hover:bg-brown-800">
+                                            <Gift className="mr-2 h-4 w-4" />
+                                            Berikan Persembahan
+                                        </Button>
+                                    </form>
+                                </CardContent>
+                            </Card>
 
-                                <div className="space-y-6">
-                                    <div>
-                                        <h3 className="text-lg font-medium text-brown-800 mb-3">Rekening PMK ITERA</h3>
+                            {/* Informasi Rekening */}
+                            <div className="space-y-6">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className="text-2xl font-serif text-brown-800">
+                                            Informasi Rekening
+                                        </CardTitle>
+                                        <CardDescription>
+                                            Silakan transfer ke salah satu rekening berikut
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="space-y-4">
                                         <BankAccount
                                             bank="Bank BCA"
                                             accountNumber="1234567890"
@@ -223,34 +248,45 @@ const Persembahan = () => {
                                             accountNumber="1357924680"
                                             accountName="PMK ITERA"
                                         />
-                                    </div>
+                                    </CardContent>
+                                </Card>
 
-                                    <div className="bg-brown-50 p-4 rounded-md">
-                                        <div className="flex items-start">
-                                            <FileText className="h-5 w-5 text-brown-600 mr-3 mt-1" />
-                                            <div>
-                                                <h4 className="font-medium text-brown-800">Catatan Penting</h4>
-                                                <ul className="text-sm text-brown-600 mt-2 space-y-2">
-                                                    <li>
-                                                        Setelah melakukan transfer, silakan konfirmasi dengan
-                                                        mengirimkan bukti transfer ke nomor WhatsApp:{" "}
-                                                        <span className="font-medium">+62 812-3456-7890</span>
-                                                    </li>
-                                                    <li>
-                                                        Sertakan informasi nama dan tujuan persembahan pada saat
-                                                        transfer atau pada pesan konfirmasi
-                                                    </li>
-                                                    <li>
-                                                        Semua persembahan akan dikelola dengan transparan dan
-                                                        dipertanggungjawabkan
-                                                    </li>
-                                                </ul>
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className="text-xl font-serif text-brown-800">
+                                            Catatan Penting
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="space-y-4">
+                                            <div className="flex items-start">
+                                                <FileText className="h-5 w-5 text-brown-600 mr-3 mt-1" />
+                                                <div>
+                                                    <ul className="text-sm text-brown-600 space-y-3">
+                                                        <li className="flex items-start">
+                                                            <span className="mr-2">•</span>
+                                                            Setelah melakukan transfer, silakan konfirmasi dengan
+                                                            mengirimkan bukti transfer ke nomor WhatsApp:{" "}
+                                                            <span className="font-medium">+62 812-3456-7890</span>
+                                                        </li>
+                                                        <li className="flex items-start">
+                                                            <span className="mr-2">•</span>
+                                                            Sertakan informasi nama dan tujuan persembahan pada saat
+                                                            transfer atau pada pesan konfirmasi
+                                                        </li>
+                                                        <li className="flex items-start">
+                                                            <span className="mr-2">•</span>
+                                                            Semua persembahan akan dikelola dengan transparan dan
+                                                            dipertanggungjawabkan
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

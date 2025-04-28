@@ -13,7 +13,7 @@ interface DailyVerseProps {
 const DailyVerse: React.FC<DailyVerseProps> = ({ text, verse, id, className }) => {
     return (
         <AOSWrapper>
-            <Link href={`/devotinal/${id}`} className="group">
+            <Link href={`/devotional/${id}`} className="group">
                 <div
                     className={clsx(
                         "italic text-brown-300 !font-serif border-l-4 border-brown-300 pl-4 py-3 my-4 group",
