@@ -38,7 +38,7 @@ export const UpcomingEvents = () => {
                         >
                             <div className="h-44 overflow-hidden">
                                 <Image
-                                    src={event.image ?? "img/event-placeholder.webp"}
+                                    src={event.image ?? "https://picsum.photos/seed/picsum/400/300"}
                                     alt={event.title}
                                     className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                                     width={1200}
