@@ -22,7 +22,7 @@ export const UpcomingEvents = () => {
     }, [])
 
     return (
-        <section className="py-16 bg-white">
+        <section className="py-12 sm:py-16 bg-white">
             <div className="container mx-auto px-4">
                 <SectionHeader
                     title="Kegiatan Mendatang"
@@ -30,13 +30,13 @@ export const UpcomingEvents = () => {
                     centered
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {events.map((event) => (
                         <Card
                             key={event.id}
                             className="overflow-hidden transition-all duration-300 hover:shadow-lg border-brown-100"
                         >
-                            <div className="h-44 overflow-hidden">
+                            <div className="h-40 sm:h-44 overflow-hidden">
                                 <Image
                                     src={event.image ?? "https://picsum.photos/seed/picsum/400/300"}
                                     alt={event.title}
@@ -45,34 +45,32 @@ export const UpcomingEvents = () => {
                                     height={700}
                                 />
                             </div>
-                            <CardContent className="pt-6 p-4">
-                                <h3 className="text-xl font-serif font-medium text-brown-800 mb-2">{event.title}</h3>
-                                <p className="text-brown-600 mb-4 line-clamp-2">{event.description}</p>
-                                <div className="space-y-2 text-sm text-brown-700">
+                            <CardContent className="p-4 sm:p-6">
+                                <h3 className="text-lg sm:text-xl font-serif font-medium text-brown-800 mb-2">
+                                    {event.title}
+                                </h3>
+                                <p className="text-sm sm:text-base text-brown-600 mb-4 line-clamp-2">
+                                    {event.description}
+                                </p>
+                                <div className="space-y-2 text-xs sm:text-sm text-brown-700">
                                     <div className="flex items-center">
-                                        <Calendar className="h-4 w-4 mr-2 text-brown-500" />
-                                        <span>
-                                            {event.createdAt?.toLocaleDateString("id-ID", {
-                                                year: "numeric",
-                                                month: "long",
-                                                day: "numeric",
-                                            })}
-                                        </span>
+                                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-brown-500" />
+                                        <span>{event.date}</span>
                                     </div>
                                     <div className="flex items-center">
-                                        <Clock className="h-4 w-4 mr-2 text-brown-500" />
+                                        <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-brown-500" />
                                         <span>{event.time}</span>
                                     </div>
                                     <div className="flex items-center">
-                                        <MapPin className="h-4 w-4 mr-2 text-brown-500" />
+                                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-brown-500" />
                                         <span>{event.location}</span>
                                     </div>
                                 </div>
                             </CardContent>
-                            <CardFooter className="pt-2 pb-6">
+                            <CardFooter className="p-4 sm:p-6 pt-2 pb-4 sm:pb-6">
                                 <Button
                                     variant="outline"
-                                    className="w-full border-brown-300 text-brown-700 hover:bg-brown-50"
+                                    className="w-full border-brown-300 text-brown-700 hover:bg-brown-50 text-sm sm:text-base"
                                 >
                                     Lihat Detail
                                 </Button>
@@ -81,7 +79,7 @@ export const UpcomingEvents = () => {
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
+                <div className="text-center mt-8 sm:mt-12">
                     <Button asChild variant="outline" className="border-brown-300 text-brown-700 hover:bg-brown-50">
                         <Link href="/events">Lihat semua kegiatan</Link>
                     </Button>

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export const CallToAction = () => {
     return (
-        <section className="relative py-40 overflow-hidden">
+        <section className="relative py-20 sm:py-32 md:py-40 overflow-hidden">
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center"
                 style={{
@@ -14,20 +14,22 @@ export const CallToAction = () => {
             ></div>
 
             <div className="container mx-auto px-4 relative z-10 text-center">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-12">Bergabunglah Bersama Kami</h2>
-                <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white mb-8 sm:mb-12">
+                    Bergabunglah Bersama Kami
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-6 sm:mb-8">
                     Mari bertumbuh bersama dalam persekutuan dan pelayanan untuk mewujudkan kasih Kristus di kampus
                     ITERA.
                 </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                    <Button asChild size="lg" className="bg-brown-700 hover:bg-brown-800 text-white">
+                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                    <Button asChild size="lg" className="bg-brown-700 hover:bg-brown-800 text-white w-full sm:w-auto">
                         <Link href="/profile">Pelajari Lebih Lanjut</Link>
                     </Button>
                     <Button
                         asChild
                         variant="outline"
                         size="lg"
-                        className="border-white/30 text-white hover:bg-white/10"
+                        className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
                     >
                         <Link href="/contribution">Dukung Pelayanan Kami</Link>
                     </Button>

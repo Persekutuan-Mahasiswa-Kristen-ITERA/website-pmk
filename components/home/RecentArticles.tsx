@@ -11,7 +11,6 @@ import { getArticles } from "@/data/article"
 import { Article } from "@/types/article"
 
 export const RecentArticles = () => {
-
     const [articles, setArticles] = useState<Article[]>([])
 
     useEffect(() => {
@@ -23,17 +22,17 @@ export const RecentArticles = () => {
     }, [])
 
     return (
-        <section className="py-16 bg-brown-50">
+        <section className="py-12 sm:py-16 bg-brown-50">
             <div className="container mx-auto px-4">
                 <SectionHeader title="Artikel" subtitle="Bahan bacaan untuk menumbuhkan imanmu" centered />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {articles.slice(-3).map((article) => (
                         <Card
                             key={article.id}
                             className="overflow-hidden transition-all duration-300 shadow-brown-700/20 hover:shadow-lg border-brown-200 bg-white"
                         >
-                            <div className="h-48 overflow-hidden">
+                            <div className="h-36 sm:h-48 overflow-hidden">
                                 <Image
                                     src={article.imageUrl ?? "article-placeholder.webp"}
                                     alt={article.title}
@@ -42,23 +41,25 @@ export const RecentArticles = () => {
                                     height={500}
                                 />
                             </div>
-                            <CardContent className="pt-6">
+                            <CardContent className="p-4 sm:p-6">
                                 <Link
                                     href={`/article/${article.slug}`}
-                                    className="text-xl font-serif font-medium text-brown-800 hover:underline"
+                                    className="text-lg sm:text-xl font-serif font-medium text-brown-800 hover:underline"
                                 >
                                     <h2>{article.title}</h2>
                                 </Link>
-                                <p className="text-brown-600 mb-4 mt-2 line-clamp-3 text-sm">{article.excerpt}</p>
-                                <div className="space-y-2 text-sm text-brown-500">
-                                    <div className="flex items-center ">
-                                        <Clock className="h-4 w-4 mr-2 " />
+                                <p className="text-sm sm:text-base text-brown-600 mb-4 mt-2 line-clamp-3">
+                                    {article.excerpt}
+                                </p>
+                                <div className="space-y-2 text-xs sm:text-sm text-brown-500">
+                                    <div className="flex items-center">
+                                        <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                                         <span>{article.readTime} menit</span>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center text-sm text-brown-500 mt-">
+                                <div className="flex justify-between items-center text-xs sm:text-sm text-brown-500 mt-4">
                                     <div className="flex items-center justify-center">
-                                        <CircleUser className="h-4 w-4 mr-2" />
+                                        <CircleUser className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                                         <span>{article.author.name}</span>
                                     </div>
                                     <span>
@@ -70,10 +71,10 @@ export const RecentArticles = () => {
                                     </span>
                                 </div>
                             </CardContent>
-                            <CardFooter className="pt-2 pb-6">
+                            <CardFooter className="p-4 sm:p-6">
                                 <Button
                                     variant="outline"
-                                    className="w-full border-brown-300 text-brown-700 hover:bg-brown-50"
+                                    className="w-full border-brown-300 text-brown-700 hover:bg-brown-50 text-sm sm:text-base"
                                 >
                                     <Link href={`/article/${article.slug}`}>Baca Selengkapnya</Link>
                                 </Button>
@@ -82,7 +83,7 @@ export const RecentArticles = () => {
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
+                <div className="text-center mt-8 sm:mt-12">
                     <Button
                         asChild
                         variant="outline"

@@ -112,7 +112,7 @@ export const Navbar = () => {
                         )}
                     </div> */}
 
-                    <ModeToggle />
+                    {/* <ModeToggle /> */}
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden">

@@ -91,8 +91,6 @@ export class FirebaseService<T extends BaseEntity> {
                     ...convertTimestampToDate(data),
                 } as T
             })
-
-            console.log("Query snapshot:", items)
             return { items, lastDoc }
         } catch (error) {
             console.error("Error getting documents:", error)

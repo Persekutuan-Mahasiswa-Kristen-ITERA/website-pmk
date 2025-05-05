@@ -20,24 +20,28 @@ export const Hero = () => {
                 ></div>
             </div>
 
-            <div className="container mx-auto px-4 py-20 md:py-40 relative z-10">
+            <div className="container mx-auto px-4 py-28 md:py-40 relative z-10">
                 <div className="max-w-2xl">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
                         Persekutuan Mahasiswa Kristen ITERA
                     </h1>
-                    <p className="mt-6 text-lg text-gray-200">
+                    <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-200">
                         Menjadi generasi mahasiswa Kristen yang menjadi garam dan terang dunia, meneladani Kristus dalam
                         hikmat, pengetahuan, dan persekutuan
                     </p>
                     <LatestDevotional />
-                    <div className="mt-8 flex flex-wrap gap-4">
-                        <Button asChild className="bg-brown-700 hover:bg-brown-800 text-white shadow-lg" size="lg">
+                    <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <Button
+                            asChild
+                            className="bg-brown-700 hover:bg-brown-800 text-white shadow-lg w-full sm:w-auto"
+                            size="lg"
+                        >
                             <Link href="#about">Tentang Kami</Link>
                         </Button>
                         <Button
                             asChild
                             variant="outline"
-                            className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-lg"
+                            className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-lg w-full sm:w-auto"
                             size="lg"
                         >
                             <Link href="/devotionals">Renungan Harian</Link>
