@@ -31,8 +31,8 @@ const LatestDevotional: React.FC = () => {
         <div className={`${styles.fadeElement} ${isVisible ? styles.visible : ""}`}>
             {loading ? (
                 <DailyVerse
-                    text="Memuat..."
-                    verse="Memuat..."
+                    text="Memuat renungan..."
+                    verse="Memuat renungan..."
                     id=""
                     className="mt-8 border-white/30 text-brown-500 bg-black/50 backdrop-blur"
                 />

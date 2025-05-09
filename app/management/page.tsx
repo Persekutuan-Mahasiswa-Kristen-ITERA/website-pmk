@@ -14,7 +14,7 @@ const Pengurus = () => {
                 <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
                 <div className="container relative mx-auto px-4 z-10">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
-                        Renungan
+                        Struktur Kepengurusan
                     </h1>
                     <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
                         

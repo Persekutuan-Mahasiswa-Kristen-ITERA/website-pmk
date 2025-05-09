@@ -1,13 +1,15 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { departmentNames, management } from "@/data/management"
 import Image from "next/image"
 import { SectionHeader } from "./ui/section-header"
-import { DivisionTabs } from "./division-tabs"
 
 export function DepartmentTabs() {
     return (
-        <Tabs defaultValue={departmentNames[0]} className="w-full">
+        <Tabs defaultValue="account" className="w-full">
             <Card className="bg-brown-700 p-0">
                 <TabsList className="grid w-full h-full grid-cols-4 gap-2 p-2">
                     {departmentNames.map((department) => (
@@ -83,9 +85,6 @@ export function DepartmentTabs() {
                     </Card>
 
                     <SectionHeader title="Divisi dan Staff" subtitle={`Kesekjenan PMK ITERA`} centered={true} />
-                    <div className="mt-8">
-                        <DivisionTabs divisions={department.divisions} />
-                    </div>
                 </TabsContent>
             ))}
         </Tabs>

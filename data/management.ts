@@ -1,3 +1,5 @@
+import { OrganizationStructure } from "@/types/management"
+
 export const management: OrganizationStructure = {
     core: [
         { name: "Andre Hadiman Rotua Parhusip", photoUrl: "https://picsum.photos/200", role: "Ketua Umum" },

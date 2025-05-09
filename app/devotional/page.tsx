@@ -16,12 +16,15 @@ const CATEGORIES = ["Semua", "Kasih", "Pertumbuhan", "Iman", "Pengharapan", "Kes
 
 const RenunganPage = () => {
     const [devotionals, setDevotionals] = useState<Devotional[]>([])
+    const [loading, setLoading] = useState(true)
+
     const [selectedCategory, setSelectedCategory] = useState("Semua")
     const [searchQuery, setSearchQuery] = useState("")
 
     useEffect(() => {
         const fetchDevotionals = async () => {
             setDevotionals(await getDevotionals())
+            setLoading(false)
         }
 
         fetchDevotionals()
@@ -83,19 +86,29 @@ const RenunganPage = () => {
                         </div> */}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredRenungan.map((renungan) => (
-                            <DevotionCard
-                                key={renungan.id}
-                                devotion={renungan}
-                                className="transition-all duration-300"
-                            />
-                        ))}
-                    </div>
+                    {loading ? (
+                        <div className="flex justify-center items-center py-16">
+                            <p className="text-brown-600">Memuat Renungan...</p>
+                        </div>
+                    ) : (
+                        <div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {filteredRenungan.map((renungan) => (
+                                    <DevotionCard
+                                        key={renungan.id}
+                                        devotion={renungan}
+                                        className="transition-all duration-300"
+                                    />
+                                ))}
+                            </div>
 
-                    {filteredRenungan.length === 0 && (
-                        <div className="text-center py-16">
-                            <p className="text-brown-600">Tidak ada renungan yang sesuai dengan kriteria pencarian.</p>
+                            {filteredRenungan.length === 0 && (
+                                <div className="text-center py-16">
+                                    <p className="text-brown-600">
+                                        Tidak ada renungan yang sesuai dengan kriteria pencarian.
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

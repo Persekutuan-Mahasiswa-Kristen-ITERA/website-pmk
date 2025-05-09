@@ -11,6 +11,7 @@ import {
     getDocs,
     limit,
     orderBy,
+    OrderByDirection,
     Query,
     query,
     QueryDocumentSnapshot,
@@ -98,10 +99,14 @@ export class FirebaseService<T extends BaseEntity> {
         }
     }
 
-    async getWithCount(n: number): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
+    async getWithCount(
+        n: number,
+        fieldName: string = "createdAt",
+        direction: OrderByDirection = "desc"
+    ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
             const collectionRef = collection(firestore, this.collectionName)
-            const queryRef = query(collectionRef, limit(n))
+            const queryRef = query(collectionRef, limit(n), orderBy(fieldName, direction))
             const querySnapshot = await getDocs(queryRef)
             const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
 

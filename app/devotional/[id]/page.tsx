@@ -50,7 +50,7 @@ const DevotionalDetail = () => {
             <MainLayout>
                 <div className="container mx-auto px-4 py-12">
                     <div className="flex items-center justify-center min-h-[50vh]">
-                        <p className="text-brown-600">Memuat devotional...</p>
+                        <p className="text-brown-600">Memuat renungan...</p>
                     </div>
                 </div>
             </MainLayout>

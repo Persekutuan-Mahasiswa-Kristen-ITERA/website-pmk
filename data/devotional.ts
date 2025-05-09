@@ -4,7 +4,11 @@ import { FirebaseService } from "@/services/firebase-service"
 const collectionName = "devotionals"
 const devotionalsService = new FirebaseService<Devotional>(collectionName)
 
-export async function getDevotionals() {
+export async function getDevotionals(count: number = 0) {
+    if (count) {
+        return (await devotionalsService.getWithCount(count)).items
+    }
+
     const response = (await devotionalsService.getAll({ field: "createdAt", direction: "desc" })).items
     return response
 }

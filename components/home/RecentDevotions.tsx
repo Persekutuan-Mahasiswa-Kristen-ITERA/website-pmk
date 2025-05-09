@@ -17,7 +17,7 @@ export const RecentDevotions = () => {
 
     useEffect(() => {
         const fetchDevotionals = async () => {
-            const data = await getDevotionals()
+            const data = await getDevotionals(3)
             setDevotionals(data)
         }
         fetchDevotionals()
