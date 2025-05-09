@@ -24,18 +24,18 @@ const Profil = () => {
                             />
 
                             <div className="prose prose-brown max-w-none">
-                                <p>
+                                <p className="text-justify">
                                     Institut Teknologi Sumatera (ITERA) didirikan pada tahun 2014 sebagai perguruan
                                     tinggi teknik negeri ketiga di Indonesia. Seiring keberagaman mahasiswa dalam suku,
                                     agama, ras, dan golongan, kebutuhan akan pembinaan kerohanian mendorong terbentuknya
                                     UKM berbasis agama.
                                 </p>
-                                <p>
+                                <p className="text-justify">
                                     Awalnya, kegiatan mahasiswa Kristen difasilitasi oleh UKM Komunitas Mahasiswa
                                     Kristen Katolik (KMKK) untuk mahasiswa Kristen Protestan dan Katolik. Namun,
                                     meningkatnya jumlah mahasiswa Kristen Protestan mendorong pembentukan unit khusus.
                                 </p>
-                                <p>
+                                <p className="text-justify">
                                     Maka, pada tanggal 14 Februari 2020, Persekutuan Mahasiswa Kristen (PMK) ITERA resmi
                                     didirikan sebagai Unit Kegiatan Mahasiswa untuk mahasiswa Kristen Protestan. PMK
                                     ITERA menjadi wadah pertumbuhan iman, persekutuan, dan pelayanan di lingkungan

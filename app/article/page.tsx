@@ -48,49 +48,33 @@ const ArtikelPage = () => {
 
     return (
         <MainLayout>
-            <div className="bg-brown-100">
-                <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
-                    <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+            {/* Hero section with gradient background */}
+            <div className="bg-gradient-to-b from-brown-100 to-white">
+                <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-24 md:py-32 relative">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
                     <div className="container relative mx-auto px-4 z-10">
-                        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">Artikel</h1>
-                        <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white text-center">
+                            Artikel
+                        </h1>
+                        <p className="text-center text-white/90 mt-4 max-w-2xl mx-auto text-base md:text-lg">
                             Tulisan seputar kehidupan dan apologetika Kristen
                         </p>
                     </div>
                 </div>
             </div>
 
-            <section className="py-16">
+            <section className="py-12 md:py-16 lg:py-20">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row gap-6 mb-12">
-                        <div className="w-full">
-                            <div className="relative">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brown-400" />
-                                <Input
-                                    placeholder="Cari artikel..."
-                                    className="pl-10 border-brown-200 focus:border-brown-400"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <div className="w-full md:w-1/3">
-                            {/* <div className="flex flex-wrap gap-2">
-                                {ALL_TAGS.map((tag) => (
-                                    <Badge
-                                        key={tag}
-                                        variant={selectedTag === tag ? "default" : "outline"}
-                                        className={`cursor-pointer ${
-                                            selectedTag === tag
-                                                ? "bg-brown-700 hover:bg-brown-800"
-                                                : "border-brown-200 text-brown-700 hover:bg-brown-50"
-                                        }`}
-                                        onClick={() => toggleTag(tag)}
-                                    >
-                                        {tag}
-                                    </Badge>
-                                ))}
-                            </div> */}
+                    {/* Search section */}
+                    <div className="max-w-3xl mx-auto mb-12">
+                        <div className="relative bg-white shadow-sm rounded-lg overflow-hidden">
+                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-brown-400 h-5 w-5" />
+                            <Input
+                                placeholder="Cari artikel..."
+                                className="pl-12 py-6 border-brown-200 focus:border-brown-400 text-lg rounded-lg"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                         </div>
                     </div>
 

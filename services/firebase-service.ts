@@ -64,7 +64,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async getAll(
         sortOption?: SortOption<T>,
-        pagination?: PaginationState,
+        pagination?: PaginationState
     ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
             const collectionRef = collection(firestore, this.collectionName)
@@ -91,6 +91,28 @@ export class FirebaseService<T extends BaseEntity> {
                     ...convertTimestampToDate(data),
                 } as T
             })
+            return { items, lastDoc }
+        } catch (error) {
+            console.error("Error getting documents:", error)
+            throw error
+        }
+    }
+
+    async getWithCount(n: number): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
+        try {
+            const collectionRef = collection(firestore, this.collectionName)
+            const queryRef = query(collectionRef, limit(n))
+            const querySnapshot = await getDocs(queryRef)
+            const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+            const items: T[] = querySnapshot.docs.map((doc) => {
+                const data = doc.data()
+                return {
+                    id: doc.id,
+                    ...convertTimestampToDate(data),
+                } as T
+            })
+
             return { items, lastDoc }
         } catch (error) {
             console.error("Error getting documents:", error)

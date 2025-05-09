@@ -1,9 +1,9 @@
-interface Person {
+export interface Person {
     name: string
     photoUrl: string
 }
 
-interface CoreMember extends Person {
+export interface CoreMember extends Person {
     role:
         | "Ketua Umum"
         | "Sekretaris Jendral"
@@ -13,20 +13,20 @@ interface CoreMember extends Person {
         | "Bendahara Umum 2"
 }
 
-interface Division {
+export interface Division {
     head: Person
     staff: Person[]
     name: string
 }
 
-interface Department {
+export interface Department {
     name: string
     head: Person
     secretary: Person
     divisions: Division[]
 }
 
-interface OrganizationStructure {
+export interface OrganizationStructure {
     core: CoreMember[]
     departments: Department[]
 }

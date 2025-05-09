@@ -4,9 +4,12 @@ import { Event } from "@/types/event"
 const collectionName = "events"
 const eventsService = new FirebaseService<Event>(collectionName)
 
-export async function getEvents() {
-    const response = (await eventsService.getAll()).items
-    return response
+export async function getEvents(count: number = -1) {
+    if (count > 0) {
+        return await eventsService.getWithCount(count)
+    }
+
+    return await eventsService.getAll()
 }
 
 export async function getEventById(id: string) {

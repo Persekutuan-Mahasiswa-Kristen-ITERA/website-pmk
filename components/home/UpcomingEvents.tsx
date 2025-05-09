@@ -15,8 +15,8 @@ export const UpcomingEvents = () => {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const data = await getEvents()
-            setEvents(data)
+            const data = await getEvents(3)
+            setEvents(data.items)
         }
         fetchEvents()
     }, [])
