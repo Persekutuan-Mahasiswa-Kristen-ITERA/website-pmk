@@ -9,9 +9,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { getArticles } from "@/data/article"
 import { Article } from "@/types/article"
+import useAOS from "@/hooks/use-aos"
 
 export const RecentArticles = () => {
     const [articles, setArticles] = useState<Article[]>([])
+
+    useAOS()
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -24,11 +27,13 @@ export const RecentArticles = () => {
     return (
         <section className="py-12 sm:py-16 bg-brown-50">
             <div className="container mx-auto px-4">
-                <SectionHeader title="Artikel" subtitle="Bahan bacaan untuk menumbuhkan imanmu" centered />
+                <SectionHeader title="Artikel" subtitle="Bahan bacaan untuk menumbuhkan iman kita" centered />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {articles.slice(-3).map((article) => (
                         <Card
+                            data-aos="fade-up"
+                            data-aos-offset="50"
                             key={article.id}
                             className="overflow-hidden transition-all duration-300 shadow-brown-700/20 hover:shadow-lg border-brown-200 bg-white"
                         >

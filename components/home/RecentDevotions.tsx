@@ -11,9 +11,12 @@ import { useEffect, useState } from "react"
 import { Devotional } from "@/types/devotional"
 import { getDevotionals } from "@/data/devotional"
 import DevotionCard from "../devotion-card"
+import useAOS from "@/hooks/use-aos"
 
 export const RecentDevotions = () => {
     const [devotionals, setDevotionals] = useState<Devotional[]>([])
+
+    useAOS()
 
     useEffect(() => {
         const fetchDevotionals = async () => {
@@ -34,7 +37,13 @@ export const RecentDevotions = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {devotionals.slice(-3).map((devotion) => (
-                        <DevotionCard key={devotion.id} devotion={devotion} className="transition-all duration-300" />
+                        <DevotionCard
+                            data-aos="fade-up"
+                            data-aos-offset="50"
+                            key={devotion.id}
+                            devotion={devotion}
+                            className="transition-all duration-300"
+                        />
                     ))}
                 </div>
 

@@ -9,9 +9,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { getEvents } from "@/data/event"
 import { Event } from "@/types/event"
+import useAOS from "@/hooks/use-aos"
 
 export const UpcomingEvents = () => {
     const [events, setEvents] = useState<Event[]>([])
+
+    useAOS()
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -33,6 +36,8 @@ export const UpcomingEvents = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {events.map((event) => (
                         <Card
+                            data-aos="fade-up"
+                            data-aos-offset="50"
                             key={event.id}
                             className="overflow-hidden transition-all duration-300 hover:shadow-lg border-brown-100"
                         >

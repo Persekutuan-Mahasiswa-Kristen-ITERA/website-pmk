@@ -13,7 +13,7 @@ import { ModeToggle } from "../ui/mode-toggle"
 const NAV_ITEMS = [
     { name: "Beranda", path: "/" },
     { name: "Profil", path: "/profile" },
-    { name: "Pengurus", path: "/management" },
+    // { name: "Pengurus", path: "/management" },
     { name: "Renungan", path: "/devotional" },
     { name: "Artikel", path: "/article" },
     { name: "Persembahan", path: "/contribution" },

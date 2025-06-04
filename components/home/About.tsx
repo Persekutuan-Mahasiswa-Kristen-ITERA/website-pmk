@@ -62,7 +62,7 @@ export const About = () => {
                                 variant="outline"
                                 className="border-brown-300 text-brown-700 hover:bg-brown-100 w-full sm:w-auto"
                             >
-                                <Link href="/management">Struktur Kepengurusan</Link>
+                                {/* <Link href="/management">Struktur Kepengurusan</Link> */}
                             </Button>
                         </div>
                     </div>

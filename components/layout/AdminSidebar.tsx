@@ -7,7 +7,7 @@ import Image from "next/image"
 
 const NAV_ITEMS = [
     { name: "Dashboard", path: "/admin", icon: Home },
-    { name: "Pengurus", path: "/admin/management", icon: Users },
+    // { name: "Pengurus", path: "/admin/management", icon: Users },
     { name: "Renungan", path: "/admin/devotional", icon: BookOpen },
     { name: "Event", path: "/admin/event", icon: Calendar },
     { name: "Artikel", path: "/admin/article", icon: FileText },

@@ -106,11 +106,11 @@ export const Footer = () => {
                                     Profil
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/management" className="text-gray-300 hover:text-white transition-colors">
                                     Pengurus
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
                                 <Link href="/devotional" className="text-gray-300 hover:text-white transition-colors">
                                     Renungan
