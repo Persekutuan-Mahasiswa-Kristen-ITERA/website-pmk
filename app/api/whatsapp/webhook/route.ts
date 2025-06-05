@@ -4,10 +4,14 @@ import { WhatsappWebhook } from "@/types/whatsapp"
 import { getCommandFromMessage } from "./parser"
 import { sendMessage } from "./sender"
 import { uploadDevotional } from "./devotional"
+// import undici
+import undici from "undici"
 
 const greetings = `Halo! Selamat datang di bot PMK ITERA. Silakan forward renungan harian ke chat ini dan renungan akan otomatis dipublikasikan di website.`
 
 export async function POST(request: NextRequest) {
+    console.log(typeof undici.Agent)
+
     try {
         console.log("Received WhatsApp bot webhook request")
 
