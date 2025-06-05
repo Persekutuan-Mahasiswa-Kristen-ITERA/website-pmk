@@ -1,0 +1,12 @@
+{
+    "functions": {
+        "app/api/*": {
+            "maxDuration": 30
+        }
+    },
+    "build": {
+        "env": {
+            "NEXT_PRIVATE_SKIP_SIZE_LIMIT": "1"
+        }
+    }
+}
