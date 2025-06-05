@@ -1,6 +1,7 @@
 import { addDevotional } from "@/data/devotional"
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
+// import { GoogleGenerativeAI } from "@google/generative-ai"
 
 const responseSchema = {
     type: "object",
@@ -31,7 +32,9 @@ export async function uploadDevotional(message: string) {
 
 export async function formatDevotionalGemini(message: string): Promise<Devotional | null> {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" })
-
+    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "")
+    // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
+    
     const prompt = `Teks:
 ${message}
 
