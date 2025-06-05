@@ -123,12 +123,16 @@ const ArtikelDetail = () => {
                     {/* Main content */}
                     <div className="lg:col-span-8">
                         <Card className="border-brown-100 overflow-hidden">
-                            <CardContent className="p-8">
+                            <CardContent className="p-6 md:p-12">
                                 {/* Article header information */}
                                 <div className="mb-8 flex items-center justify-between">
                                     <div className="flex items-center">
                                         <Avatar className="h-10 w-10 mr-4">
-                                            <AvatarImage src={article.author.image} alt={article.author.name} />
+                                            <AvatarImage
+                                                className="object-cover"
+                                                src={article.author.image}
+                                                alt={article.author.name}
+                                            />
                                             <AvatarFallback className="bg-brown-200 text-brown-800">
                                                 {article.author.name
                                                     .split(" ")
@@ -153,7 +157,7 @@ const ArtikelDetail = () => {
                                 </div>
 
                                 {/* Markdown content */}
-                                <div className="prose prose-brown max-w-none">
+                                <div className="prose prose-brown text-justify max-md:leading-normal max-w-none">
                                     <ReactMarkdown>{article.content}</ReactMarkdown>
                                 </div>
 
@@ -177,7 +181,11 @@ const ArtikelDetail = () => {
                                     <h3 className="text-xl font-serif text-brown-800 mb-4">Tentang Penulis</h3>
                                     <div className="flex items-center mb-4">
                                         <Avatar className="h-16 w-16 mr-4">
-                                            <AvatarImage src={article.author.image} alt={article.author.name} />
+                                            <AvatarImage
+                                                className="object-cover"
+                                                src={article.author.image}
+                                                alt={article.author.name}
+                                            />
                                             <AvatarFallback className="bg-brown-200 text-brown-800 text-lg">
                                                 {article.author.name
                                                     .split(" ")
@@ -190,10 +198,7 @@ const ArtikelDetail = () => {
                                             <p className="text-brown-600 text-sm">Penulis</p>
                                         </div>
                                     </div>
-                                    <p className="text-brown-600">
-                                        Penulis aktif yang berpengalaman dalam menulis artikel seputar kehidupan Kristen
-                                        di lingkungan kampus.
-                                    </p>
+                                    <p className="text-brown-600">{article.author.bio || ""}</p>
                                 </CardContent>
                             </Card>
 

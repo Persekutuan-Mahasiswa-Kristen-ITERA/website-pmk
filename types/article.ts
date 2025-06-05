@@ -17,6 +17,7 @@ export interface Article extends BaseEntity {
 export interface Author {
     name: string
     image: string
+    bio?: string
 }
 
 export const authorSchema = z.object({

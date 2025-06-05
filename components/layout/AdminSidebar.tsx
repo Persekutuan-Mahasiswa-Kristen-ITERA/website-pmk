@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Users, BookOpen, ImageIcon, CreditCard, Home, Settings, Book, Calendar } from "lucide-react"
+import { FileText, Users, BookOpen, ImageIcon, CreditCard, Home, Settings, Book, Calendar, LogOut } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
     { name: "Dashboard", path: "/admin", icon: Home },
@@ -16,7 +17,11 @@ const NAV_ITEMS = [
     { name: "Pengaturan", path: "/admin/settings", icon: Settings },
 ]
 
-export const Sidebar = () => {
+interface SidebarProps {
+    onLogout: () => void
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
     const pathname = usePathname()
 
     return (
@@ -25,25 +30,39 @@ export const Sidebar = () => {
                 <Image src="/logo-128.png" alt="logo" width={24} height={24} />
                 <p className="text-xl font-bold text-white">Admin Panel</p>
             </div>
-            <nav className="p-4 space-y-2">
-                {NAV_ITEMS.map((item) => {
-                    const isActive = pathname === item.path
+            <nav className="p-4 space-y-2 flex flex-col h-full">
+                <div className="flex-1">
+                    {NAV_ITEMS.map((item) => {
+                        const isActive = pathname === item.path
 
-                    return (
-                        <Link
-                            key={item.name}
-                            href={item.path}
-                            className={`flex items-center space-x-3 px-3 py-2 rounded-md transition-colors ${
-                                isActive
-                                    ? "bg-white text-brown-800 font-medium"
-                                    : "text-brown-50 hover:bg-brown-50 hover:text-brown-800"
-                            }`}
-                        >
-                            <item.icon className="h-5 w-5" />
-                            <span>{item.name}</span>
-                        </Link>
-                    )
-                })}
+                        return (
+                            <Link
+                                key={item.name}
+                                href={item.path}
+                                className={`flex items-center space-x-3 px-3 py-2 rounded-md transition-colors ${
+                                    isActive
+                                        ? "bg-white text-brown-800 font-medium"
+                                        : "text-brown-50 hover:bg-brown-50 hover:text-brown-800"
+                                }`}
+                            >
+                                <item.icon className="h-5 w-5" />
+                                <span>{item.name}</span>
+                            </Link>
+                        )
+                    })}
+                </div>
+
+                {/* Logout Button */}
+                <div className="pt-4 border-t border-brown-600">
+                    <Button
+                        onClick={onLogout}
+                        variant="ghost"
+                        className="w-full justify-start text-brown-50 hover:bg-brown-50 hover:text-brown-800"
+                    >
+                        <LogOut className="h-5 w-5 mr-3" />
+                        Keluar
+                    </Button>
+                </div>
             </nav>
         </aside>
     )

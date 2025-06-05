@@ -18,7 +18,7 @@ export const RecentArticles = () => {
 
     useEffect(() => {
         const fetchArticles = async () => {
-            const data = await getArticles()
+            const data = await getArticles(3)
             setArticles(data)
         }
         fetchArticles()
@@ -46,7 +46,7 @@ export const RecentArticles = () => {
                                     height={500}
                                 />
                             </div>
-                            <CardContent className="p-4 sm:p-6">
+                            <CardContent className="p-4 sm:p-6 ">
                                 <Link
                                     href={`/article/${article.slug}`}
                                     className="text-lg sm:text-xl font-serif font-medium text-brown-800 hover:underline"
@@ -76,7 +76,7 @@ export const RecentArticles = () => {
                                     </span>
                                 </div>
                             </CardContent>
-                            <CardFooter className="p-4 sm:p-6">
+                            <CardFooter className="p-4 sm:p-6 ">
                                 <Button
                                     variant="outline"
                                     className="w-full border-brown-300 text-brown-700 hover:bg-brown-50 text-sm sm:text-base"

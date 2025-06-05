@@ -208,7 +208,7 @@ export class FirebaseService<T extends BaseEntity> {
         try {
             const dataWithTimestamps = {
                 ...prepareDatesForFirestore(data),
-                createdAt: serverTimestamp(),
+                createdAt: data.createdAt ?? serverTimestamp(),
                 updatedAt: serverTimestamp(),
             }
 
@@ -217,7 +217,7 @@ export class FirebaseService<T extends BaseEntity> {
             return {
                 id: docRef.id,
                 ...data,
-                createdAt: new Date(),
+                createdAt: data.createdAt ?? new Date(),
                 updatedAt: new Date(),
             } as T
         } catch (error) {
