@@ -2,9 +2,9 @@ import { Devotional } from "@/types/devotional"
 import { FirebaseService } from "@/services/firebase-service"
 
 const collectionName = "devotionals"
-const devotionalsService = new FirebaseService<Devotional>(collectionName)
+const service = new FirebaseService<Devotional>(collectionName)
 
-export async function getDevotionals(count: number = 0) {
+export async function getDevotionals(count: number = 0, devotionalsService: FirebaseService<Devotional> = service) {
     if (count) {
         return (await devotionalsService.getWithCount(count)).items
     }
@@ -12,26 +12,30 @@ export async function getDevotionals(count: number = 0) {
     const response = (await devotionalsService.getAll({ field: "createdAt", direction: "desc" })).items
     return response
 }
-export async function getLatestDevotionals(amount: number) {
+export async function getLatestDevotionals(amount: number, devotionalsService: FirebaseService<Devotional> = service) {
     const response = (await devotionalsService.getAll({ field: "createdAt", direction: "desc" })).items
     return response.slice(0, amount)
 }
-export async function getDevotionalById(id: string) {
+export async function getDevotionalById(id: string, devotionalsService: FirebaseService<Devotional> = service) {
     const response = await devotionalsService.getById(id)
     return response
 }
 
-export async function addDevotional(devotional: Devotional) {
+export async function addDevotional(devotional: Devotional, devotionalsService: FirebaseService<Devotional> = service) {
     const response = await devotionalsService.create(devotional)
     return response
 }
 
-export async function updateDevotional(id: string, devotional: Partial<Devotional>) {
+export async function updateDevotional(
+    id: string,
+    devotional: Partial<Devotional>,
+    devotionalsService: FirebaseService<Devotional> = service
+) {
     const response = await devotionalsService.update(id, devotional)
     return response
 }
 
-export async function deleteDevotional(id: string) {
+export async function deleteDevotional(id: string, devotionalsService: FirebaseService<Devotional> = service) {
     const response = await devotionalsService.delete(id)
     return response
 }

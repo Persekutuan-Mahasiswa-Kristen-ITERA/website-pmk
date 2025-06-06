@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
         ],
     },
     experimental: {
-        optimizePackageImports: ["@google/genai", "undici"],
+        optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", ],
         // serverActions: true,
         // serverComponentsExternalPackages: ["@google/genai", "undici"],
     },

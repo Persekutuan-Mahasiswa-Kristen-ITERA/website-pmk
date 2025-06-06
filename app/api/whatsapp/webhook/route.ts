@@ -35,16 +35,16 @@ export async function POST(request: NextRequest) {
                 case "devotional":
                     sendMessage(address, "Bentar ya, renungan lagi diproses...")
                     const uploadedDevotional = await uploadDevotional(message.message.text)
-                    return NextResponse.json({ success: true, message: "Devotional uploaded successfully" })
-                    // if (!uploadedDevotional) {
-                    //     console.error("Failed to upload devotional")
-                    //     return NextResponse.json(
-                    //         { success: false, error: "Failed to upload devotional" },
-                    //         { status: 500 }
-                    //     )
-                    // }
-                    // const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nwebsite-pmk.vercel.app/devotional/${uploadedDevotional.id}\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
-                    // await sendMessage(address, successMessage)
+                    
+                    if (!uploadedDevotional) {
+                        console.error("Failed to upload devotional")
+                        return NextResponse.json(
+                            { success: false, error: "Failed to upload devotional" },
+                            { status: 500 }
+                        )
+                    }
+                    const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nwebsite-pmk.vercel.app/devotional/${uploadedDevotional.id}\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
+                    await sendMessage(address, successMessage)
             }
         } catch (error) {
             console.error("Error processing command:", error)

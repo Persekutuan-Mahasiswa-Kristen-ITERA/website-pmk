@@ -2,17 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+1. Clone project (you can do this)
+
+2. Install dependencies (bun):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun Install
 ```
+
+3. fill .env, described in `.env.example`
+
+4. run dev or build
+
+```bash
+bun run dev
+bun run build 
+bun run start
+```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

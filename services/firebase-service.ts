@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { firestore } from "@/lib/firebase"
+import { firestore as clientFirestore } from "@/lib/firebase"
 import { BaseEntity, PaginationState, SortOption } from "@/types/common"
 import {
     addDoc,
@@ -7,6 +7,7 @@ import {
     deleteDoc,
     doc,
     DocumentData,
+    Firestore,
     getDoc,
     getDocs,
     limit,
@@ -39,8 +40,7 @@ const convertTimestampToDate = (data: any): any => {
     return data
 }
 
-// Convert dates to Firestore timestamp
-const prepareDatesForFirestore = (data: any): any => {
+export const prepareDatesForFirestore = (data: any): any => {
     if (!data) return data
 
     const newData = { ...data }
@@ -58,9 +58,11 @@ const prepareDatesForFirestore = (data: any): any => {
 
 export class FirebaseService<T extends BaseEntity> {
     collectionName: string
+    firestore: Firestore
 
-    constructor(collectionName: string) {
+    constructor(collectionName: string, firestore: Firestore = clientFirestore) {
         this.collectionName = collectionName
+        this.firestore = firestore
     }
 
     async getAll(
@@ -68,12 +70,11 @@ export class FirebaseService<T extends BaseEntity> {
         pagination?: PaginationState
     ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
-            const collectionRef = collection(firestore, this.collectionName)
+            const collectionRef = collection(this.firestore, this.collectionName)
             let queryRef: Query<DocumentData> = collectionRef
 
             // Apply sorting if provided
             if (sortOption) {
-                console.log("Sorting by:", sortOption)
                 queryRef = query(queryRef, orderBy(sortOption.field.toString(), sortOption.direction))
             }
 
@@ -105,7 +106,7 @@ export class FirebaseService<T extends BaseEntity> {
         direction: OrderByDirection = "desc"
     ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
-            const collectionRef = collection(firestore, this.collectionName)
+            const collectionRef = collection(this.firestore, this.collectionName)
             const queryRef = query(collectionRef, limit(n), orderBy(fieldName, direction))
             const querySnapshot = await getDocs(queryRef)
             const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
@@ -131,7 +132,7 @@ export class FirebaseService<T extends BaseEntity> {
         sortOption?: SortOption<T>
     ): Promise<{ items: T[]; lastDoc?: QueryDocumentSnapshot<DocumentData> }> {
         try {
-            const collectionRef = collection(firestore, this.collectionName)
+            const collectionRef = collection(this.firestore, this.collectionName)
             let queryRef: Query<DocumentData>
 
             if (sortOption) {
@@ -165,7 +166,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async getById(id: string): Promise<T> {
         try {
-            const docRef = doc(firestore, this.collectionName, id)
+            const docRef = doc(this.firestore, this.collectionName, id)
             const docSnap = await getDoc(docRef)
 
             if (!docSnap.exists()) {
@@ -185,7 +186,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async getByField(field: keyof T, value: any): Promise<T[]> {
         try {
-            const collectionRef = collection(firestore, this.collectionName)
+            const collectionRef = collection(this.firestore, this.collectionName)
             const q = query(collectionRef, where(field.toString(), "==", value))
             const querySnapshot = await getDocs(q)
 
@@ -212,7 +213,7 @@ export class FirebaseService<T extends BaseEntity> {
                 updatedAt: serverTimestamp(),
             }
 
-            const docRef = await addDoc(collection(firestore, this.collectionName), dataWithTimestamps)
+            const docRef = await addDoc(collection(this.firestore, this.collectionName), dataWithTimestamps)
 
             return {
                 id: docRef.id,
@@ -228,7 +229,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async update(id: string, data: Partial<T>): Promise<T> {
         try {
-            const docRef = doc(firestore, this.collectionName, id)
+            const docRef = doc(this.firestore, this.collectionName, id)
             const dataWithTimestamps = {
                 ...prepareDatesForFirestore(data),
                 updatedAt: serverTimestamp(),
@@ -247,7 +248,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async delete(id: string): Promise<void> {
         try {
-            const docRef = doc(firestore, this.collectionName, id)
+            const docRef = doc(this.firestore, this.collectionName, id)
             await deleteDoc(docRef)
         } catch (error) {
             console.error("Error deleting document:", error)
@@ -257,7 +258,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async getCount(): Promise<number> {
         try {
-            const querySnapshot = await getDocs(collection(firestore, this.collectionName))
+            const querySnapshot = await getDocs(collection(this.firestore, this.collectionName))
             return querySnapshot.size
         } catch (error) {
             console.error("Error counting documents:", error)

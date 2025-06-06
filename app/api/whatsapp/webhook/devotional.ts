@@ -1,6 +1,8 @@
-// import { addDevotional } from "@/data/devotional"
+import { FirebaseService, prepareDatesForFirestore } from "@/services/firebase-service"
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
+import { firestore } from "../../firebaseAdmin"
+import { serverTimestamp } from "firebase/firestore"
 
 const responseSchema = {
     type: "object",
@@ -25,17 +27,39 @@ export async function uploadDevotional(message: string) {
         return null
     }
 
-    // const result = await addDevotional(formattedDevotional)
-    // return result
+    const result = await addDevotional(formattedDevotional)
+    return result
+}
 
-    return null
+export async function addDevotional(devotional: Devotional): Promise<Devotional | null> {
+    try {
+        const collection = firestore.collection("devotionals")
+        const dataWithTimestamps = {
+            ...prepareDatesForFirestore(devotional),
+            createdAt: devotional.createdAt ?? serverTimestamp(),
+            updatedAt: serverTimestamp(),
+        }
+
+        const docRef = await collection.add(dataWithTimestamps)
+
+        // Exclude 'id' from devotional to avoid duplicate property
+        const { id, ...devotionalWithoutId } = devotional
+        return {
+            id: docRef.id,
+            ...devotionalWithoutId,
+            createdAt: devotional.createdAt ?? new Date(),
+            updatedAt: new Date(),
+        }
+    } catch (error) {
+        console.error("Error adding document:", error)
+        throw error
+    }
 }
 
 export async function formatDevotionalGemini(message: string): Promise<Devotional | null> {
+    console.log("Formatting devotional content with Gemini AI...")
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" })
-    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "")
-    // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
-    
+
     const prompt = `Teks:
 ${message}
 
