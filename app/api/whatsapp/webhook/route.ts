@@ -1,3 +1,5 @@
+"use server"
+
 import { NextRequest, NextResponse } from "next/server"
 import { PhoneUtils } from "@/utils/phone-utils"
 import { WhatsappWebhook } from "@/types/whatsapp"
@@ -16,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     // sendMessage(address, `Received command: ${command}`)
     // return NextResponse.json({ success: true, command })
-    
+
     try {
         if (!command) {
             const result = await sendMessage(address, greetings)
@@ -50,7 +52,7 @@ export async function POST(request: NextRequest) {
 
         console.log("Webhook processed successfully")
         return NextResponse.json({ success: true })
-    } catch (error) {   
+    } catch (error) {
         console.error("Webhook error:", error)
         return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 })
     }
