@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
                 case "devotional":
                     sendMessage(address, "Bentar ya, renungan lagi diproses...")
                     const uploadedDevotional = await uploadDevotional(message.message.text)
+                    return NextResponse.json({ success: true, message: "Devotional uploaded successfully" })
                     if (!uploadedDevotional) {
                         console.error("Failed to upload devotional")
                         return NextResponse.json(

@@ -1,7 +1,6 @@
-import { addDevotional } from "@/data/devotional"
+// import { addDevotional } from "@/data/devotional"
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
-// import { GoogleGenerativeAI } from "@google/generative-ai"
 
 const responseSchema = {
     type: "object",
@@ -26,8 +25,10 @@ export async function uploadDevotional(message: string) {
         return null
     }
 
-    const result = await addDevotional(formattedDevotional)
-    return result
+    // const result = await addDevotional(formattedDevotional)
+    // return result
+
+    return null
 }
 
 export async function formatDevotionalGemini(message: string): Promise<Devotional | null> {
