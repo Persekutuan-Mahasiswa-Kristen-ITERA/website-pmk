@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         try {
             switch (command) {
                 case "devotional":
-                    await sendMessage(address, "Bentar ya, renungan lagi diproses...")
+                    sendMessage(address, "Bentar ya, renungan lagi diproses...")
                     const uploadedDevotional = await uploadDevotional(message.message.text)
                     if (!uploadedDevotional) {
                         console.error("Failed to upload devotional")
@@ -48,8 +48,9 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ success: false, error: "Failed to process command" }, { status: 500 })
         }
 
+        console.log("Webhook processed successfully")
         return NextResponse.json({ success: true })
-    } catch (error) {
+    } catch (error) {   
         console.error("Webhook error:", error)
         return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 })
     }
