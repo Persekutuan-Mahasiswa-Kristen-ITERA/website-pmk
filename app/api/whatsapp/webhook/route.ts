@@ -25,27 +25,28 @@ export async function POST(request: NextRequest) {
                 return NextResponse.json({ success: false, error: "Failed to send greeting message" }, { status: 500 })
             }
             console.log("Greeting message sent successfully")
+            return NextResponse.json({ success: true, message: "Greeting message sent" })
         }
 
-        // try {
-        //     switch (command) {
-        //         case "devotional":
-        //             await sendMessage(address, "Bentar ya, renungan lagi diproses...")
-        //             const uploadedDevotional = await uploadDevotional(message.message.text)
-        //             if (!uploadedDevotional) {
-        //                 console.error("Failed to upload devotional")
-        //                 return NextResponse.json(
-        //                     { success: false, error: "Failed to upload devotional" },
-        //                     { status: 500 }
-        //                 )
-        //             }
-        //             const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nwebsite-pmk.vercel.app/devotional/${uploadedDevotional.id}\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
-        //             await sendMessage(address, successMessage)
-        //     }
-        // } catch (error) {
-        //     console.error("Error processing command:", error)
-        //     return NextResponse.json({ success: false, error: "Failed to process command" }, { status: 500 })
-        // }
+        try {
+            switch (command) {
+                case "devotional":
+                    await sendMessage(address, "Bentar ya, renungan lagi diproses...")
+                    const uploadedDevotional = await uploadDevotional(message.message.text)
+                    if (!uploadedDevotional) {
+                        console.error("Failed to upload devotional")
+                        return NextResponse.json(
+                            { success: false, error: "Failed to upload devotional" },
+                            { status: 500 }
+                        )
+                    }
+                    const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nwebsite-pmk.vercel.app/devotional/${uploadedDevotional.id}\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
+                    await sendMessage(address, successMessage)
+            }
+        } catch (error) {
+            console.error("Error processing command:", error)
+            return NextResponse.json({ success: false, error: "Failed to process command" }, { status: 500 })
+        }
 
         return NextResponse.json({ success: true })
     } catch (error) {
