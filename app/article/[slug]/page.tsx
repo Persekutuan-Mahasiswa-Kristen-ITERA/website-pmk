@@ -7,10 +7,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ReactMarkdown from "react-markdown"
-import { Calendar, Book, Share, ChevronLeft } from "lucide-react"
+import { Calendar, Book, Share, ChevronLeft, Copy, Check } from "lucide-react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Article } from "@/types/article"
 import { getArticleById, getArticleBySlug, getArticles, getLatestArticles } from "@/data/article"
 
@@ -19,6 +20,44 @@ const ArtikelDetail = () => {
     const [article, setArticle] = useState<Article | null>(null)
     const [articles, setArticles] = useState<Article[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isCopied, setIsCopied] = useState(false)
+
+    const shareUrl = typeof window !== "undefined" ? window.location.href : ""
+
+    const shareOnFacebook = () => {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
+        window.open(url, "_blank", "width=600,height=400")
+    }
+
+    const shareOnTwitter = () => {
+        const text = `${article?.title}\n\n${article?.excerpt}\n\nBaca disini: `
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(
+            shareUrl
+        )}`
+        window.open(url, "_blank", "width=600,height=400")
+    }
+
+    const shareOnWhatsApp = () => {
+        const text = `${article?.title}\n\n${article?.excerpt}\n\n${shareUrl}`
+        const url = `https://wa.me/?text=${encodeURIComponent(text)}`
+        window.open(url, "_blank")
+    }
+
+    const shareOnTelegram = () => {
+        const text = `${article?.title}\n\n${article?.excerpt}`
+        const url = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`
+        window.open(url, "_blank")
+    }
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(shareUrl)
+            setIsCopied(true)
+            setTimeout(() => setIsCopied(false), 2000)
+        } catch (err) {
+            console.error("Failed to copy: ", err)
+        }
+    }
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -124,11 +163,11 @@ const ArtikelDetail = () => {
                     {/* Main content */}
                     <div className="lg:col-span-8">
                         <Card className="border-brown-100 overflow-hidden">
-                            <CardContent className="p-6 md:p-12">
+                            <CardContent className="p-6 md:p-12 bg-white">
                                 {/* Article header information */}
                                 <div className="mb-8 flex items-center justify-between">
                                     <div className="flex items-center">
-                                        <Avatar className="h-12 w-12 mr-4">
+                                        <Avatar className="h-12 w-12 mr-3">
                                             <AvatarImage
                                                 className="object-cover"
                                                 src={article.author.image}
@@ -142,19 +181,59 @@ const ArtikelDetail = () => {
                                             </AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="max-md:text-sm font-medium text-brown-800">{article.author.name}</p>
+                                            <p className="max-md:text-sm font-medium text-brown-800">
+                                                {article.author.name}
+                                            </p>
                                         </div>
-                                    </div>
-
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="flex items-center text-brown-600 hover:text-brown-800"
-                                        onClick={() => alert("Fitur berbagi artikel belum diimplementasikan")}
-                                    >
-                                        <Share className="h-4 w-4 mr-1" />
-                                        <span>Bagikan</span>
-                                    </Button>
+                                    </div>{" "}
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild className="bg-white">
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="flex items-center text-brown-600 hover:text-brown-800"
+                                            >
+                                                <Share className="h-4 w-4 mr-1" />
+                                                <span>Bagikan</span>
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end" className="w-48 bg-white">
+                                            <DropdownMenuItem onClick={shareOnFacebook} className="cursor-pointer">
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 mr-2 bg-blue-600 rounded"></div>
+                                                    <span>Facebook</span>
+                                                </div>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={shareOnTwitter} className="cursor-pointer">
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 mr-2 bg-black rounded"></div>
+                                                    <span>Twitter / X</span>
+                                                </div>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={shareOnWhatsApp} className="cursor-pointer">
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 mr-2 bg-green-500 rounded"></div>
+                                                    <span>WhatsApp</span>
+                                                </div>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={shareOnTelegram} className="cursor-pointer">
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 mr-2 bg-blue-500 rounded"></div>
+                                                    <span>Telegram</span>
+                                                </div>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={copyToClipboard} className="cursor-pointer">
+                                                <div className="flex items-center">
+                                                    {isCopied ? (
+                                                        <Check className="h-4 w-4 mr-2 text-green-600" />
+                                                    ) : (
+                                                        <Copy className="h-4 w-4 mr-2" />
+                                                    )}
+                                                    {isCopied ? "Disalin!" : "Salin Link"}
+                                                </div>
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
                                 </div>
 
                                 {/* Markdown content */}
