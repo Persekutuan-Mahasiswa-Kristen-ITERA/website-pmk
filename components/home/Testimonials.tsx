@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react"
 import { SectionHeader } from "@/components/ui/section-header"
-import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import Image from "next/image"
-import test from "node:test"
-import { Testimonial } from "@/types/testimonial"
 
 export const Testimonials = () => {
     return (

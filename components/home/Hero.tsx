@@ -1,9 +1,5 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import BibleVerse from "../bible-verse"
-import DailyVerse from "../daily-verse"
-import { Devotional } from "@/types/devotional"
-import { useState } from "react"
 import LatestDevotional from "../hero/latest-devotional"
 
 export const Hero = () => {

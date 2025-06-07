@@ -1,12 +1,19 @@
 import { FirebaseService } from "@/services/firebase-service"
 import { Event } from "@/types/event"
+import { resourceLimits } from "worker_threads"
 
 const collectionName = "events"
 const eventsService = new FirebaseService<Event>(collectionName)
 
-export async function getEvents(count: number = -1) {
+export async function getEvents(count: number = -1, dateToFilter: string = "") {
     if (count > 0) {
-        return await eventsService.getWithCount(count)
+        if (dateToFilter) {
+            const result = await eventsService.getAll({ field: "date", direction: "asc" })
+            result.items = result.items.filter((event) => event.date >= dateToFilter).slice(0, count)
+            return result
+        } else {
+            return await eventsService.getWithCount(count, "date", "asc")
+        }
     }
 
     return await eventsService.getAll()

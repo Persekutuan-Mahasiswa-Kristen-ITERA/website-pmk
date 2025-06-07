@@ -18,7 +18,12 @@ export const UpcomingEvents = () => {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const data = await getEvents(3)
+            const date = new Date()
+            const day = date.getDate()
+            const month = date.getMonth() + 1
+            const year = date.getFullYear()
+            const today = `${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`
+            const data = await getEvents(3, today)
             setEvents(data.items)
         }
         fetchEvents()
