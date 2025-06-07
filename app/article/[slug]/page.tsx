@@ -72,7 +72,7 @@ const ArtikelDetail = () => {
     return (
         <MainLayout>
             {/* Hero section with article title and image */}
-            <div className="relative h-[30vh] md:h-[40vh] w-full bg-brown-950">
+            <div className="relative h-[35vh] md:h-[40vh] w-full bg-brown-950">
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
                     {article.imageUrl && (
                         <Image
@@ -128,7 +128,7 @@ const ArtikelDetail = () => {
                                 {/* Article header information */}
                                 <div className="mb-8 flex items-center justify-between">
                                     <div className="flex items-center">
-                                        <Avatar className="h-10 w-10 mr-4">
+                                        <Avatar className="h-12 w-12 mr-4">
                                             <AvatarImage
                                                 className="object-cover"
                                                 src={article.author.image}
@@ -142,7 +142,7 @@ const ArtikelDetail = () => {
                                             </AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="font-medium text-brown-800">{article.author.name}</p>
+                                            <p className="max-md:text-sm font-medium text-brown-800">{article.author.name}</p>
                                         </div>
                                     </div>
 
@@ -158,7 +158,7 @@ const ArtikelDetail = () => {
                                 </div>
 
                                 {/* Markdown content */}
-                                <div className="prose prose-brown text-justify max-md:leading-normal max-w-none">
+                                <div className="prose prose-brown prose-lg text-justify max-md:leading-normal max-w-none">
                                     <ReactMarkdown>{article.content}</ReactMarkdown>
                                 </div>
 
