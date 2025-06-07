@@ -50,7 +50,7 @@ const ArtikelPage = () => {
         <MainLayout>
             {/* Hero section with gradient background */}
             <div className="bg-gradient-to-b from-brown-100 to-white">
-                <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-24 md:py-32 relative">
+                <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
                     <div className="container relative mx-auto px-4 z-10">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white text-center">
@@ -82,27 +82,31 @@ const ArtikelPage = () => {
                         {filteredArticles.map((article) => (
                             <Card
                                 key={article.id}
-                                className="border-brown-100 overflow-hidden hover:shadow-md transition-shadow"
+                                className="border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-3 h-full">
-                                    <div className="h-48 md:h-full bg-brown-200">
+                                    <div className="h-48 md:h-full bg-brown-200 overflow-hidden">
                                         <Image
                                             src={article.imageUrl}
                                             alt={article.title}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                                             width={500}
                                             height={300}
                                         />
                                     </div>
                                     <div className="md:col-span-2">
-                                        <CardContent className="p-6">
+                                        <CardContent className="p-6 flex flex-col">
                                             <div className="flex items-center mb-3">
                                                 <FileText className="h-4 w-4 text-brown-400 mr-2" />
                                                 <span className="text-xs text-brown-500">
                                                     {article.readTime} menit membaca
                                                 </span>
                                             </div>
-                                            <h3 className="text-xl font-serif text-brown-800 mb-2">{article.title}</h3>
+                                            <Link href={`/article/${article.slug}`} className="block mb-2">
+                                                <h3 className="text-xl font-serif text-brown-800 mb-2 hover:underline">
+                                                    {article.title}
+                                                </h3>
+                                            </Link>
                                             <p className="text-brown-600 text-sm mb-4 line-clamp-2">
                                                 {article.excerpt}
                                             </p>
@@ -119,7 +123,7 @@ const ArtikelPage = () => {
                                                 ))}
                                             </div> */}
 
-                                            <div className="flex justify-between items-center">
+                                            <div className="flex justify-between items-center mt-6">
                                                 <div className="flex items-center">
                                                     <Avatar className="h-8 w-8 mr-2">
                                                         <AvatarImage
@@ -152,13 +156,13 @@ const ArtikelPage = () => {
                                                     asChild
                                                     variant="ghost"
                                                     size="sm"
-                                                    className="text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0"
+                                                    className="text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0 px-2"
                                                 >
                                                     <Link
                                                         href={`/article/${article.slug}`}
                                                         className="flex items-center"
                                                     >
-                                                        <span className="mr-1">Baca</span>
+                                                        <span>Baca</span>
                                                         <ChevronRight className="h-4 w-4" />
                                                     </Link>
                                                 </Button>
@@ -176,6 +180,8 @@ const ArtikelPage = () => {
                         </div>
                     )}
                 </div>
+
+                <div className="mb-24"></div>
             </section>
         </MainLayout>
     )

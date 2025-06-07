@@ -84,9 +84,10 @@ const ArtikelDetail = () => {
                         />
                     )}
                 </div>
+                <div className="absolute inset-0 bg-black/10 backdrop-blur-xs z-0"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="container px-4 py-12 text-center">
-                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{article.title}</h1>
+                        <h1 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">{article.title}</h1>
                         <div className="flex justify-center space-x-4 text-white/80">
                             <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-1" />
@@ -204,10 +205,10 @@ const ArtikelDetail = () => {
 
                             <Card className="border-brown-100 overflow-hidden">
                                 <CardContent className="p-6">
-                                    <h3 className="text-xl font-serif text-brown-800 mb-4">Artikel Terkait</h3>
+                                    <h3 className="text-xl font-serif text-brown-800 mb-4">Lihat Artikel Lainnya</h3>
                                     <div className="space-y-4">
                                         {articles
-                                            .filter((item) => item.id !== article.id)
+                                            // .filter((item) => item.id !== article.id)
                                             .map((item) => (
                                                 <Link
                                                     key={item.id}
