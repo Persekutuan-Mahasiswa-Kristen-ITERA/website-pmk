@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Artikel - PMK ITERA",
+        title: "Artikel | Persekutuan Mahasiswa Kristen ITERA",
         description: "Tulisan seputar kehidupan dan apologetika Kristen - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
         images: ["https://pmkitera.com/img/bg-article.webp"],

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         "pelayanan",
     ],
     openGraph: {
-        title: "Kegiatan - PMK ITERA",
+        title: "Kegiatan | Persekutuan Mahasiswa Kristen ITERA",
         description:
             "Bergabunglah dalam berbagai kegiatan rohani dan persekutuan untuk bertumbuh bersama dalam iman - Persekutuan Mahasiswa Kristen ITERA",
         url: "https://pmkitera.com/event",

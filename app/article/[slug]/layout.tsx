@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     const baseUrl = "https://pmkitera.com"
 
     return {
-        title: `${articleData.title} - PMK ITERA`,
+        title: `${articleData.title} | Persekutuan Mahasiswa Kristen ITERA`,
         description: articleData.excerpt || articleData.content.slice(0, 160) + "...",
         keywords: articleData.tags ? articleData.tags.split(",").map((tag) => tag.trim()) : [],
         authors: [{ name: articleData.author.name }],

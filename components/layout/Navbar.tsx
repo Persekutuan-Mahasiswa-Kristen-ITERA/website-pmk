@@ -4,11 +4,9 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, User, LogIn } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
-import { ModeToggle } from "../ui/mode-toggle"
 
 const NAV_ITEMS = [
     { name: "Beranda", path: "/" },

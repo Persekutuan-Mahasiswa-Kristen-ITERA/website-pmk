@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         "ayat alkitab",
     ],
     openGraph: {
-        title: "Renungan Harian - PMK ITERA",
+        title: "Renungan Harian | Persekutuan Mahasiswa Kristen ITERA",
         description:
             "Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya setiap hari - Persekutuan Mahasiswa Kristen ITERA",
         url: "https://pmkitera.com/devotional",

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const baseUrl = "https://pmkitera.com"
 
     return {
-        title: `${devotional.title} | PMK ITERA`,
+        title: `${devotional.title} | Persekutuan Mahasiswa Kristen ITERA`,
         description:
             devotional.content.slice(0, 160) + "..." ||
             "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya",
