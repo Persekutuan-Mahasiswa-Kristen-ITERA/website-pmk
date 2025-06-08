@@ -161,7 +161,7 @@ const ArtikelDetail = () => {
                                 </div>
 
                                 {/* Markdown content */}
-                                <div className="prose prose-brown md:prose-lg text-justify max-md:leading-normal max-w-none">
+                                <div className="prose prose-brown text-justify max-md:leading-normal max-w-none">
                                     <ReactMarkdown>{article.content}</ReactMarkdown>
                                 </div>
 
