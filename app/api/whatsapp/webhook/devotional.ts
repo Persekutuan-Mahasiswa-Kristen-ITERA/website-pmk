@@ -1,25 +1,12 @@
+"use server"
+
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
+import { firestore } from "../../firebaseAdmin"
 import { FieldValue, Timestamp } from "firebase-admin/firestore"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// Lazy load firestore to avoid build-time initialization
-let firestoreInstance: any = null
-
-const getFirestore = async () => {
-    if (!firestoreInstance) {
-        try {
-            const { firestore } = await import("../../firebaseAdmin")
-            firestoreInstance = firestore
-        } catch (error) {
-            console.error("Failed to initialize Firestore:", error)
-            throw new Error("Firestore not available")
-        }
-    }
-    return firestoreInstance
-}
-
-export const prepareDatesForFirestore = (data: any): any => {
+export const prepareDatesForFirestore = async (data: any): Promise<any> => {
     if (!data) return data
 
     const newData = { ...data }
@@ -64,10 +51,9 @@ export async function uploadDevotional(message: string) {
 
 export async function addDevotional(devotional: Devotional): Promise<Devotional | null> {
     try {
-        const firestore = await getFirestore()
         const collection = firestore.collection("devotionals")
         const dataWithTimestamps = {
-            ...prepareDatesForFirestore(devotional),
+            ...(await prepareDatesForFirestore(devotional)),
             createdAt: devotional.createdAt ?? FieldValue.serverTimestamp(),
             updatedAt: FieldValue.serverTimestamp(),
         }
@@ -90,13 +76,7 @@ export async function addDevotional(devotional: Devotional): Promise<Devotional 
 
 export async function formatDevotionalGemini(message: string): Promise<Devotional | null> {
     console.log("Formatting devotional content with Gemini AI...")
-
-    if (!process.env.GEMINI_API_KEY) {
-        console.error("GEMINI_API_KEY not found")
-        return null
-    }
-
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" })
 
     const prompt = `Teks:
 ${message}
