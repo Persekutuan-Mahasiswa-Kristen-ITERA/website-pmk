@@ -243,6 +243,11 @@ const Persembahan = () => {
                                             accountNumber="901683034565"
                                             accountName="Jelly Cristin Manurung"
                                         />
+                                        <BankAccount
+                                            bank="DANA"
+                                            accountNumber="0895384120105"
+                                            accountName="Jelly Cristin Manurung"
+                                        />
                                     </CardContent>
                                 </Card>
 
