@@ -68,10 +68,6 @@ export const metadata: Metadata = {
     category: "documentation",
 }
 
-export default function DocumentationLayout({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+export default function DocumentationLayout({ children }: { children: React.ReactNode }) {
     return <>{children}</>
 }

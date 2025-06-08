@@ -2,8 +2,9 @@ import type { Metadata } from "next"
 import { getDevotionalById } from "@/data/devotional"
 
 // Dynamic metadata generation
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const devotional = await getDevotionalById(params.id)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await params
+    const devotional = await getDevotionalById(id)
 
     if (!devotional) {
         return {
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             description:
                 devotional.content.slice(0, 160) + "..." ||
                 "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya",
-            url: `${baseUrl}/devotional/${params.id}`,
+            url: `${baseUrl}/devotional/${id}`,
             siteName: "PMK ITERA",
             images: [
                 {
@@ -77,7 +78,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             },
         },
         alternates: {
-            canonical: `${baseUrl}/devotional/${params.id}`,
+            canonical: `${baseUrl}/devotional/${id}`,
         },
         category: "spirituality",
         other: {

@@ -2,8 +2,9 @@ import type { Metadata } from "next"
 import { getArticleBySlug } from "@/data/article"
 
 // Dynamic metadata generation
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const article = await getArticleBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params
+    const article = await getArticleBySlug(slug)
 
     if (!article || !Array.isArray(article) || article.length === 0) {
         return {
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         openGraph: {
             title: articleData.title,
             description: articleData.excerpt || articleData.content.slice(0, 160) + "...",
-            url: `${baseUrl}/article/${params.slug}`,
+            url: `${baseUrl}/article/${slug}`,
             siteName: "PMK ITERA",
             images: [
                 {
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             },
         },
         alternates: {
-            canonical: `${baseUrl}/article/${params.slug}`,
+            canonical: `${baseUrl}/article/${slug}`,
         },
         category: "article",
     }
