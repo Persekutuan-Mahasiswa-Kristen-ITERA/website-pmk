@@ -1,3 +1,5 @@
+"use server"
+
 export async function sendMessage(phone: string, message: string): Promise<Response> {
     const WHATSAPP_HOST = process.env.WHATSAPP_HOST || "http://localhost:3000"
     const WHATSAPP_AUTH = process.env.WHATSAPP_AUTH || ""

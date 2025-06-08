@@ -1,3 +1,5 @@
+
+
 export function getCommandFromMessage(message: string): string | null {
     // check if message contains "renungan" case-insensitively
     const lowerMessage = message.toLowerCase()
