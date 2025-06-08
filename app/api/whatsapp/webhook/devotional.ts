@@ -1,4 +1,3 @@
-"use server"
 
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
