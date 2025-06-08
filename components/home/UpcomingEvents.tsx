@@ -91,7 +91,7 @@ export const UpcomingEvents = () => {
 
                 <div className="text-center mt-8 sm:mt-12">
                     <Button asChild variant="outline" className="border-brown-300 text-brown-700 hover:bg-brown-50">
-                        <Link href="/events">Lihat semua kegiatan</Link>
+                        <Link href="/event">Lihat semua kegiatan</Link>
                     </Button>
                 </div>
             </div>
