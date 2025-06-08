@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
         // optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
         // serverActions: true,
     },
-    serverExternalPackages: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
+    serverExternalPackages: ["@google/genai", "firebase-admin"],
 }
 
 const withBundleAnalyzer = bundleAnalyzer({
