@@ -125,7 +125,7 @@ const Persembahan = () => {
         <MainLayout>
             <div className="bg-brown-100">
                 <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
-                    <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
                     <div className="container relative mx-auto px-4 z-10">
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
                             Persembahan Kasih
@@ -234,19 +234,14 @@ const Persembahan = () => {
                                     </CardHeader>
                                     <CardContent className="space-y-4">
                                         <BankAccount
-                                            bank="Bank BCA"
-                                            accountNumber="1234567890"
-                                            accountName="PMK ITERA"
-                                        />
-                                        <BankAccount
                                             bank="Bank Mandiri"
-                                            accountNumber="0987654321"
-                                            accountName="PMK ITERA"
+                                            accountNumber="1090023596695"
+                                            accountName="JELLY CRISTIN MANURU"
                                         />
                                         <BankAccount
-                                            bank="Bank BRI"
-                                            accountNumber="1357924680"
-                                            accountName="PMK ITERA"
+                                            bank="Seabank"
+                                            accountNumber="901683034565"
+                                            accountName="Jelly Cristin Manurung"
                                         />
                                     </CardContent>
                                 </Card>
@@ -266,8 +261,8 @@ const Persembahan = () => {
                                                         <li className="flex items-start">
                                                             <span className="mr-2">•</span>
                                                             Setelah melakukan transfer, silakan konfirmasi dengan
-                                                            mengirimkan bukti transfer ke nomor WhatsApp:{" "}
-                                                            <span className="font-medium">+62 812-3456-7890</span>
+                                                            mengirimkan bukti transfer ke nomor WhatsApp: +62
+                                                            895-3841-20105 (Jelly Cristin Manurung)
                                                         </li>
                                                         <li className="flex items-start">
                                                             <span className="mr-2">•</span>
