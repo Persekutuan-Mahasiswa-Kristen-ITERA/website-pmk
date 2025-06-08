@@ -12,10 +12,10 @@ const nextConfig: NextConfig = {
         ],
     },
     experimental: {
-        optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", ],
+        optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
         // serverActions: true,
-        // serverComponentsExternalPackages: ["@google/genai", "undici"],
     },
+    serverExternalPackages: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
 }
 
 const withBundleAnalyzer = bundleAnalyzer({
