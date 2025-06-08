@@ -1,8 +1,24 @@
-import { FirebaseService, prepareDatesForFirestore } from "@/services/firebase-service"
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
 import { firestore } from "../../firebaseAdmin"
-import { FieldValue } from "firebase-admin/firestore"
+import { FieldValue, Timestamp } from "firebase-admin/firestore"
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const prepareDatesForFirestore = (data: any): any => {
+    if (!data) return data
+
+    const newData = { ...data }
+
+    Object.keys(newData).forEach((key) => {
+        if (newData[key] instanceof Date) {
+            newData[key] = Timestamp.fromDate(newData[key])
+        } else if (typeof newData[key] === "object" && newData[key] !== null) {
+            newData[key] = prepareDatesForFirestore(newData[key])
+        }
+    })
+
+    return newData
+}
 
 const responseSchema = {
     type: "object",
