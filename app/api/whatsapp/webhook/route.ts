@@ -16,9 +16,6 @@ export async function POST(request: NextRequest) {
     const address = PhoneUtils.getNumber(message.from)
     const command = getCommandFromMessage(message.message.text)
 
-    // sendMessage(address, `Received command: ${command}`)
-    // return NextResponse.json({ success: true, command })
-
     try {
         if (!command) {
             const result = await sendMessage(address, greetings)
