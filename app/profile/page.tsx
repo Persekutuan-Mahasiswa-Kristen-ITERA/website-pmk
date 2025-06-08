@@ -1,6 +1,13 @@
 import { MainLayout } from "@/components/layout/MainLayout"
 import { SectionHeader } from "@/components/ui/section-header"
+import { Metadata } from "next"
 import Image from "next/image"
+
+export const metadata: Metadata = {
+    title: "Profil",
+    description:
+        "Persekutuan Mahasiswa Kristen (PMK) ITERA resmi didirikan sebagai Unit Kegiatan Mahasiswa untuk mahasiswa Kristen Protestan. PMK ITERA menjadi wadah pertumbuhan iman, persekutuan, dan pelayanan di lingkungan kampus.",
+}
 
 const Profil = () => {
     return (

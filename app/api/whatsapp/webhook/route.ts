@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
                             { status: 500 }
                         )
                     }
-                    const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nwebsite-pmk.vercel.app/devotional/${uploadedDevotional.id}\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
+                    const successMessage = `Renungan berhasil dipublikasikan di website!\n\n*${uploadedDevotional.title}*\n\nhttps://pmkitera.com/devotional/${uploadedDevotional.id}\nhttps://pmk.ukm.itera.ac.id/devotional/${uploadedDevotional.id}`
                     await sendMessage(address, successMessage)
             }
         } catch (error) {

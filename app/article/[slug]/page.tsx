@@ -21,11 +21,7 @@ const ArtikelDetail = () => {
     const [article, setArticle] = useState<Article | null>(null)
     const [articles, setArticles] = useState<Article[]>([])
     const [isLoading, setIsLoading] = useState(true)
-    
-
     const shareUrl = typeof window !== "undefined" ? window.location.href : ""
-
-    
 
     useEffect(() => {
         const fetchArticle = async () => {

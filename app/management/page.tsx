@@ -6,6 +6,13 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { management } from "@/data/management"
 import { DepartmentTabs } from "@/components/department-tabs"
+import { Metadata } from "next"
+
+// export const metadata: Metadata = {
+//     title: "Kepengurusan",
+//     description: ""
+// }
+
 
 const Pengurus = () => {
     return (

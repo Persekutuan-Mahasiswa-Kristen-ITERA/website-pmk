@@ -10,6 +10,12 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { FileText, CreditCard, Gift, Copy } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Persembahan Kasih",
+    description: "Mari berkontribusi melalui persembahan Anda untuk mendukung kegiatan kami dan pelayanan kami",
+}
 
 const DonationOption = ({
     title,

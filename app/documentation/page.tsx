@@ -7,6 +7,12 @@ import { Search } from "lucide-react"
 import { getDocumentations } from "@/data/documentation"
 import { Documentation } from "@/types/documentation"
 import DocumentationCard from "@/components/documentation-card"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Dokumentasi",
+    description: "Kumpulan dokumentasi dari berbagai kegiatan PMK ITERA yang telah dilaksanakan.",
+}
 
 const DocumentationPage = () => {
     const [documentations, setDocumentations] = useState<Documentation[]>([])

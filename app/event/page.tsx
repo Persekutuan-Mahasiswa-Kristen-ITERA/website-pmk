@@ -11,6 +11,7 @@ import Image from "next/image"
 import { Event } from "@/types/event"
 import { getEvents } from "@/data/event"
 
+
 const EventPage = () => {
     const [events, setEvents] = useState<Event[]>([])
     const [searchQuery, setSearchQuery] = useState("")
