@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import "./index.css"
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
                     <AuthProvider>{children}</AuthProvider>
                 </ThemeProvider>
             </body>
+            <GoogleAnalytics gaId="G-J0RN9KN5YZ" />
         </html>
     )
 }
