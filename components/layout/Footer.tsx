@@ -106,6 +106,11 @@ export const Footer = () => {
                                     Profil
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/event" className="text-gray-300 hover:text-white transition-colors">
+                                    Kegiatan
+                                </Link>
+                            </li>
                             {/* <li>
                                 <Link href="/management" className="text-gray-300 hover:text-white transition-colors">
                                     Pengurus
