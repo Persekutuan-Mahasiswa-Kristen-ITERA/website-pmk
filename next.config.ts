@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
         ],
     },
     experimental: {
-        optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
+        // optimizePackageImports: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
         // serverActions: true,
     },
     serverExternalPackages: ["@google/genai", "undici", "firebase/firestore", "firebase/storage", "firebase-admin"],
