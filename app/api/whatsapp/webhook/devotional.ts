@@ -2,7 +2,7 @@ import { FirebaseService, prepareDatesForFirestore } from "@/services/firebase-s
 import { Devotional } from "@/types/devotional"
 import { GoogleGenAI } from "@google/genai"
 import { firestore } from "../../firebaseAdmin"
-import { serverTimestamp } from "firebase/firestore"
+import { FieldValue } from "firebase-admin/firestore"
 
 const responseSchema = {
     type: "object",
@@ -36,8 +36,8 @@ export async function addDevotional(devotional: Devotional): Promise<Devotional 
         const collection = firestore.collection("devotionals")
         const dataWithTimestamps = {
             ...prepareDatesForFirestore(devotional),
-            createdAt: devotional.createdAt ?? serverTimestamp(),
-            updatedAt: serverTimestamp(),
+            createdAt: devotional.createdAt ?? FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
         }
 
         const docRef = await collection.add(dataWithTimestamps)
