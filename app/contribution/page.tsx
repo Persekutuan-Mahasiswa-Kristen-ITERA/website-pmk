@@ -118,81 +118,15 @@ const Persembahan = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {/* Form Persembahan */}
                             <Card className="h-fit">
-                                <CardHeader>
-                                    <CardTitle className="text-2xl font-serif text-brown-800">
-                                        Form Persembahan
-                                    </CardTitle>
-                                    <CardDescription>
-                                        Silakan isi form di bawah ini untuk memberikan persembahan Anda
-                                    </CardDescription>
-                                </CardHeader>
                                 <CardContent>
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div className="space-y-4">
-                                            <div>
-                                                <Label htmlFor="custom-amount" className="text-brown-700">
-                                                    Nominal Persembahan
-                                                </Label>
-                                                <div className="flex items-center mt-2">
-                                                    <span className="mr-2 text-brown-700 font-medium">Rp</span>
-                                                    <Input
-                                                        id="custom-amount"
-                                                        value={customAmount}
-                                                        onChange={handleCustomAmountChange}
-                                                        className="border-brown-200 focus:border-brown-400"
-                                                        placeholder="Masukkan nominal persembahan"
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="name" className="text-brown-700">
-                                                        Nama
-                                                    </Label>
-                                                    <Input
-                                                        id="name"
-                                                        value={name}
-                                                        onChange={(e) => setName(e.target.value)}
-                                                        className="border-brown-200 focus:border-brown-400"
-                                                        placeholder="Nama lengkap"
-                                                    />
-                                                </div>
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="email" className="text-brown-700">
-                                                        Email
-                                                    </Label>
-                                                    <Input
-                                                        id="email"
-                                                        type="email"
-                                                        value={email}
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                        className="border-brown-200 focus:border-brown-400"
-                                                        placeholder="Email Anda"
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="space-y-2">
-                                                <Label htmlFor="message" className="text-brown-700">
-                                                    Pesan (Opsional)
-                                                </Label>
-                                                <Textarea
-                                                    id="message"
-                                                    value={message}
-                                                    onChange={(e) => setMessage(e.target.value)}
-                                                    className="border-brown-200 focus:border-brown-400"
-                                                    placeholder="Ucapan atau doa"
-                                                    rows={4}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <Button type="submit" className="w-full bg-brown-700 hover:bg-brown-800">
-                                            <Gift className="mr-2 h-4 w-4" />
-                                            Berikan Persembahan
-                                        </Button>
-                                    </form>
+                                    <iframe
+                                        src="https://docs.google.com/forms/d/e/1FAIpQLSf7gkjjAJimRmXVIa6H1WbZ9Yj7GEUBynXeyxL5SjxMyL8zgw/viewform?embedded=true"
+                                        width="640"
+                                        height="854"
+                                        className="w-full"
+                                    >
+                                        Loading…
+                                    </iframe>
                                 </CardContent>
                             </Card>
 
