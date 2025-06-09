@@ -122,7 +122,7 @@ const Persembahan = () => {
                                     <iframe
                                         src="https://docs.google.com/forms/d/e/1FAIpQLSf7gkjjAJimRmXVIa6H1WbZ9Yj7GEUBynXeyxL5SjxMyL8zgw/viewform?embedded=true"
                                         width="640"
-                                        height="854"
+                                        height="500"
                                         className="w-full"
                                     >
                                         Loading…
