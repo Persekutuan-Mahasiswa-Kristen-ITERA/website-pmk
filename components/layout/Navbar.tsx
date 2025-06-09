@@ -15,8 +15,8 @@ const NAV_ITEMS = [
     // { name: "Pengurus", path: "/management" },
     { name: "Renungan", path: "/devotional" },
     { name: "Artikel", path: "/article" },
-    { name: "Persembahan", path: "/contribution" },
     { name: "Dokumentasi", path: "/documentation" },
+    { name: "Persembahan", path: "/contribution" },
 ]
 
 export const Navbar = () => {
@@ -24,7 +24,6 @@ export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
     const pathname = usePathname()
     const isMobile = useIsMobile()
-    const [isLoggedIn, setIsLoggedIn] = useState(false) // Replace with real auth state
 
     useEffect(() => {
         const handleScroll = () => {
@@ -76,41 +75,6 @@ export const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* Auth Buttons - Desktop */}
-                    {/* <div className="hidden md:flex items-center space-x-3">
-                        {isLoggedIn ? (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" className="rounded-full p-2">
-                                        <User className="h-5 w-5 text-brown-700" />
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuItem>
-                                        <Link href="/profilee" className="w-full">
-                                            Profil
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Link href="/admin" className="w-full">
-                                            Admin Panel
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => setIsLoggedIn(false)}>Keluar</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ) : (
-                            <Button
-                                onClick={() => setIsLoggedIn(true)}
-                                variant="outline"
-                                className="border-brown-300 text-brown-800 hover:bg-brown-100"
-                            >
-                                <LogIn className="mr-2 h-4 w-4" />
-                                Masuk
-                            </Button>
-                        )}
-                    </div> */}
-
                     {/* <ModeToggle /> */}
 
                     {/* Mobile Menu Button */}
@@ -128,70 +92,56 @@ export const Navbar = () => {
                             )}
                         </Button>
                     </div>
-                </div>
-
-                {/* Mobile Navigation */}
+                </div>{" "}
+                {/* Mobile Navigation Overlay */}
                 {isOpen && (
-                    <div className="md:hidden absolute top-[72px] left-0 right-0 min-h-screen overflow-hidden bg-white z-50 animate-fade-in">
-                        <div className="flex flex-col px-4 pt-2 pb-6 space-y-2">
-                            {NAV_ITEMS.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.path}
-                                    className={`p-3 transition-colors duration-200 text-base ${
-                                        pathname === item.path
-                                            ? "text-brown-800 font-semibold bg-brown-50 rounded-md"
-                                            : "text-brown-600"
-                                    }`}
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                            {/* <div className="pt-4 border-t border-brown-100 mt-4">
-                                {isLoggedIn ? (
-                                    <>
-                                        <Link
-                                            href="/profilee"
-                                            className="block p-3 text-brown-700"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Profil
-                                        </Link>
-                                        <Link
-                                            href="/admin"
-                                            className="block p-3 text-brown-700"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Admin Panel
-                                        </Link>
-                                        <Button
-                                            onClick={() => {
-                                                setIsLoggedIn(false)
-                                                setIsOpen(false)
-                                            }}
-                                            variant="ghost"
-                                            className="w-full justify-start p-3 hover:bg-brown-50 text-brown-700"
-                                        >
-                                            Keluar
-                                        </Button>
-                                    </>
-                                ) : (
-                                    <Button
-                                        onClick={() => {
-                                            setIsLoggedIn(true)
-                                            setIsOpen(false)
-                                        }}
-                                        className="w-full bg-brown-700 hover:bg-brown-800 text-white"
+                    <div
+                        className="md:hidden fixed inset-0 top-[72px] z-40 bg-black/50 backdrop-blur-sm"
+                        onClick={() => setIsOpen(false)}
+                    />
+                )}
+                {/* Mobile Navigation Sidebar */}
+                <div
+                    className={`md:hidden fixed top-[72px] right-0 h-[calc(100vh-72px)] w-80 max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+                        isOpen ? "translate-x-0" : "translate-x-full"
+                    }`}
+                >
+                    <div className="flex flex-col h-full">
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 border-b border-brown-100">
+                            <div className="flex items-center">
+                                <Image
+                                    src="/logo-128.png"
+                                    alt="PMK ITERA"
+                                    className="w-6 h-6 mr-2"
+                                    width={128}
+                                    height={128}
+                                />
+                                <span className="text-brown-800 font-bold text-lg font-serif">Menu</span>
+                            </div>
+                        </div>
+
+                        {/* Navigation Items */}
+                        <div className="flex-1 overflow-y-auto p-4">
+                            <div className="space-y-1">
+                                {NAV_ITEMS.map((item) => (
+                                    <Link
+                                        key={item.name}
+                                        href={item.path}
+                                        className={`flex items-center px-4 py-3 rounded-lg transition-colors duration-200 text-base ${
+                                            pathname === item.path
+                                                ? "text-brown-800 font-semibold bg-brown-100 border-l-4 border-brown-600"
+                                                : "text-brown-600 hover:text-brown-800 hover:bg-brown-50"
+                                        }`}
+                                        onClick={() => setIsOpen(false)}
                                     >
-                                        <LogIn className="mr-2 h-4 w-4" />
-                                        Masuk
-                                    </Button>
-                                )}
-                            </div> */}
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                )}
+                </div>
             </nav>
         </header>
     )

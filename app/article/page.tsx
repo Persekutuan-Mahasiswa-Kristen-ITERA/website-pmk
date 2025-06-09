@@ -93,7 +93,7 @@ const ArtikelPage = () => {
                                         />
                                     </div>
                                     <div className="md:col-span-2">
-                                        <CardContent className="p-6 flex flex-col">
+                                        <CardContent className="p-4 md:p-6 h-full flex flex-col">
                                             <div className="flex items-center mb-3">
                                                 <FileText className="h-4 w-4 text-brown-400 mr-2" />
                                                 <span className="text-xs text-brown-500">
@@ -109,20 +109,10 @@ const ArtikelPage = () => {
                                                 {article.excerpt}
                                             </p>
 
-                                            {/* <div className="flex flex-wrap gap-2 mb-4">
-                                                {article.tags.map((tag) => (
-                                                    <Badge
-                                                        key={tag}
-                                                        variant="outline"
-                                                        className="border-brown-200 text-brown-600 text-xs"
-                                                    >
-                                                        {tag}
-                                                    </Badge>
-                                                ))}
-                                            </div> */}
+                                            <div className="grow"></div>
 
-                                            <div className="flex justify-between items-center mt-6">
-                                                <div className="flex items-center">
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center gap-4">
                                                     <Avatar className="h-8 w-8 mr-2">
                                                         <AvatarImage
                                                             src={article.author.image}

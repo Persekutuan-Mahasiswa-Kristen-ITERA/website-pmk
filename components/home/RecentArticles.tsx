@@ -36,7 +36,7 @@ export const RecentArticles = () => {
                             data-aos="fade-up"
                             data-aos-offset="50"
                             key={article.id}
-                            className="flex flex-col h-[480px] max-h-[480px] overflow-hidden transition-all duration-300 group shadow-brown-700/20 hover:shadow-lg border-brown-200 bg-white"
+                            className="flex flex-col h-[340px] md:h-[480px] max-h-[480px] overflow-hidden transition-all duration-300 group shadow-brown-700/20 hover:shadow-lg border-brown-200 bg-white"
                         >
                             <div className="h-36 sm:h-80 overflow-hidden">
                                 <Image
