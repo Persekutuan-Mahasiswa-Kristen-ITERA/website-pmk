@@ -29,11 +29,11 @@ export const metadata: Metadata = {
         title: "Dokumentasi - PMK ITERA",
         description:
             "Kumpulan dokumentasi dari berbagai kegiatan PMK ITERA yang telah dilaksanakan - Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/documentation",
+        url: "https://www.pmkitera.com/documentation",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/bg-documentation.jpg",
+                url: "https://www.pmkitera.com/img/bg-documentation.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Dokumentasi Kegiatan PMK ITERA",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         description:
             "Kumpulan dokumentasi dari berbagai kegiatan PMK ITERA yang telah dilaksanakan - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/bg-documentation.jpg"],
+        images: ["https://www.pmkitera.com/img/bg-documentation.jpg"],
     },
     robots: {
         index: true,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: "https://pmkitera.com/documentation",
+        canonical: "https://www.pmkitera.com/documentation",
     },
     category: "documentation",
 }

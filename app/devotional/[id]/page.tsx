@@ -78,17 +78,47 @@ const DevotionalDetail = () => {
         <MainLayout>
             <Head>
                 <title>{devotional.title} | Persekutuan Mahasiswa Kristen ITERA</title>
-                <meta name="description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta
+                    name="description"
+                    content={
+                        devotional.preview || "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya"
+                    }
+                />
                 <meta property="og:title" content={devotional.title} />
-                <meta property="og:description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta
+                    property="og:description"
+                    content={
+                        devotional.preview || "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya"
+                    }
+                />
                 <meta property="og:image" content="/img/bg-bible.jpg" />
-                <meta property="og:url" content={typeof window !== "undefined" ? window.location.href : ""} />
+                <meta property="og:url" content={`https://www.pmkitera.com/devotional/${devotional.id}`} />
                 <meta property="og:type" content="article" />
-                <meta property="og:site_name" content="Persekutuan Mahasiswa Kristen ITERA" />
+                <meta property="og:site_name" content={`Renungan Harian PMK ITERA`} />
+                <meta
+                    name="keywords"
+                    content="renungan harian, devotional, firman Tuhan, alkitab, PMK ITERA, saat teduh, quiet time, rohani, spiritual"
+                />
+                <meta name="author" content="PMK ITERA" />
+                <meta name="creator" content="PMK ITERA" />
+                <meta name="publisher" content="Persekutuan Mahasiswa Kristen ITERA" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={devotional.title} />
-                <meta name="twitter:description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta name="twitter:title" content={`${devotional.title} | Persekutuan Mahasiswa Kristen ITERA`} />
+                <meta
+                    name="twitter:description"
+                    content={
+                        devotional.preview || "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya"
+                    }
+                />
+                <meta name="twitter:creator" content="@pmkitera" />
                 <meta name="twitter:image" content="/img/bg-bible.jpg" />
+
+                <meta name="robots" content="index, follow" />
+                <meta name="googlebot" content="index, follow, max-video-preview:-1, max-snippet:-1" />
+                <meta name="googlebot" content="noimageindex:false" />
+                <meta name="robots" content="nocache:false" />
+
+                <meta name="category" content="devotional" />
             </Head>
 
             {/* Hero section with devotional title and image */}
@@ -138,9 +168,7 @@ const DevotionalDetail = () => {
                                             className="flex items-center text-brown-600 hover:text-brown-800"
                                         >
                                             <ChevronLeft className="h-4 w-4 mr-1" />
-                                            <Link href={document.referrer} >
-                                                Kembali
-                                            </Link>
+                                            <Link href={document.referrer}>Kembali</Link>
                                         </Button>
                                         <Button
                                             variant="outline"

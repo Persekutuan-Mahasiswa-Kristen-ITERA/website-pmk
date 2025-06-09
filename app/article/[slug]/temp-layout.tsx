@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Artikel | PMK ITERA",
         description: "Artikel dan tulisan dari Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/article",
+        url: "https://www.pmkitera.com/article",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/opengraph-image.png",
+                url: "https://www.pmkitera.com/opengraph-image.png",
                 width: 1200,
                 height: 630,
                 alt: "Artikel PMK ITERA",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         title: "Artikel | PMK ITERA",
         description: "Artikel dan tulisan dari Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/twitter-image.png"],
+        images: ["https://www.pmkitera.com/twitter-image.png"],
     },
     robots: {
         index: true,

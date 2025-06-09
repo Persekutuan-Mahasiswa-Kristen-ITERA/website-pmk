@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     },
     description:
         "Persekutuan Mahasiswa Kristen ITERA adalah komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
-    metadataBase: new URL("https://pmkitera.com"),
+    metadataBase: new URL("https://www.pmkitera.com"),
     keywords: [
         "Persekutuan Mahasiswa Kristen",
         "Persekutuan Mahasiswa Kristen ITERA",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         "Lampung",
         "Rohani",
     ],
-    authors: [{ name: "Persekutuan Mahasiswa Kristen ITERA", url: "https://pmkitera.com" }],
+    authors: [{ name: "Persekutuan Mahasiswa Kristen ITERA", url: "https://www.pmkitera.com" }],
     creator: "Persekutuan Mahasiswa Kristen ITERA",
     publisher: "Persekutuan Mahasiswa Kristen ITERA",
     icons: {
@@ -34,11 +34,11 @@ export const metadata: Metadata = {
         title: "Persekutuan Mahasiswa Kristen ITERA",
         description:
             "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
-        url: "https://pmkitera.com",
+        url: "https://www.pmkitera.com",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/opengraph-image.png",
+                url: "https://www.pmkitera.com/opengraph-image.png",
                 width: 1200,
                 height: 630,
                 alt: "Persekutuan Mahasiswa Kristen ITERA Banner",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         description:
             "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/twitter-image.png"],
+        images: ["https://www.pmkitera.com/twitter-image.png"],
     },
     robots: {
         index: true,

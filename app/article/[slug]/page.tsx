@@ -83,7 +83,29 @@ const ArtikelDetail = () => {
                 <meta property="og:image" content={article.imageUrl} />
                 <meta property="og:url" content={shareUrl} />
                 <meta property="og:type" content="article" />
-                <meta property="og:site_name" content="Persekutuan Mahasiswa Kristen ITERA" />
+                <meta property="og:site_name" content={`${article.title} Persekutuan Mahasiswa Kristen ITERA`} />
+                <meta
+                    name="keywords"
+                    content="artikel, tulisan, PMK ITERA, mahasiswa kristen, persekutuan, iman, rohani, spiritual, kekristenan"
+                />
+                <meta name="author" content="PMK ITERA" />
+                <meta name="creator" content="PMK ITERA" />
+                <meta name="publisher" content="Persekutuan Mahasiswa Kristen ITERA" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={`${article.title} Persekutuan Mahasiswa Kristen ITERA`} />
+                <meta
+                    name="twitter:description"
+                    content="Artikel dan tulisan dari Persekutuan Mahasiswa Kristen ITERA"
+                />
+                <meta name="twitter:creator" content="@pmkitera" />
+                <meta name="twitter:image" content={article.imageUrl} />
+
+                <meta name="robots" content="index, follow" />
+                <meta name="googlebot" content="index, follow, max-video-preview:-1, max-snippet:-1" />
+                <meta name="googlebot" content="noimageindex:false" />
+                <meta name="robots" content="nocache:false" />
+
+                <meta name="category" content="article" />
             </Head>
 
             {/* Hero section with article title and image */}

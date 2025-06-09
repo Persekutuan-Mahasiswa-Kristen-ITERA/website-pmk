@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Artikel - PMK ITERA",
         description: "Tulisan seputar kehidupan dan apologetika Kristen - Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/article",
+        url: "https://www.pmkitera.com/article",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/bg-article.webp",
+                url: "https://www.pmkitera.com/img/bg-article.webp",
                 width: 1200,
                 height: 630,
                 alt: "Artikel PMK ITERA",
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
         title: "Artikel | Persekutuan Mahasiswa Kristen ITERA",
         description: "Tulisan seputar kehidupan dan apologetika Kristen - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/bg-article.webp"],
+        images: ["https://www.pmkitera.com/img/bg-article.webp"],
     },
     robots: {
         index: true,
         follow: true,
     },
     alternates: {
-        canonical: "https://pmkitera.com/article",
+        canonical: "https://www.pmkitera.com/article",
     },
 }
 

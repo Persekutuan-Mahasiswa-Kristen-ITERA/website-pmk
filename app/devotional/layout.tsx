@@ -26,11 +26,11 @@ export const metadata: Metadata = {
         title: "Renungan Harian | Persekutuan Mahasiswa Kristen ITERA",
         description:
             "Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya setiap hari - Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/devotional",
+        url: "https://www.pmkitera.com/devotional",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/devotional-og.png",
+                url: "https://www.pmkitera.com/img/devotional-og.png",
                 width: 1200,
                 height: 630,
                 alt: "Renungan Harian PMK ITERA",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         description:
             "Mari belajar mengenal Tuhan lebih dalam melalui firman-Nya setiap hari - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/devotional-twitter.png"],
+        images: ["https://www.pmkitera.com/img/devotional-twitter.png"],
     },
     robots: {
         index: true,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: "https://pmkitera.com/devotional",
+        canonical: "https://www.pmkitera.com/devotional",
     },
     category: "spirituality",
 }

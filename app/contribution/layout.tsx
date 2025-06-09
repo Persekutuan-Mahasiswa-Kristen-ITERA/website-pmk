@@ -26,11 +26,11 @@ export const metadata: Metadata = {
         title: "Persembahan Kasih - PMK ITERA",
         description:
             "Mari berkontribusi melalui persembahan Anda untuk mendukung kegiatan kami dan pelayanan kami - Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/contribution",
+        url: "https://www.pmkitera.com/contribution",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/bg-article.webp",
+                url: "https://www.pmkitera.com/img/bg-article.webp",
                 width: 1200,
                 height: 630,
                 alt: "Persembahan Kasih PMK ITERA",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         description:
             "Mari berkontribusi melalui persembahan Anda untuk mendukung kegiatan kami dan pelayanan kami - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/bg-article.webp"],
+        images: ["https://www.pmkitera.com/img/bg-article.webp"],
     },
     robots: {
         index: true,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: "https://pmkitera.com/contribution",
+        canonical: "https://www.pmkitera.com/contribution",
     },
     category: "contribution",
 }

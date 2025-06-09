@@ -5,7 +5,7 @@ import { getEvents } from "@/data/event"
 import { getDocumentations } from "@/data/documentation"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://pmkitera.com"
+    const baseUrl = "https://www.pmkitera.com"
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [

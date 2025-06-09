@@ -30,11 +30,11 @@ export const metadata: Metadata = {
         title: "Kegiatan | Persekutuan Mahasiswa Kristen ITERA",
         description:
             "Bergabunglah dalam berbagai kegiatan rohani dan persekutuan untuk bertumbuh bersama dalam iman - Persekutuan Mahasiswa Kristen ITERA",
-        url: "https://pmkitera.com/event",
+        url: "https://www.pmkitera.com/event",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/event-og.png",
+                url: "https://www.pmkitera.com/img/event-og.png",
                 width: 1200,
                 height: 630,
                 alt: "Kegiatan PMK ITERA",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         description:
             "Bergabunglah dalam berbagai kegiatan rohani dan persekutuan untuk bertumbuh bersama dalam iman - Persekutuan Mahasiswa Kristen ITERA",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/event-twitter.png"],
+        images: ["https://www.pmkitera.com/img/event-twitter.png"],
     },
     robots: {
         index: true,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: "https://pmkitera.com/event",
+        canonical: "https://www.pmkitera.com/event",
     },
     category: "events",
 }

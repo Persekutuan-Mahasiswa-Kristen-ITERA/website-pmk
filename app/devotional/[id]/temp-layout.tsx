@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Renungan Harian | PMK ITERA",
         description: "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya",
-        url: "https://pmkitera.com/devotional",
+        url: "https://www.pmkitera.com/devotional",
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://pmkitera.com/img/bg-bible.jpg",
+                url: "https://www.pmkitera.com/img/bg-bible.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Renungan Harian PMK ITERA",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         title: "Renungan Harian | PMK ITERA",
         description: "Renungan harian untuk mengenal Tuhan lebih dalam melalui firman-Nya",
         creator: "@pmkitera",
-        images: ["https://pmkitera.com/img/bg-bible.jpg"],
+        images: ["https://www.pmkitera.com/img/bg-bible.jpg"],
     },
     robots: {
         index: true,
