@@ -131,7 +131,7 @@ const Persembahan = () => {
                             </Card>
 
                             {/* Informasi Rekening */}
-                            <div className="space-y-6">
+                            <div className="space-y-6 max-lg:-order-1">
                                 <Card>
                                     <CardHeader>
                                         <CardTitle className="text-2xl font-serif text-brown-800">

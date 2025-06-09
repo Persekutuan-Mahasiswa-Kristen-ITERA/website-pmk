@@ -37,17 +37,15 @@ export const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [scrolled])
 
+    // Additional useEffect to handle route changes
     useEffect(() => {
-        if (isOpen && isMobile) {
-            document.body.style.overflow = "hidden"
-        } else {
-            document.body.style.overflow = "unset"
-        }
-    }, [isOpen, isMobile])
+        setIsOpen(false)
+        document.body.style.overflow = ""
+    }, [pathname])
 
     return (
         <header
-            className={`sticky top-0 w-full z-50 transition-all duration-300 ${
+            className={`sticky top-0 w-full z-50 transition-all duration-300 overflow-x-clip ${
                 scrolled ? "bg-white/90 shadow-md backdrop-blur" : "bg-white/90"
             }`}
         >

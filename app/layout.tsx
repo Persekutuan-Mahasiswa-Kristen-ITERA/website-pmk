@@ -93,7 +93,7 @@ export default function RootLayout({
     return (
         <html lang="id" suppressHydrationWarning style={{ scrollBehavior: "smooth" }} className="scroll-smooth">
             <body
-                className={`${defaultFont.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden`}
+                className={`${defaultFont.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
             >
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
                     <AuthProvider>{children}</AuthProvider>
