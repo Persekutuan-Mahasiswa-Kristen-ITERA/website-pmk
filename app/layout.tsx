@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         siteName: "PMK ITERA",
         images: [
             {
-                url: "https://www.pmkitera.com/opengraph-image.png",
+                url: "https://www.pmkitera.com/opengraph-image.webp",
                 width: 1200,
                 height: 630,
                 alt: "Persekutuan Mahasiswa Kristen ITERA Banner",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         description:
             "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
         creator: "@pmkitera",
-        images: ["https://www.pmkitera.com/twitter-image.png"],
+        images: ["https://www.pmkitera.com/opengraph-image.webp"],
     },
     robots: {
         index: true,
