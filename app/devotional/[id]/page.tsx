@@ -127,7 +127,7 @@ const DevotionalDetail = () => {
                     <Image
                         src="/img/bg-bible.jpg"
                         alt={devotional.title}
-                        className="w-full h-full object-cover opacity-50"
+                        className="w-full h-full object-cover opacity-50 blur-sm"
                         width={1400}
                         height={800}
                     />
