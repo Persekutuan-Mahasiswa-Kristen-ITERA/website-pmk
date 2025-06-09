@@ -13,6 +13,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Devotional } from "@/types/devotional"
 import { getDevotionalById, getDevotionals, getLatestDevotionals } from "@/data/devotional"
+import Head from "next/head"
 
 const DevotionalDetail = () => {
     const { id } = useParams()
@@ -75,6 +76,11 @@ const DevotionalDetail = () => {
 
     return (
         <MainLayout>
+            <Head>
+                <title>{devotional.title} | Persekutuan Mahasiswa Kristen ITERA</title>
+                <meta name="description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+            </Head>
+
             {/* Hero section with devotional title and image */}
             <div className="mx-auto px-4 py-12 relative">
                 <div className="absolute z-0 inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">

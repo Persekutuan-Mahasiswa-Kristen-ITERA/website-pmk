@@ -15,6 +15,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Article } from "@/types/article"
 import { getArticleById, getArticleBySlug, getArticles, getLatestArticles } from "@/data/article"
 import ShareDropdown from "@/components/share-dropdown"
+import Head from "next/head"
 
 const ArtikelDetail = () => {
     const { slug } = useParams()
@@ -74,6 +75,11 @@ const ArtikelDetail = () => {
 
     return (
         <MainLayout>
+            <Head>
+                <title>{article.title} | Persekutuan Mahasiswa Kristen ITERA</title>
+                <meta name="description" content={article.excerpt || "Renungan harian PMK ITERA"} />
+            </Head>
+
             {/* Hero section with article title and image */}
             <div className="relative h-[35vh] md:h-[40vh] w-full bg-brown-950">
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">

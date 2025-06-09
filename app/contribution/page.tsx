@@ -11,31 +11,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { FileText, CreditCard, Gift, Copy } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
-const DonationOption = ({
-    title,
-    description,
-    amount,
-    onClick,
-}: {
-    title: string
-    description: string
-    amount: number
-    onClick: () => void
-}) => (
-    <Card
-        className="border-brown-200 hover:border-brown-400 hover:shadow-sm transition-all cursor-pointer"
-        onClick={onClick}
-    >
-        <CardHeader className="pb-2">
-            <CardTitle className="text-lg font-serif text-brown-800">{title}</CardTitle>
-            <CardDescription className="text-brown-600">{description}</CardDescription>
-        </CardHeader>
-        <CardFooter className="pt-2">
-            <p className="text-lg font-medium text-brown-700">Rp {amount.toLocaleString("id-ID")}</p>
-        </CardFooter>
-    </Card>
-)
-
 const BankAccount = ({
     bank,
     accountNumber,
