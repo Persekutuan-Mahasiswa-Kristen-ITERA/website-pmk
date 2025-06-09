@@ -39,9 +39,9 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "https://www.pmkitera.com/opengraph-image.webp",
-                width: 1200,
-                height: 630,
-                alt: "Persekutuan Mahasiswa Kristen ITERA Banner",
+                width: 600,
+                height: 256,
+                alt: "Persekutuan Mahasiswa Kristen ITERA",
             },
         ],
         locale: "id_ID",

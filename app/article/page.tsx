@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react"
 import { MainLayout } from "@/components/layout/MainLayout"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -16,7 +15,6 @@ import { getArticles } from "@/data/article"
 const ArtikelPage = () => {
     const [articles, setArticles] = useState<Article[]>([])
     const [searchQuery, setSearchQuery] = useState("")
-    const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -33,18 +31,8 @@ const ArtikelPage = () => {
             article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
             article.author.name.toLowerCase().includes(searchQuery.toLowerCase())
 
-        const matchesTag = selectedTag === null || article.tags.includes(selectedTag)
-
-        return matchesSearch && matchesTag
+        return matchesSearch
     })
-
-    const toggleTag = (tag: string) => {
-        if (selectedTag === tag) {
-            setSelectedTag(null)
-        } else {
-            setSelectedTag(tag)
-        }
-    }
 
     return (
         <MainLayout>
