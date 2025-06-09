@@ -78,6 +78,12 @@ const ArtikelDetail = () => {
             <Head>
                 <title>{article.title} | Persekutuan Mahasiswa Kristen ITERA</title>
                 <meta name="description" content={article.excerpt || "Renungan harian PMK ITERA"} />
+                <meta property="og:title" content={article.title} />
+                <meta property="og:description" content={article.excerpt || "Renungan harian PMK ITERA"} />
+                <meta property="og:image" content={article.imageUrl} />
+                <meta property="og:url" content={shareUrl} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Persekutuan Mahasiswa Kristen ITERA" />
             </Head>
 
             {/* Hero section with article title and image */}

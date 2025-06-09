@@ -79,6 +79,16 @@ const DevotionalDetail = () => {
             <Head>
                 <title>{devotional.title} | Persekutuan Mahasiswa Kristen ITERA</title>
                 <meta name="description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta property="og:title" content={devotional.title} />
+                <meta property="og:description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta property="og:image" content="/img/bg-bible.jpg" />
+                <meta property="og:url" content={typeof window !== "undefined" ? window.location.href : ""} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Persekutuan Mahasiswa Kristen ITERA" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={devotional.title} />
+                <meta name="twitter:description" content={devotional.preview || "Renungan harian PMK ITERA"} />
+                <meta name="twitter:image" content="/img/bg-bible.jpg" />
             </Head>
 
             {/* Hero section with devotional title and image */}
