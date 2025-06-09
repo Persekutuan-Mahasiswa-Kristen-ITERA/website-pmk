@@ -53,9 +53,7 @@ const ArtikelPage = () => {
                 <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
                     <div className="container relative mx-auto px-4 z-10">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white text-center">
-                            Artikel
-                        </h1>
+                        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">Artikel</h1>
                         <p className="text-center text-white/90 mt-4 max-w-2xl mx-auto text-base md:text-lg">
                             Tulisan seputar kehidupan dan apologetika Kristen
                         </p>

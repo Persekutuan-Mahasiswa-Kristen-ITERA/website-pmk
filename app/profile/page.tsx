@@ -13,7 +13,7 @@ const Profil = () => {
     return (
         <MainLayout>
             <div className="bg-[url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=700&q=80')] bg-cover bg-center py-28 relative">
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0"></div>
                 <div className="container mx-auto px-4 relative z-10">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
                         Profil PMK ITERA

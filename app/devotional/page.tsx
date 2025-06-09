@@ -44,7 +44,7 @@ const RenunganPage = () => {
     return (
         <MainLayout>
             <div className="bg-[url('/img/bg-bible.jpg')] bg-cover bg-center py-20 relative">
-                <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
                 <div className="container relative mx-auto px-4 z-10">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
                         Renungan Harian
