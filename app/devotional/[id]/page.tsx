@@ -161,7 +161,7 @@ const DevotionalDetail = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-2 max-md:mt-2 place-content-center">
+                                    <div className="flex gap-2 max-md:mt-2   place-content-center">
                                         <Button
                                             variant="outline"
                                             size="sm"

@@ -40,7 +40,7 @@ export const Hero = () => {
                             className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-lg w-full sm:w-auto"
                             size="lg"
                         >
-                            <Link href="/devotionals">Renungan Harian</Link>
+                            <Link href="/devotional">Renungan Harian</Link>
                         </Button>
                     </div>
                 </div>
