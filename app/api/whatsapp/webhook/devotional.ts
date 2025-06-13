@@ -115,6 +115,8 @@ export async function formatDevotionalGemini(message: string): Promise<Devotiona
         devotionalJson.title =
             devotionalJson.title.charAt(0).toUpperCase() + devotionalJson.title.slice(1).toLowerCase()
 
+        devotionalJson.content = devotionalJson.content.replace(/tuhan/gi, 'TUHAN')
+
         return devotionalJson
     } catch (error) {
         console.error("Error processing devotional:", error)

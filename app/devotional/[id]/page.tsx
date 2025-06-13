@@ -122,7 +122,7 @@ const DevotionalDetail = () => {
             </Head>
 
             {/* Hero section with devotional title and image */}
-            <div className="mx-auto px-4 py-12 relative">
+            <div className="mx-auto px-3 py-3 lg:px-4 lg:py-12 relative">
                 <div className="absolute z-0 inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
                     <Image
                         src="/img/bg-bible.jpg"
@@ -132,13 +132,13 @@ const DevotionalDetail = () => {
                         height={800}
                     />
                 </div>
-                <div className="relative z-10 container grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div className="relative z-10 container grid grid-cols-1 max-md:px-0 lg:grid-cols-12 gap-8">
                     {/* Main content */}
                     <div className="lg:col-span-8">
                         <Card className="border-brown-100 bg-white overflow-hidden">
                             <CardContent className="p-8">
                                 {/* Devotional header information */}
-                                <div className="mb-8 flex justify-between">
+                                <div className="mb-8 flex max-lg:flex-wrap justify-between">
                                     <div className="flex flex-col gap-2">
                                         <h2 className="capitalize text-brown-700 font-semibold text-2xl">
                                             {devotional.title}
@@ -161,14 +161,16 @@ const DevotionalDetail = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-2 place-content-center">
+                                    <div className="flex gap-2 max-md:mt-2 place-content-center">
                                         <Button
                                             variant="outline"
                                             size="sm"
                                             className="flex items-center text-brown-600 hover:text-brown-800"
                                         >
-                                            <ChevronLeft className="h-4 w-4 mr-1" />
-                                            <Link href={document.referrer}>Kembali</Link>
+                                            <ChevronLeft className="h-3 w-3" />
+                                            <Link className="max-md:text-xs" href={document.referrer}>
+                                                Kembali
+                                            </Link>
                                         </Button>
                                         <Button
                                             variant="outline"
@@ -176,8 +178,8 @@ const DevotionalDetail = () => {
                                             className="flex items-center text-brown-600 hover:text-brown-800"
                                             onClick={() => alert("Fitur berbagi renungan belum diimplementasikan")}
                                         >
-                                            <Share className="h-4 w-4 mr-1" />
-                                            <span>Bagikan</span>
+                                            <Share className="h-3 w-3" />
+                                            <span className="max-md:text-xs">Bagikan</span>
                                         </Button>
                                     </div>
                                 </div>
