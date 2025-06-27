@@ -84,7 +84,9 @@ async def update_devotional_content():
                 # Replace "Tuhan" (case-insensitive) with "TUHAN" (uppercase)
                 # re.sub is used for case-insensitive replacement
                 import re
-                new_content = re.sub(r"Tuhan", "TUHAN", original_content, flags=re.IGNORECASE)
+                new_content = re.sub(r" Tuhan ", " TUHAN ", original_content, flags=re.IGNORECASE)
+                # Also replace any "\wTUHAN" back to "\wtuhan" preserving the first letter
+                new_content = re.sub(r'(\w)TUHAN', r'\1tuhan', new_content)
 
                 if new_content != original_content:
                     # Update the document if content has changed
