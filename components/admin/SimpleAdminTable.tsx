@@ -108,7 +108,7 @@ export function SimpleAdminTable<T extends { id: string }>({
                 return (
                     <div className="space-y-2">
                         <Input {...inputProps} type="url" placeholder="Enter image URL" />
-                        {value && typeof value === "string" && value.trim() && (
+                        {!!value && typeof value === "string" && value.trim() && (
                             <div className="relative w-32 h-32 border rounded-md overflow-hidden">
                                 <Image
                                     src={value}
@@ -128,7 +128,7 @@ export function SimpleAdminTable<T extends { id: string }>({
         }
     }
 
-    const renderValue = (key: keyof T, value: unknown) => {
+    const renderValue = (key: keyof T, value: unknown): React.ReactNode => {
         // Check if this field is an image field
         if (imageFields.includes(key) && value && typeof value === "string" && value.trim()) {
             return (
