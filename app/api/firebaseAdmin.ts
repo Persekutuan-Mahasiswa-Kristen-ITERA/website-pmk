@@ -7,7 +7,11 @@ if (!serviceAccountBase64) {
 
 const serviceAccount = JSON.parse(Buffer.from(serviceAccountBase64, "base64").toString("utf8"))
 
-const app = admin.initializeApp({credential: admin.credential.cert(serviceAccount)})
+let app: admin.app.App | null = null
+
+if (!app) {
+    app = admin.initializeApp({ credential: admin.credential.cert(serviceAccount) }, "adminApp")
+}
 const firestore = admin.firestore(app)
 
 export { app, firestore }

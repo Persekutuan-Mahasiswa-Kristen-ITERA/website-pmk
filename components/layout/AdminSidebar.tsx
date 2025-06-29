@@ -8,11 +8,10 @@ import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
     { name: "Dashboard", path: "/admin", icon: Home },
-    // { name: "Pengurus", path: "/admin/management", icon: Users },
-    { name: "Renungan", path: "/admin/devotional", icon: BookOpen },
-    { name: "Event", path: "/admin/event", icon: Calendar },
-    { name: "Artikel", path: "/admin/article", icon: FileText },
-    { name: "Dokumentasi", path: "/admin/documentation", icon: ImageIcon },
+    { name: "Renungan", path: "/admin/devotional/simple", icon: BookOpen },
+    { name: "Event", path: "/admin/event/simple", icon: Calendar },
+    { name: "Artikel", path: "/admin/article/simple", icon: FileText },
+    { name: "Dokumentasi", path: "/admin/documentation/simple", icon: ImageIcon },
     { name: "Persembahan", path: "/admin/contribution", icon: CreditCard },
     { name: "Pengaturan", path: "/admin/settings", icon: Settings },
 ]

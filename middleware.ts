@@ -4,12 +4,19 @@ import type { NextRequest } from "next/server"
 export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
 
-    // Protect admin routes (except login)
-    if (path.startsWith("/admin") && !path.startsWith("/admin/login")) {
+    // Protect admin routes (except login) and admin API routes (except auth)
+    if (
+        (path.startsWith("/admin") && !path.startsWith("/admin/login")) ||
+        (path.startsWith("/api/admin") && !path.startsWith("/api/admin/auth"))
+    ) {
         const token = request.cookies.get("admin-token")?.value
 
         if (!token) {
-            // Redirect to login if no token
+            // For API routes, return 401
+            if (path.startsWith("/api/admin")) {
+                return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+            }
+            // For admin pages, redirect to login
             return NextResponse.redirect(new URL("/admin/login", request.url))
         }
 
@@ -34,7 +41,11 @@ export function middleware(request: NextRequest) {
                 throw new Error("Not admin")
             }
         } catch (error) {
-            // Invalid token, redirect to login
+            // For API routes, return 401
+            if (path.startsWith("/api/admin")) {
+                return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+            }
+            // For admin pages, redirect to login
             const response = NextResponse.redirect(new URL("/admin/login", request.url))
             response.cookies.delete("admin-token")
             return response
@@ -66,5 +77,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/admin/:path*"],
+    matcher: ["/admin/:path*", "/api/admin/:path*"],
 }
