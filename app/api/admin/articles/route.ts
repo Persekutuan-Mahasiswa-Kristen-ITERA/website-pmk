@@ -50,24 +50,39 @@ export async function POST(request: NextRequest) {
 
         // Ensure author is properly structured as a map
         let authorData = data.author
-        if (typeof authorData === 'string') {
+        if (typeof authorData === "string") {
             // If author is a string, convert it to proper structure
             authorData = {
                 name: authorData,
-                image: data.authorImage || '',
-                bio: data.authorBio || ''
+                image: data.authorImage || "",
+                bio: data.authorBio || "",
             }
-        } else if (authorData && typeof authorData === 'object') {
+        } else if (authorData && typeof authorData === "object") {
             // Ensure all required fields exist
             authorData = {
-                name: authorData.name || '',
-                image: authorData.image || '',
-                bio: authorData.bio || ''
+                name: authorData.name || "",
+                image: authorData.image || "",
+                bio: authorData.bio || "",
+            }
+        } else {
+            // If author is undefined or null, provide default structure
+            authorData = {
+                name: data["author.name"] || "",
+                image: data["author.image"] || "",
+                bio: data["author.bio"] || "",
             }
         }
 
+        // Remove individual author fields from data if they exist
+        const cleanData = { ...data }
+        delete cleanData["author.name"]
+        delete cleanData["author.image"]
+        delete cleanData["author.bio"]
+        delete cleanData.authorImage
+        delete cleanData.authorBio
+
         const articleData = {
-            ...data,
+            ...cleanData,
             author: authorData,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),

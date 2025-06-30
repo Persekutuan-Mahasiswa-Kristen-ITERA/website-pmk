@@ -24,15 +24,17 @@ const ArtikelPage = () => {
         fetchArticles()
     }, [])
 
-    const filteredArticles = articles.filter((article) => {
-        const matchesSearch =
-            searchQuery === "" ||
-            article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            article.author.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredArticles = articles
+        .filter((article) => {
+            const matchesSearch =
+                searchQuery === "" ||
+                article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                article.author.name.toLowerCase().includes(searchQuery.toLowerCase())
 
-        return matchesSearch
-    })
+            return matchesSearch
+        })
+        .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime())
 
     return (
         <MainLayout>
@@ -68,7 +70,7 @@ const ArtikelPage = () => {
                         {filteredArticles.map((article) => (
                             <Card
                                 key={article.id}
-                                className="border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
+                                className="h-60 border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-3 h-full">
                                     <div className="h-48 md:h-full bg-brown-200 overflow-hidden">
@@ -89,7 +91,7 @@ const ArtikelPage = () => {
                                                 </span>
                                             </div>
                                             <Link href={`/article/${article.slug}`} className="block mb-2">
-                                                <h3 className="text-xl font-serif text-brown-800 mb-2 hover:underline">
+                                                <h3 className="line-clamp-1 text-ellipsis text-xl font-serif text-brown-800 mb-2 hover:underline">
                                                     {article.title}
                                                 </h3>
                                             </Link>
