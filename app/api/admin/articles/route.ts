@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { Article } from "@/types/article"
+import admin from "firebase-admin"
 
 export async function GET(request: NextRequest) {
     try {
@@ -47,10 +48,29 @@ export async function POST(request: NextRequest) {
     try {
         const data = await request.json()
 
+        // Ensure author is properly structured as a map
+        let authorData = data.author
+        if (typeof authorData === 'string') {
+            // If author is a string, convert it to proper structure
+            authorData = {
+                name: authorData,
+                image: data.authorImage || '',
+                bio: data.authorBio || ''
+            }
+        } else if (authorData && typeof authorData === 'object') {
+            // Ensure all required fields exist
+            authorData = {
+                name: authorData.name || '',
+                image: authorData.image || '',
+                bio: authorData.bio || ''
+            }
+        }
+
         const articleData = {
             ...data,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
+            author: authorData,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("articles").add(articleData)

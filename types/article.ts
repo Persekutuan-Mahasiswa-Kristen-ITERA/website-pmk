@@ -112,6 +112,13 @@ export const articleFields: FieldConfig[] = [
         validation: z.string().url({ message: "Invalid URL format" }),
     },
     {
+        name: "author.bio",
+        label: "Bio Author",
+        type: "textarea",
+        required: false,
+        validation: z.string().optional(),
+    },
+    {
         name: "tags",
         label: "Tags",
         type: "text",

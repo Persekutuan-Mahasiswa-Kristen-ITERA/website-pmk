@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
+import admin from "firebase-admin"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
@@ -28,7 +29,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
         const updateData = {
             ...data,
-            updatedAt: new Date().toISOString(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = firestore.collection("devotionals").doc(id)

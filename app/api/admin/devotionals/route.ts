@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
+import admin from "firebase-admin"
 
 export async function GET(request: NextRequest) {
     try {
@@ -48,8 +49,8 @@ export async function POST(request: NextRequest) {
 
         const devotionalData = {
             ...data,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("devotionals").add(devotionalData)

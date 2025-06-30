@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
+import admin from "firebase-admin"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
@@ -26,9 +27,28 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         const { id } = await params
         const data = await request.json()
 
+        // Ensure author is properly structured as a map
+        let authorData = data.author
+        if (typeof authorData === 'string') {
+            // If author is a string, convert it to proper structure
+            authorData = {
+                name: authorData,
+                image: data.authorImage || '',
+                bio: data.authorBio || ''
+            }
+        } else if (authorData && typeof authorData === 'object') {
+            // Ensure all required fields exist
+            authorData = {
+                name: authorData.name || '',
+                image: authorData.image || '',
+                bio: authorData.bio || ''
+            }
+        }
+
         const updateData = {
             ...data,
-            updatedAt: new Date().toISOString(),
+            author: authorData,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = firestore.collection("articles").doc(id)
