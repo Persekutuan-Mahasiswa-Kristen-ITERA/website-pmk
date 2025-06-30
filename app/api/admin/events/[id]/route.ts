@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const docRef = firestore.collection("events").doc(params.id)
+        const { id } = await params
+        const docRef = firestore.collection("events").doc(id)
         const doc = await docRef.get()
 
         if (!doc.exists) {
@@ -20,8 +21,9 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params
         const data = await request.json()
 
         const updateData = {
@@ -29,7 +31,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
             updatedAt: new Date().toISOString(),
         }
 
-        const docRef = firestore.collection("events").doc(params.id)
+        const docRef = firestore.collection("events").doc(id)
         await docRef.update(updateData)
 
         const updatedDoc = await docRef.get()
@@ -44,9 +46,10 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        await firestore.collection("events").doc(params.id).delete()
+        const { id } = await params
+        await firestore.collection("events").doc(id).delete()
 
         return NextResponse.json({
             success: true,
