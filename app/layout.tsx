@@ -73,6 +73,7 @@ export const metadata: Metadata = {
 import { DM_Sans, Inter, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/AuthContext"
+import { Toaster } from "@/components/ui/toaster"
 
 const defaultFont = DM_Sans({
     subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function RootLayout({
             >
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
                     <AuthProvider>{children}</AuthProvider>
+                    <Toaster />
                 </ThemeProvider>
             </body>
             <GoogleAnalytics gaId="G-J0RN9KN5YZ" />

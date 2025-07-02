@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import Image from "next/image"
 import { MainLayout } from "@/components/layout/MainLayout"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -8,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { FileText, CreditCard, Gift, Copy } from "lucide-react"
+import { FileText, CreditCard, Gift, Copy, QrCode } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 const BankAccount = ({
@@ -41,6 +42,34 @@ const BankAccount = ({
                 <Copy className="h-4 w-4 mr-2" />
                 Salin
             </Button>
+        </div>
+    )
+}
+
+const QRISCode = () => {
+    const { toast } = useToast()
+
+    const qrisAccountNumber = "0895384120105" // DANA account
+
+    const copyQRISNumber = () => {
+        navigator.clipboard.writeText(qrisAccountNumber)
+        toast({
+            title: "Berhasil disalin!",
+            description: "Nomor QRIS telah disalin ke clipboard",
+        })
+    }
+
+    return (
+        <div className="text-center p-2 border border-brown-200 rounded ">
+            <div className="flex items-center justify-center mb-4">
+                <h3 className="text-lg font-semibold text-brown-800">Scan QRIS</h3>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm inline-block mb-4">
+                <Image src="/img/qris.png" alt="QRIS Code Placeholder" width={192} height={192} />
+            </div>
+            <p className="text-sm text-brown-600">
+                Scan QR code di atas dengan aplikasi mobile banking atau e-wallet Anda
+            </p>
         </div>
     )
 }
@@ -118,6 +147,14 @@ const Persembahan = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {/* Form Persembahan */}
                             <Card className="h-fit">
+                                <CardHeader>
+                                    <CardTitle className="text-2xl font-serif text-brown-800">
+                                        Form Persembahan Kasih
+                                    </CardTitle>
+                                    <CardDescription>
+                                        Mari isi form berikut untuk mencatat persembahan Anda
+                                    </CardDescription>
+                                </CardHeader>
                                 <CardContent>
                                     <iframe
                                         src="https://docs.google.com/forms/d/e/1FAIpQLSf7gkjjAJimRmXVIa6H1WbZ9Yj7GEUBynXeyxL5SjxMyL8zgw/viewform?embedded=true"
@@ -137,11 +174,10 @@ const Persembahan = () => {
                                         <CardTitle className="text-2xl font-serif text-brown-800">
                                             Informasi Rekening
                                         </CardTitle>
-                                        <CardDescription>
-                                            Silakan transfer ke salah satu rekening berikut
-                                        </CardDescription>
+                                        <CardDescription>Atau transfer ke salah satu rekening berikut</CardDescription>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
+                                        <QRISCode />
                                         <BankAccount
                                             bank="Bank Mandiri"
                                             accountNumber="1090023596695"
