@@ -70,14 +70,14 @@ const ArtikelPage = () => {
                         {filteredArticles.map((article) => (
                             <Card
                                 key={article.id}
-                                className="h-60 border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
+                                className="h-full md:h-60 border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-3 h-full">
-                                    <div className="h-48 md:h-full bg-brown-200 overflow-hidden">
+                                    <div className="h-36 md:h-full bg-brown-200 overflow-hidden">
                                         <Image
                                             src={article.imageUrl}
                                             alt={article.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                            className="w-full object-cover group-hover:scale-105 transition duration-500"
                                             width={500}
                                             height={300}
                                         />
@@ -105,6 +105,7 @@ const ArtikelPage = () => {
                                                 <div className="flex items-center gap-4">
                                                     <Avatar className="h-8 w-8 mr-2">
                                                         <AvatarImage
+                                                        className="object-cover"
                                                             src={article.author.image}
                                                             alt={article.author.name}
                                                         />
