@@ -5,10 +5,10 @@ const nextConfig: NextConfig = {
     // Performance and SEO optimizations
     compress: true,
     poweredByHeader: false,
-    
+
     // Bun compatibility
     transpilePackages: [],
-    
+
     images: {
         remotePatterns: [
             {
