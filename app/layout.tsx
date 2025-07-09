@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     authors: [{ name: "Persekutuan Mahasiswa Kristen ITERA", url: "https://www.pmkitera.com" }],
     creator: "Persekutuan Mahasiswa Kristen ITERA",
     publisher: "Persekutuan Mahasiswa Kristen ITERA",
+
     alternates: {
         canonical: "https://www.pmkitera.com",
     },
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Persekutuan Mahasiswa Kristen ITERA",
         description:
-            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
         url: "https://www.pmkitera.com",
         siteName: "PMK ITERA",
         images: [
@@ -66,6 +67,7 @@ export const metadata: Metadata = {
         ],
         locale: "id_ID",
         type: "website",
+        countryName: "Indonesia",
     },
     twitter: {
         card: "summary_large_image",
