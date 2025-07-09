@@ -69,7 +69,7 @@ export default function ShareDropdown({ message, shareUrl, classNameButton, clas
                         <div className="flex items-center">
                             <Image
                                 src="/icon/facebook.svg"
-                                alt="Facebook"
+                                alt="Facebook | PMK ITERA"
                                 width={16}
                                 height={16}
                                 className="w-4 h-4 mr-2"
@@ -81,7 +81,7 @@ export default function ShareDropdown({ message, shareUrl, classNameButton, clas
                         <div className="flex items-center">
                             <Image
                                 src="/icon/x.svg"
-                                alt="Twitter"
+                                alt="Twitter | PMK ITERA"
                                 width={16}
                                 height={16}
                                 className="w-4 h-4 mr-2"
@@ -93,7 +93,7 @@ export default function ShareDropdown({ message, shareUrl, classNameButton, clas
                         <div className="flex items-center">
                             <Image
                                 src="/icon/whatsapp.svg"
-                                alt="WhatsApp"
+                                alt="WhatsApp | PMK ITERA"
                                 width={16}
                                 height={16}
                                 className="w-4 h-4 mr-2"
@@ -105,7 +105,7 @@ export default function ShareDropdown({ message, shareUrl, classNameButton, clas
                         <div className="flex items-center">
                             <Image
                                 src="/icon/telegram.svg"
-                                alt="Telegram"
+                                alt="Telegram | PMK ITERA"
                                 width={16}
                                 height={16}
                                 className="w-4 h-4 mr-2"

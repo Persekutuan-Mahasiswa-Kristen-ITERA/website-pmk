@@ -98,7 +98,7 @@ export const Footer = () => {
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-                                    Beranda
+                                    PMK ITERA
                                 </Link>
                             </li>
                             <li>

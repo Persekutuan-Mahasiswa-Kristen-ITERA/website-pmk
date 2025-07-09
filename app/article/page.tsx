@@ -26,7 +26,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function ArtikelPage() {
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Beranda", url: "https://www.pmkitera.com" },
+        { name: "PMK ITERA", url: "https://www.pmkitera.com" },
         { name: "Artikel", url: "https://www.pmkitera.com/article" },
     ])
 

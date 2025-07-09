@@ -97,7 +97,7 @@ export function CrudTable<T>({ title, data, fields, onAdd, onEdit, onDelete, get
                                         item[field.name as keyof T] ? (
                                             <Image
                                                 src={item[field.name as keyof T] as string}
-                                                alt={`${field.name}`}
+                                                alt={`${field.name} | PMK ITERA`}
                                                 className="h-10 w-10 object-cover rounded-md"
                                                 width={40}
                                                 height={40}

@@ -23,9 +23,7 @@ const Pengurus = () => {
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
                         Struktur Kepengurusan
                     </h1>
-                    <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto">
-                        
-                    </p>
+                    <p className="text-center text-brown-100 mt-4 max-w-2xl mx-auto"></p>
                 </div>
             </div>
 
@@ -44,7 +42,7 @@ const Pengurus = () => {
                                         <div className="flex flex-col items-center text-center">
                                             <Image
                                                 src={person.photoUrl}
-                                                alt={person.name}
+                                                alt={`${person.name} | PMK ITERA`}
                                                 width={300}
                                                 height={256}
                                                 className="w-full h-36 object-center"

@@ -26,7 +26,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function RenunganPage() {
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Beranda", url: "https://www.pmkitera.com" },
+        { name: "PMK ITERA", url: "https://www.pmkitera.com" },
         { name: "Renungan", url: "https://www.pmkitera.com/devotional" },
     ])
 

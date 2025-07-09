@@ -14,7 +14,7 @@ export const About = () => {
                         <SectionHeader title="Tentang PMK ITERA" subtitle="" />
 
                         <p className="text-brown-700 mt-2 text-justify text-sm sm:text-base">
-                            Persekutuan Mahasiswa Kristen (PMK) ITERA adalah komunitas yang menjadi wadah pertumbuhan
+                            Persekutuan Mahasiswa Kristen ITERA  (PMK ITERA) adalah komunitas yang menjadi wadah pertumbuhan
                             iman bagi mahasiswa Kristen ITERA, dengan menjadikan Alkitab sebagai pedoman hidup dan
                             Kristus sebagai teladan utama. PMK ITERA hadir untuk menolong mahasiswa mengenal Tuhan Yesus
                             Kristus lebih dalam, serta membentuk karakter yang serupa dengan-Nya.
@@ -72,7 +72,7 @@ export const About = () => {
                             <div className="relative w-full h-full">
                                 <Image
                                     src="/img/image1.webp"
-                                    alt="Kegiatan persekutuan mahasiswa Kristen ITERA dalam suasana hangat dan membangun iman"
+                                    alt="Persekutuan Mahasiswa Kristen ITERA | PMK ITERA"
                                     className="w-full h-full object-cover object-center"
                                     width={1200}
                                     height={900}

@@ -83,7 +83,7 @@ export default function EventList() {
                         <div className="relative h-48 overflow-hidden rounded-t-lg">
                             <Image
                                 src={event.image || "/placeholder.svg"}
-                                alt={event.title}
+                                alt={`${event.title} | PMK ITERA`}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
@@ -158,7 +158,7 @@ export default function EventList() {
                             <div className="relative h-64 w-full rounded-lg overflow-hidden">
                                 <Image
                                     src={selectedEvent.image || "/placeholder.svg"}
-                                    alt={selectedEvent.title}
+                                    alt={`${selectedEvent.title} | PMK ITERA`}
                                     fill
                                     className="object-cover"
                                 />

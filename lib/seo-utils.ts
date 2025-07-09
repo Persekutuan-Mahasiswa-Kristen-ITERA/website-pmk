@@ -89,7 +89,7 @@ export function generateOrganizationSchema() {
         logo: `${SITE_URL}/logo.png`,
         sameAs: ["https://www.instagram.com/pmkitera", "https://www.youtube.com/@pmkitera"],
         description:
-            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+            "PMK ITERA adalah komunitas mahasiswa Kristen yang berkomitmen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
         address: {
             "@type": "PostalAddress",
             addressLocality: "Lampung Selatan",
@@ -112,7 +112,7 @@ export function generateWebsiteSchema() {
         url: SITE_URL,
         name: SITE_NAME,
         description:
-            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+            "PMK ITERA adalah komunitas mahasiswa Kristen yang berkomitmen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
         publisher: {
             "@id": `${SITE_URL}/#organization`,
         },

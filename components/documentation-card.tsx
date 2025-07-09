@@ -20,7 +20,7 @@ const DocumentationCard = ({ documentation, className }: DocumentationCardProps)
             <div className="relative h-48 overflow-hidden">
                 <Image
                     src={documentation.imageUrl ?? "https://picsum.photos/seed/picsum/400/300"}
-                    alt={documentation.title}
+                    alt={`${documentation.title} | PMK ITERA`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />

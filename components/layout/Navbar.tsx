@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation"
 import Image from "next/image"
 
 const NAV_ITEMS = [
-    { name: "Beranda", path: "/" },
+    { name: "PMK ITERA", path: "/" },
     { name: "Profil", path: "/profile" },
     { name: "Kegiatan", path: "/event" },
     // { name: "Pengurus", path: "/management" },
@@ -53,7 +53,7 @@ export const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                         <div className="text-brown-800 font-bold text-xl flex gap-4 place-items-center font-serif">
-                            <Image src="/logo-128.png" alt="PMK ITERA" className="w-8 h-8" width={128} height={128} />
+                            <Image src="/logo-128.png" alt="Persekutuan Mahasiswa Kristen ITERA | PMK ITERA" className="w-8 h-8" width={128} height={128} />
                             PMK ITERA
                         </div>
                     </Link>

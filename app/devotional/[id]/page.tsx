@@ -126,7 +126,7 @@ const DevotionalDetail = () => {
                 <div className="absolute z-0 inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
                     <Image
                         src="/img/bg-bible.jpg"
-                        alt={devotional.title}
+                        alt={`${devotional.title} | PMK ITERA`}
                         className="w-full h-full object-cover opacity-50 blur-sm"
                         width={1400}
                         height={800}

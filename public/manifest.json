@@ -1,7 +1,7 @@
 {
     "name": "Persekutuan Mahasiswa Kristen ITERA",
     "short_name": "PMK ITERA",
-    "description": "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+    "description": "PMK ITERA adalah komunitas mahasiswa Kristen yang berkomitmen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

@@ -114,7 +114,7 @@ const ArtikelDetail = () => {
                     {article.imageUrl && (
                         <Image
                             src={article.imageUrl}
-                            alt={article.title}
+                            alt={`${article.title} | PMK ITERA`}
                             className="w-full h-full object-cover opacity-30"
                             width={1200}
                             height={700}
@@ -252,7 +252,7 @@ const ArtikelDetail = () => {
                                                         <div className="w-16 h-16 flex-shrink-0 bg-brown-100 rounded overflow-hidden">
                                                             <Image
                                                                 src={item.imageUrl}
-                                                                alt={item.title}
+                                                                alt={`${article.title} | PMK ITERA`}
                                                                 className="w-full h-full object-cover"
                                                                 width={64}
                                                                 height={64}

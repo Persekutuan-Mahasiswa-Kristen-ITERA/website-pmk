@@ -65,7 +65,7 @@ const QRISCode = () => {
                 <h3 className="text-lg font-semibold text-brown-800">Scan QRIS</h3>
             </div>
             <div className="bg-white rounded-lg shadow-sm inline-block mb-4">
-                <Image src="/img/qris.png" alt="QRIS Code Placeholder" width={192} height={192} />
+                <Image src="/img/qris.png" alt={`QRIS | PMK ITERA`} width={192} height={192} />
             </div>
             <p className="text-sm text-brown-600">
                 Scan QR code di atas dengan aplikasi mobile banking atau e-wallet Anda

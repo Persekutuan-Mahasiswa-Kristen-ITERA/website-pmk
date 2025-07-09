@@ -29,6 +29,8 @@ export const Hero = () => {
                     >
                         Persekutuan Mahasiswa Kristen ITERA
                     </h1>
+                    <h1 className="hidden">PMK ITERA</h1>
+                    <h1 className="hidden">Persekutuan Mahasiswa Kristen Institut Teknologi Sumatera</h1>
                     <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-200">
                         Menjadi generasi mahasiswa Kristen yang menjadi garam dan terang dunia, meneladani Kristus dalam
                         hikmat, pengetahuan, dan persekutuan

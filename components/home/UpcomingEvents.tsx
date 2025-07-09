@@ -49,7 +49,7 @@ export const UpcomingEvents = () => {
                             <div className="h-40 sm:h-44 overflow-hidden">
                                 <Image
                                     src={event.image ?? "https://picsum.photos/seed/picsum/400/300"}
-                                    alt={event.title}
+                                    alt={`${event.title} | PMK ITERA`}
                                     className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                                     width={1200}
                                     height={700}

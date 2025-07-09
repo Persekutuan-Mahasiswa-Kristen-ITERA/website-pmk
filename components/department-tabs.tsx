@@ -40,7 +40,7 @@ export function DepartmentTabs() {
                                         <div className="flex flex-col items-center text-center">
                                             <Image
                                                 src={department.head.photoUrl}
-                                                alt={department.head.name}
+                                                alt={`${department.head.name} | PMK ITERA`}
                                                 width={300}
                                                 height={256}
                                                 className="w-full h-36 object-center"
@@ -64,7 +64,7 @@ export function DepartmentTabs() {
                                         <div className="flex flex-col items-center text-center">
                                             <Image
                                                 src={department.secretary.photoUrl}
-                                                alt={department.secretary.name}
+                                                alt={`${department.head.name} | PMK ITERA`}
                                                 width={300}
                                                 height={256}
                                                 className="w-full h-36 object-center"

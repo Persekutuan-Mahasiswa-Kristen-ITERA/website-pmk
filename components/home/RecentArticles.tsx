@@ -41,7 +41,7 @@ export const RecentArticles = () => {
                             <div className="h-36 sm:h-80 overflow-hidden">
                                 <Image
                                     src={article.imageUrl ?? "article-placeholder.webp"}
-                                    alt={article.title}
+                                    alt={`${article.title} | PMK ITERA`}
                                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                                     width={1200}
                                     height={500}
