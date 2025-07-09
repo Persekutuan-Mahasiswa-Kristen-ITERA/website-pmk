@@ -1,0 +1,44 @@
+{
+    "name": "Persekutuan Mahasiswa Kristen ITERA",
+    "short_name": "PMK ITERA",
+    "description": "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#8B4513",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "id",
+    "categories": ["lifestyle", "education", "social"],
+    "icons": [
+        {
+            "src": "/logo-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/opengraph-image.webp",
+            "sizes": "1200x630",
+            "type": "image/webp",
+            "form_factor": "wide",
+            "label": "PMK ITERA Homepage"
+        }
+    ]
+}

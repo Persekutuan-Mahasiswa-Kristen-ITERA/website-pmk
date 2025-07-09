@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { GoogleAnalytics } from "@next/third-parties/google"
+import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo-utils"
+import StructuredData from "@/components/seo/StructuredData"
 import "./index.css"
 
 export const metadata: Metadata = {
@@ -21,15 +23,33 @@ export const metadata: Metadata = {
         "Mahasiswa Kristen",
         "Lampung",
         "Rohani",
+        "Komunitas Kristen",
+        "Persekutuan",
+        "Pelayanan",
+        "Renungan Harian",
+        "Artikel Kristen",
+        "Event Rohani",
     ],
     authors: [{ name: "Persekutuan Mahasiswa Kristen ITERA", url: "https://www.pmkitera.com" }],
     creator: "Persekutuan Mahasiswa Kristen ITERA",
     publisher: "Persekutuan Mahasiswa Kristen ITERA",
-    icons: {
-        icon: "/favicon.ico",
-        shortcut: "/favicon.ico",
-        apple: "/favicon.ico",
+    alternates: {
+        canonical: "https://www.pmkitera.com",
     },
+    icons: {
+        icon: [
+            { url: "/favicon.ico", sizes: "any" },
+            { url: "/logo-32.png", sizes: "32x32", type: "image/png" },
+            { url: "/logo-128.png", sizes: "128x128", type: "image/png" },
+            { url: "/logo-256.png", sizes: "256x256", type: "image/png" },
+        ],
+        shortcut: "/favicon.ico",
+        apple: [
+            { url: "/logo-128.png", sizes: "128x128", type: "image/png" },
+            { url: "/logo-256.png", sizes: "256x256", type: "image/png" },
+        ],
+    },
+    manifest: "/manifest.json",
     openGraph: {
         title: "Persekutuan Mahasiswa Kristen ITERA",
         description:
@@ -39,8 +59,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "https://www.pmkitera.com/opengraph-image.webp",
-                width: 600,
-                height: 256,
+                width: 1200,
+                height: 630,
                 alt: "Persekutuan Mahasiswa Kristen ITERA",
             },
         ],
@@ -65,9 +85,14 @@ export const metadata: Metadata = {
             noimageindex: false,
             "max-video-preview": -1,
             "max-snippet": -1,
+            "max-image-preview": "large",
         },
     },
+    verification: {
+        google: "your-search-console-verification-code", // Replace with actual verification code from Google Search Console
+    },
     category: "organization",
+    classification: "Community Organization",
 }
 
 import { DM_Sans, Inter, Playfair_Display } from "next/font/google"
@@ -91,8 +116,23 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    const organizationSchema = generateOrganizationSchema()
+    const websiteSchema = generateWebsiteSchema()
+
     return (
         <html lang="id" suppressHydrationWarning style={{ scrollBehavior: "smooth" }} className="scroll-smooth">
+            <head>
+                <StructuredData data={organizationSchema} />
+                <StructuredData data={websiteSchema} />
+                <meta name="theme-color" content="#8B4513" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content="PMK ITERA" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="msapplication-TileColor" content="#8B4513" />
+                <meta name="msapplication-config" content="/browserconfig.xml" />
+                <link rel="alternate" type="application/rss+xml" title="PMK ITERA RSS Feed" href="/rss.xml" />
+            </head>
             <body
                 className={`${defaultFont.className} ${playfairDisplay.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
             >
