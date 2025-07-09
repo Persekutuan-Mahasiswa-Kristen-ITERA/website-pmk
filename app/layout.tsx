@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo-utils"
 import StructuredData from "@/components/seo/StructuredData"
+import SEOAuditDisplay from "@/components/seo/SEOAudit"
+import "@/lib/seo-fixes" // Import SEO fixes
 import "./index.css"
 
 export const metadata: Metadata = {
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
         default: "Persekutuan Mahasiswa Kristen ITERA",
     },
     description:
-        "Persekutuan Mahasiswa Kristen ITERA adalah komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+        "Persekutuan Mahasiswa Kristen ITERA (PMK ITERA) adalah komunitas mahasiswa Kristen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
     metadataBase: new URL("https://www.pmkitera.com"),
     keywords: [
         "Persekutuan Mahasiswa Kristen",
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Persekutuan Mahasiswa Kristen ITERA",
         description:
-            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
+            "Persekutuan Mahasiswa Kristen ITERA (PMK ITERA) adalah komunitas mahasiswa Kristen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
         url: "https://www.pmkitera.com",
         siteName: "PMK ITERA",
         images: [
@@ -73,7 +75,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Persekutuan Mahasiswa Kristen ITERA",
         description:
-            "Komunitas mahasiswa Kristen yang berkomitmen untuk membangun persekutuan, pelayanan, dan pertumbuhan rohani di Institut Teknologi Sumatera.",
+            "Persekutuan Mahasiswa Kristen ITERA (PMK ITERA) adalah komunitas mahasiswa Kristen untuk membangun pertumbuhan rohani di Institut Teknologi Sumatera.",
         creator: "@pmkitera",
         images: ["https://www.pmkitera.com/opengraph-image.webp"],
     },
@@ -89,6 +91,12 @@ export const metadata: Metadata = {
             "max-snippet": -1,
             "max-image-preview": "large",
         },
+    },
+    other: {
+        "format-detection": "telephone=no",
+        "mobile-web-app-capable": "yes",
+        "apple-mobile-web-app-capable": "yes",
+        "apple-mobile-web-app-status-bar-style": "default",
     },
     verification: {
         google: "your-search-console-verification-code", // Replace with actual verification code from Google Search Console
@@ -141,6 +149,7 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
                     <AuthProvider>{children}</AuthProvider>
                     <Toaster />
+                    {/* <SEOAuditDisplay /> */}
                 </ThemeProvider>
             </body>
             <GoogleAnalytics gaId="G-J0RN9KN5YZ" />

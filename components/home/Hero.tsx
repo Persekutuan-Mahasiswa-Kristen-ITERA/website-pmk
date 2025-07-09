@@ -4,7 +4,7 @@ import LatestDevotional from "../hero/latest-devotional"
 
 export const Hero = () => {
     return (
-        <div className="relative bg-brown-100 overflow-hidden">
+        <section className="relative bg-brown-100 overflow-hidden" aria-label="Hero section">
             <div className="absolute inset-0 z-0">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -13,12 +13,20 @@ export const Hero = () => {
                         filter: "brightness(0.4)",
                         transform: "scaleX(-1)",
                     }}
+                    role="img"
+                    aria-label="Cross background image"
                 ></div>
             </div>
 
             <div className="container mx-auto px-4 py-28 md:py-40 relative z-10">
                 <div className="max-w-2xl">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
+                    {/* Primary H1 - simplified for better SEO detection */}
+                    <h1
+                        className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight"
+                        itemProp="headline"
+                        itemScope
+                        itemType="https://schema.org/Organization"
+                    >
                         Persekutuan Mahasiswa Kristen ITERA
                     </h1>
                     <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-200">
@@ -45,6 +53,6 @@ export const Hero = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

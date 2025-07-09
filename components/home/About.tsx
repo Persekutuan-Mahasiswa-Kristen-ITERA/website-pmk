@@ -72,10 +72,12 @@ export const About = () => {
                             <div className="relative w-full h-full">
                                 <Image
                                     src="/img/image1.webp"
-                                    alt="PMK ITERA"
+                                    alt="Kegiatan persekutuan mahasiswa Kristen ITERA dalam suasana hangat dan membangun iman"
                                     className="w-full h-full object-cover object-center"
                                     width={1200}
                                     height={900}
+                                    priority={false}
+                                    loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-brown-300 opacity-20" />
                             </div>
