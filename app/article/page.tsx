@@ -1,54 +1,202 @@
-import React from "react"
+"use client"
+
+import React, { useEffect, useState } from "react"
 import { Metadata } from "next"
 import { MainLayout } from "@/components/layout/MainLayout"
-import { generatePageMetadata, generateBreadcrumbSchema } from "@/lib/seo-utils"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link"
+import { FileText, Search, Calendar, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import { Article } from "@/types/article"
+import { getArticles } from "@/data/article"
+import { generatePageMetadata } from "@/lib/seo-utils"
 import StructuredData from "@/components/seo/StructuredData"
-import ArticleList from "@/components/article/ArticleList"
+import { generateBreadcrumbSchema } from "@/lib/seo-utils"
+import Head from "next/head"
 
-export const metadata: Metadata = generatePageMetadata({
-    title: "Artikel Rohani Kristen",
-    description:
-        "Kumpulan artikel rohani Kristen untuk memperkuat iman dan kehidupan spiritual. Temukan inspirasi dan wawasan dalam perjalanan iman bersama PMK ITERA.",
-    path: "/article",
-    keywords: [
-        "artikel kristen",
-        "artikel rohani",
-        "wawasan kristen",
-        "inspirasi iman",
-        "kehidupan spiritual",
-        "renungan kristen",
-        "PMK ITERA artikel",
-        "tulisan rohani",
-        "refleksi iman",
-        "pertumbuhan spiritual",
-    ],
-})
+// Note: This would be better as generateMetadata in a server component
+// but keeping as client component as per current implementation
 
-export default function ArtikelPage() {
+const ArtikelPage = () => {
+    const [articles, setArticles] = useState<Article[]>([])
+    const [searchQuery, setSearchQuery] = useState("")
+
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "PMK ITERA", url: "https://www.pmkitera.com" },
+        { name: "Beranda", url: "https://www.pmkitera.com" },
         { name: "Artikel", url: "https://www.pmkitera.com/article" },
     ])
 
+    useEffect(() => {
+        const fetchArticles = async () => {
+            setArticles(await getArticles())
+        }
+
+        fetchArticles()
+    }, [])
+
+    const filteredArticles = articles
+        .filter((article) => {
+            const matchesSearch =
+                searchQuery === "" ||
+                article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                article.author.name.toLowerCase().includes(searchQuery.toLowerCase())
+
+            return matchesSearch
+        })
+        .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime())
+
     return (
         <>
+            <Head>
+                <title>Artikel - Persekutuan Mahasiswa Kristen ITERA</title>
+                <meta
+                    name="description"
+                    content="Kumpulan artikel seputar kehidupan dan apologetika Kristen dari komunitas PMK ITERA. Temukan pemahaman mendalam tentang iman dan spiritualitas."
+                />
+                <meta
+                    name="keywords"
+                    content="artikel kristen, apologetika, kehidupan kristen, PMK ITERA, tulisan rohani, pemahaman iman"
+                />
+            </Head>
             <StructuredData data={breadcrumbSchema} />
             <MainLayout>
-                <div className="container mx-auto px-4 py-8">
-                    {/* SEO-optimized heading structure */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-white mb-4">
-                            Artikel Rohani Kristen
-                        </h1>
-                        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            Temukan inspirasi dan wawasan dalam perjalanan iman melalui artikel-artikel rohani yang
-                            membangun
-                        </p>
+                {/* Hero section with gradient background */}
+                <div className="bg-gradient-to-b from-brown-100 to-white">
+                    <div className="bg-[url('/img/bg-article.webp')] bg-cover bg-center py-20 relative">
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
+                        <div className="container relative mx-auto px-4 z-10">
+                            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center">
+                                Artikel
+                            </h1>
+                            <p className="text-center text-white/90 mt-4 max-w-2xl mx-auto text-base md:text-lg">
+                                Tulisan seputar kehidupan dan apologetika Kristen
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <section className="py-12 md:py-16 lg:py-20">
+                    <div className="container mx-auto px-4">
+                        {/* Search section */}
+                        <div className="max-w-3xl mx-auto mb-12">
+                            <div className="relative bg-white shadow-sm rounded-lg overflow-hidden">
+                                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-brown-400 h-5 w-5" />
+                                <Input
+                                    placeholder="Cari artikel..."
+                                    className="pl-12 py-6 border-brown-200 focus:border-brown-400 text-lg rounded-lg"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            {filteredArticles.map((article) => (
+                                <Card
+                                    key={article.id}
+                                    className="h-full md:h-60 border-brown-100 overflow-hidden hover:shadow-md transition-shadow group"
+                                >
+                                    <div className="grid grid-cols-1 md:grid-cols-3 h-full">
+                                        <div className="h-36 md:h-full bg-brown-200 overflow-hidden">
+                                            <Image
+                                                src={article.imageUrl}
+                                                alt={article.title}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                                width={500}
+                                                height={300}
+                                            />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <CardContent className="p-4 md:p-6 h-full flex flex-col">
+                                                <div className="flex items-center mb-3">
+                                                    <FileText className="h-4 w-4 text-brown-400 mr-2" />
+                                                    <span className="text-xs text-brown-500">
+                                                        {article.readTime} menit membaca
+                                                    </span>
+                                                </div>
+                                                <Link href={`/article/${article.slug}`} className="block mb-2">
+                                                    <h3 className="line-clamp-1 text-ellipsis text-xl font-serif text-brown-800 mb-2 hover:underline">
+                                                        {article.title}
+                                                    </h3>
+                                                </Link>
+                                                <p className="text-brown-600 text-sm mb-4 line-clamp-2">
+                                                    {article.excerpt}
+                                                </p>
+
+                                                <div className="grow"></div>
+
+                                                <div className="flex justify-between items-center">
+                                                    <div className="flex items-center gap-4">
+                                                        <Avatar className="h-8 w-8 mr-2">
+                                                            <AvatarImage
+                                                                className="object-cover"
+                                                                src={article.author.image}
+                                                                alt={article.author.name}
+                                                            />
+                                                            <AvatarFallback className="bg-brown-200 text-brown-700 text-xs">
+                                                                {article.author.name
+                                                                    .split(" ")
+                                                                    .map((name) => name[0])
+                                                                    .join("")}
+                                                            </AvatarFallback>
+                                                        </Avatar>
+                                                        <div>
+                                                            <p className="text-sm text-brown-700">
+                                                                {article.author.name}
+                                                            </p>
+                                                            <div className="flex items-center">
+                                                                <Calendar className="h-3 w-3 text-brown-400 mr-1" />
+                                                                <span className="text-xs text-brown-500">
+                                                                    {article.createdAt?.toLocaleDateString("id-ID", {
+                                                                        year: "numeric",
+                                                                        month: "long",
+                                                                        day: "numeric",
+                                                                    })}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <Button
+                                                        asChild
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        className="text-brown-700 hover:text-brown-900 hover:bg-brown-50 p-0 px-2"
+                                                    >
+                                                        <Link
+                                                            href={`/article/${article.slug}`}
+                                                            className="flex items-center"
+                                                        >
+                                                            <span>Baca</span>
+                                                            <ChevronRight className="h-4 w-4" />
+                                                        </Link>
+                                                    </Button>
+                                                </div>
+                                            </CardContent>
+                                        </div>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+
+                        {filteredArticles.length === 0 && (
+                            <div className="text-center py-16">
+                                <p className="text-brown-600">
+                                    Tidak ada artikel yang sesuai dengan kriteria pencarian.
+                                </p>
+                            </div>
+                        )}
                     </div>
 
-                    <ArticleList />
-                </div>
+                    <div className="mb-24"></div>
+                </section>
             </MainLayout>
         </>
     )
 }
+
+export default ArtikelPage
