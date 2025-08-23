@@ -1,9 +1,15 @@
 import admin from "firebase-admin"
 
-type FirestoreData = string | number | boolean | Date | null | undefined | FirestoreData[] | { [key: string]: FirestoreData }
+type FirestoreData = string | number | boolean | null | undefined | FirestoreData[] | { [key: string]: FirestoreData }
+
+// Type for Firestore Timestamp object structure
+interface FirestoreTimestampObject {
+    _seconds: number
+    _nanoseconds: number
+}
 
 /**
- * Serializes Firestore data to convert Timestamps to proper Date objects
+ * Serializes Firestore data to convert Timestamps to proper timestamps
  */
 export function serializeFirestoreData(data: unknown): FirestoreData {
     if (data === null || data === undefined) {
@@ -11,7 +17,18 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
     }
 
     if (data instanceof admin.firestore.Timestamp) {
-        return data.toDate()
+        // Convert to ISO string timestamp for consistent format
+        return data.toDate().toISOString()
+    }
+
+    // Handle Firestore Timestamp objects that come as plain objects with _seconds and _nanoseconds
+    if (typeof data === 'object' && data && '_seconds' in data && '_nanoseconds' in data) {
+        const timestampObj = data as FirestoreTimestampObject
+        const timestamp = new admin.firestore.Timestamp(
+            timestampObj._seconds, 
+            timestampObj._nanoseconds
+        )
+        return timestamp.toDate().toISOString()
     }
 
     if (Array.isArray(data)) {
