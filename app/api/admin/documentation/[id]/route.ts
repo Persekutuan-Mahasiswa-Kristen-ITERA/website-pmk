@@ -5,7 +5,7 @@ import admin from "firebase-admin"
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await params
-        const docRef = firestore.collection("documentation").doc(id)
+        const docRef = firestore.collection("documentations").doc(id)
         const doc = await docRef.get()
 
         if (!doc.exists) {
@@ -32,7 +32,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
-        const docRef = firestore.collection("documentation").doc(id)
+        const docRef = firestore.collection("documentations").doc(id)
         await docRef.update(updateData)
 
         const updatedDoc = await docRef.get()
@@ -50,7 +50,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await params
-        await firestore.collection("documentation").doc(id).delete()
+        await firestore.collection("documentations").doc(id).delete()
 
         return NextResponse.json({
             success: true,

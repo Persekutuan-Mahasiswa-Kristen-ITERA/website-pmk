@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
         const offset = (page - 1) * limit
 
-        const documentationRef = firestore.collection("documentation")
+        const documentationRef = firestore.collection("documentations")
         let query = documentationRef.orderBy(sort, order as "asc" | "desc")
 
         if (offset > 0) {
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
-        const docRef = await firestore.collection("documentation").add(documentationData)
+        const docRef = await firestore.collection("documentations").add(documentationData)
         const newDoc = await docRef.get()
 
         return NextResponse.json({
