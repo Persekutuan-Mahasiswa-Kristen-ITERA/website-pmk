@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
+import { serializeFirestoreDoc } from "@/lib/firestore-utils"
 import admin from "firebase-admin"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -14,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
         return NextResponse.json({
             success: true,
-            data: { id: doc.id, ...doc.data() },
+            data: serializeFirestoreDoc(doc),
         })
     } catch (error) {
         console.error("Error fetching article:", error)
@@ -73,7 +74,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
         return NextResponse.json({
             success: true,
-            data: { id: updatedDoc.id, ...updatedDoc.data() },
+            data: serializeFirestoreDoc(updatedDoc),
         })
     } catch (error) {
         console.error("Error updating article:", error)

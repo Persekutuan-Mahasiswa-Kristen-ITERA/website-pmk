@@ -39,26 +39,26 @@ button {
     --radius: 0.5rem;
 }
 .dark {
-  --background: rgba(26, 20, 13, 1);
-  --foreground: rgba(255, 244, 230, 1);
-  --card: rgba(35, 27, 19, 1);
-  --card-foreground: rgba(255, 244, 230, 1);
-  --popover: rgba(35, 27, 19, 1);
-  --popover-foreground: rgba(255, 244, 230, 1);
-  --primary: rgba(210, 155, 105, 1);
-  --primary-foreground: rgba(40, 30, 20, 1);
-  --secondary: rgba(60, 50, 40, 1);
-  --secondary-foreground: rgba(230, 215, 195, 1);
-  --muted: rgba(55, 47, 40, 1);
-  --muted-foreground: rgba(185, 170, 145, 1);
-  --accent: rgba(70, 60, 50, 1);
-  --accent-foreground: rgba(230, 215, 195, 1);
-  --destructive: rgba(239, 68, 68, 1);
-  --destructive-foreground: rgba(250, 240, 230, 1);
-  --border: rgba(65, 55, 45, 1);
-  --input: rgba(65, 55, 45, 1);
-  --ring: rgba(210, 155, 105, 1);
-  --radius: 0.5rem;
+    --background: rgba(26, 20, 13, 1);
+    --foreground: rgba(255, 244, 230, 1);
+    --card: rgba(35, 27, 19, 1);
+    --card-foreground: rgba(255, 244, 230, 1);
+    --popover: rgba(35, 27, 19, 1);
+    --popover-foreground: rgba(255, 244, 230, 1);
+    --primary: rgba(210, 155, 105, 1);
+    --primary-foreground: rgba(40, 30, 20, 1);
+    --secondary: rgba(60, 50, 40, 1);
+    --secondary-foreground: rgba(230, 215, 195, 1);
+    --muted: rgba(55, 47, 40, 1);
+    --muted-foreground: rgba(185, 170, 145, 1);
+    --accent: rgba(70, 60, 50, 1);
+    --accent-foreground: rgba(230, 215, 195, 1);
+    --destructive: rgba(239, 68, 68, 1);
+    --destructive-foreground: rgba(250, 240, 230, 1);
+    --border: rgba(65, 55, 45, 1);
+    --input: rgba(65, 55, 45, 1);
+    --ring: rgba(210, 155, 105, 1);
+    --radius: 0.5rem;
 }
 
 ::-webkit-scrollbar {

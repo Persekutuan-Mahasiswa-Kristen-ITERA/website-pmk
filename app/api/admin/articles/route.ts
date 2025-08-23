@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
+import { serializeFirestoreDocs, serializeFirestoreDoc } from "@/lib/firestore-utils"
 import { Article } from "@/types/article"
 import admin from "firebase-admin"
 
@@ -23,10 +24,7 @@ export async function GET(request: NextRequest) {
         const snapshot = await query.limit(limit).get()
         const countSnapshot = await articlesRef.count().get()
 
-        const articles = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        })) as Article[]
+        const articles = serializeFirestoreDocs(snapshot.docs)
 
         return NextResponse.json({
             success: true,
@@ -93,7 +91,7 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            data: { id: docRef.id, ...newDoc.data() },
+            data: serializeFirestoreDoc(newDoc),
         })
     } catch (error) {
         console.error("Error creating article:", error)
