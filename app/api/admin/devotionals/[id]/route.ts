@@ -28,14 +28,17 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         const { id } = await params
         const data = await request.json()
 
+        const now = new Date()
         const updateData = {
             ...data,
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.Timestamp.fromDate(now),
         }
 
         const docRef = firestore.collection("devotionals").doc(id)
         await docRef.update(updateData)
 
+        // Wait a bit and get fresh document to ensure timestamp is properly set
+        await new Promise(resolve => setTimeout(resolve, 100))
         const updatedDoc = await docRef.get()
 
         return NextResponse.json({

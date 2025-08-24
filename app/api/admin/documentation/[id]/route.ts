@@ -28,9 +28,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         const { id } = await params
         const data = await request.json()
 
+        const now = new Date()
         const updateData = {
             ...data,
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.Timestamp.fromDate(now),
         }
 
         const docRef = firestore.collection("documentations").doc(id)

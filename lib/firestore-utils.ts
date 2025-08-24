@@ -31,6 +31,11 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
         return timestamp.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z')
     }
 
+    // Handle Date objects
+    if (data instanceof Date) {
+        return data.toISOString().replace(/\.\d{3}Z$/, 'Z')
+    }
+
     if (Array.isArray(data)) {
         return data.map(item => serializeFirestoreData(item))
     }
