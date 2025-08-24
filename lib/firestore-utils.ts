@@ -17,8 +17,8 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
     }
 
     if (data instanceof admin.firestore.Timestamp) {
-        // Convert to ISO string timestamp for consistent format
-        return data.toDate().toISOString()
+        // Convert to clean ISO string timestamp without milliseconds
+        return data.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z')
     }
 
     // Handle Firestore Timestamp objects that come as plain objects with _seconds and _nanoseconds
@@ -28,7 +28,7 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
             timestampObj._seconds, 
             timestampObj._nanoseconds
         )
-        return timestamp.toDate().toISOString()
+        return timestamp.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z')
     }
 
     if (Array.isArray(data)) {
