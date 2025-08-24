@@ -45,11 +45,10 @@ export async function POST(request: NextRequest) {
     try {
         const data = await request.json()
 
-        const now = new Date()
         const eventData = {
             ...data,
-            createdAt: admin.firestore.Timestamp.fromDate(now),
-            updatedAt: admin.firestore.Timestamp.fromDate(now),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("events").add(eventData)

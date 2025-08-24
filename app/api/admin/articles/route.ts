@@ -79,12 +79,11 @@ export async function POST(request: NextRequest) {
         delete cleanData.authorImage
         delete cleanData.authorBio
 
-        const now = new Date()
         const articleData = {
             ...cleanData,
             author: authorData,
-            createdAt: admin.firestore.Timestamp.fromDate(now),
-            updatedAt: admin.firestore.Timestamp.fromDate(now),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("articles").add(articleData)

@@ -61,18 +61,15 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         delete cleanData.authorImage
         delete cleanData.authorBio
 
-        const now = new Date()
         const updateData = {
             ...cleanData,
             author: authorData,
-            updatedAt: admin.firestore.Timestamp.fromDate(now),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 
         const docRef = firestore.collection("articles").doc(id)
         await docRef.update(updateData)
 
-        // Wait a bit and get fresh document to ensure timestamp is properly set
-        await new Promise(resolve => setTimeout(resolve, 100))
         const updatedDoc = await docRef.get()
 
         return NextResponse.json({

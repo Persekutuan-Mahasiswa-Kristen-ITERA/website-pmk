@@ -9,7 +9,7 @@ interface FirestoreTimestampObject {
 }
 
 /**
- * Serializes Firestore data to convert Timestamps to proper timestamps
+ * Serializes Firestore data to convert Timestamps to Unix timestamps
  */
 export function serializeFirestoreData(data: unknown): FirestoreData {
     if (data === null || data === undefined) {
@@ -17,23 +17,19 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
     }
 
     if (data instanceof admin.firestore.Timestamp) {
-        // Convert to clean ISO string timestamp without milliseconds
-        return data.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z')
+        // Convert to Unix timestamp (seconds since epoch)
+        return Math.floor(data.toDate().getTime() / 1000)
     }
 
     // Handle Firestore Timestamp objects that come as plain objects with _seconds and _nanoseconds
     if (typeof data === 'object' && data && '_seconds' in data && '_nanoseconds' in data) {
         const timestampObj = data as FirestoreTimestampObject
-        const timestamp = new admin.firestore.Timestamp(
-            timestampObj._seconds, 
-            timestampObj._nanoseconds
-        )
-        return timestamp.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z')
+        return timestampObj._seconds
     }
 
     // Handle Date objects
     if (data instanceof Date) {
-        return data.toISOString().replace(/\.\d{3}Z$/, 'Z')
+        return Math.floor(data.getTime() / 1000)
     }
 
     if (Array.isArray(data)) {
