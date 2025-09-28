@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import LatestDevotional from "../hero/latest-devotional"
+import { NewsCarousel } from "./NewsCarousel"
+import { newsData } from "./news"
 
 export const Hero = () => {
     return (
@@ -18,7 +20,7 @@ export const Hero = () => {
                 ></div>
             </div>
 
-            <div className="container mx-auto px-4 py-28 md:py-40 relative z-10">
+            <div className="grid xl:grid-cols-2 gap-4 mx-auto px-4 md:px-8 xl:px-16 py-28 md:py-40 relative z-10">
                 <div className="max-w-2xl">
                     {/* Primary H1 - simplified for better SEO detection */}
                     <h1
@@ -53,6 +55,10 @@ export const Hero = () => {
                             <Link href="/devotional">Renungan Harian</Link>
                         </Button>
                     </div>
+                </div>
+                <div className="place-items-center hidden xl:grid">
+                    <h2 className="text-lg font-serif font-bold text-gray-100 mb-4">Acara dan Kegiatan Terbaru</h2>
+                    <NewsCarousel news={newsData} className="w-5/6" />
                 </div>
             </div>
         </section>

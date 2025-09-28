@@ -10,6 +10,9 @@ import { CallToAction } from "@/components/home/CallToAction"
 import { RecentArticles } from "@/components/home/RecentArticles"
 import { generatePageMetadata } from "@/lib/seo-utils"
 import enhanceH1ForSEO from "@/lib/h1-seo-helper"
+import { newsData } from "@/components/home/news"
+import { NewsCarousel } from "@/components/home/NewsCarousel"
+import { SectionHeader } from "@/components/ui/section-header"
 
 export const metadata: Metadata = {
     title: {
@@ -114,6 +117,12 @@ const Index = () => {
     return (
         <MainLayout fixedNavbar={true}>
             <Hero />
+
+            <div className="xl:hidden place-items-center bg-white py-16 container mx-auto px-4 max-w-5xl">
+                <SectionHeader title="Acara dan Kegiatan Terbaru" subtitle="Ikuti momen berharga bersama kami" centered />
+                <NewsCarousel news={newsData} className="w-5/6 mt-6" />
+            </div>
+            
             <About />
             <UpcomingEvents />
             <RecentArticles />
