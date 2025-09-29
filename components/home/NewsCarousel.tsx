@@ -80,6 +80,8 @@ export function NewsCarousel({ news, className }: NewsCarouselProps) {
         </CarouselContent>
       </Carousel>
 
+      <p className="mt-2 text-sm text-gray-500 text-center mx-auto">Ketuk gambar untuk informasi lebih lanjut</p>
+
       {/* Dots Navigation */}
       <div className="flex justify-center mt-4 space-x-2">
         {news.map((_, index) => (
