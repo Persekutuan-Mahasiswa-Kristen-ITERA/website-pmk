@@ -57,7 +57,7 @@ export const Hero = () => {
                     </div>
                 </div>
                 <div className="place-items-center hidden xl:grid">
-                    <h2 className="text-lg font-serif font-bold text-gray-100 mb-4">Acara dan Kegiatan Terbaru</h2>
+                    <h2 className="text-lg font-serif font-semibold text-gray-100 mb-4">Acara dan Kegiatan Terbaru</h2>
                     <NewsCarousel news={newsData} className="w-5/6" />
                 </div>
             </div>

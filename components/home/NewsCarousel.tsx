@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
 import Autoplay from "embla-carousel-autoplay"
 
@@ -17,7 +17,7 @@ interface NewsCarouselProps {
 }
 
 export function NewsCarousel({ news, className }: NewsCarouselProps) {
-  const [api, setApi] = useState<any>()
+  const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
