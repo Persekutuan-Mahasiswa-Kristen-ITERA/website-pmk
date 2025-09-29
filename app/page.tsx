@@ -119,7 +119,7 @@ const Index = () => {
             <Hero />
 
             <div className="xl:hidden place-items-center bg-white py-16 container mx-auto px-4 max-w-5xl">
-                <SectionHeader title="Acara dan Kegiatan Terbaru" subtitle="Ikuti momen berharga bersama kami" centered />
+                <SectionHeader title="Acara dan Kegiatan Terbaru" subtitle="Mari Ikuti momen berharga bersama kami" centered />
                 <NewsCarousel news={newsData} className="w-5/6 mt-6" />
             </div>
             
