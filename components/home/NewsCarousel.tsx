@@ -53,7 +53,7 @@ export function NewsCarousel({ news, className }: NewsCarouselProps) {
           {news.map((item, index) => (
             <CarouselItem key={index}>
               {item.url ? (
-                <a href={item.url}>
+                <a href={item.url} target='_blank'>
                   <div className="relative w-full h-64 md:h-80 lg:h-96">
                     <Image
                       src={item.image}
