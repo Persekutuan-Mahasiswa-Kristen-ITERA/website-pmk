@@ -1,113 +1,88 @@
-"use client"
-
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { Metadata } from "next"
+import { notFound } from "next/navigation"
 import { MainLayout } from "@/components/layout/MainLayout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ReactMarkdown from "react-markdown"
-import { Calendar, Book, Share, ChevronLeft, Copy, Check, Facebook } from "lucide-react"
-import { useParams } from "next/navigation"
+import { Calendar, Book, ChevronLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Article } from "@/types/article"
-import { getArticleById, getArticleBySlug, getArticles, getLatestArticles } from "@/data/article"
+import { getArticleBySlug, getLatestArticles } from "@/data/article"
 import ShareDropdown from "@/components/share-dropdown"
-import Head from "next/head"
+import { generatePageMetadata, generateArticleSchema } from "@/lib/seo-utils"
+import StructuredData from "@/components/seo/StructuredData"
 
-const ArtikelDetail = () => {
-    const { slug } = useParams()
-    const [article, setArticle] = useState<Article | null>(null)
-    const [articles, setArticles] = useState<Article[]>([])
-    const [isLoading, setIsLoading] = useState(true)
-    const shareUrl = typeof window !== "undefined" ? window.location.href : ""
-
-    useEffect(() => {
-        const fetchArticle = async () => {
-            setIsLoading(true)
-            const article = await getArticleBySlug(slug as string)
-            if (article && Array.isArray(article) && article.length > 0) {
-                setArticle(article[0]) // Assuming you want the first article
-            }
-            setIsLoading(false)
-        }
-
-        const fetch3Articles = async () => {
-            const articles = await getLatestArticles(3)
-            if (articles && Array.isArray(articles)) {
-                setArticles(articles)
-            }
-        }
-
-        fetchArticle()
-        fetch3Articles()
-    }, [slug])
-
-    if (isLoading) {
-        return (
-            <MainLayout>
-                <div className="container mx-auto px-4 py-12">
-                    <div className="flex items-center justify-center min-h-[50vh]">
-                        <p className="text-brown-600">Memuat artikel...</p>
-                    </div>
-                </div>
-            </MainLayout>
-        )
+interface Props {
+    params: {
+        slug: string
     }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const articles = await getArticleBySlug(params.slug)
+    const article = articles && Array.isArray(articles) && articles.length > 0 ? articles[0] : null
 
     if (!article) {
-        return (
-            <MainLayout>
-                <div className="container mx-auto px-4 py-12">
-                    <div className="flex flex-col items-center justify-center min-h-[50vh]">
-                        <h2 className="text-2xl font-serif text-brown-800 mb-4">Artikel tidak ditemukan</h2>
-                        <p className="text-brown-600 mb-6">Maaf, artikel yang Anda cari tidak dapat ditemukan.</p>
-                        <Button asChild variant="default" className="bg-brown-700 hover:bg-brown-800">
-                            <Link href="/article">Kembali ke Daftar Artikel</Link>
-                        </Button>
-                    </div>
-                </div>
-            </MainLayout>
-        )
+        return {
+            title: "Artikel Tidak Ditemukan",
+            description: "Artikel yang Anda cari tidak dapat ditemukan.",
+        }
     }
+
+    const url = `https://www.pmkitera.com/article/${params.slug}`
+
+    return generatePageMetadata({
+        title: article.title,
+        description: article.excerpt || "Artikel dari PMK ITERA",
+        path: `/article/${params.slug}`,
+        image: article.imageUrl,
+        keywords: [
+            "artikel",
+            "tulisan",
+            "PMK ITERA",
+            "mahasiswa kristen",
+            "persekutuan",
+            "iman",
+            "rohani",
+            "spiritual",
+            "kekristenan",
+            ...(article.tags ? article.tags.split(",").map((tag) => tag.trim()) : []),
+        ],
+        type: "article",
+        publishedTime: article.createdAt ? new Date(article.createdAt).toISOString() : undefined,
+        modifiedTime: article.updatedAt ? new Date(article.updatedAt).toISOString() : undefined,
+        author: article.author.name,
+    })
+}
+
+const ArtikelDetail = async ({ params }: Props) => {
+    const articles = await getArticleBySlug(params.slug)
+    const article = articles && Array.isArray(articles) && articles.length > 0 ? articles[0] : null
+    
+    if (!article) {
+        notFound()
+    }
+
+    const latestArticles = await getLatestArticles(3)
+    const shareUrl = `https://www.pmkitera.com/article/${params.slug}`
+
+    const articleSchema = generateArticleSchema({
+        title: article.title,
+        description: article.excerpt || "Artikel dari PMK ITERA",
+        slug: params.slug,
+        author: article.author.name,
+        publishedTime: article.createdAt ? new Date(article.createdAt).toISOString() : new Date().toISOString(),
+        modifiedTime: article.updatedAt ? new Date(article.updatedAt).toISOString() : undefined,
+        image: article.imageUrl,
+    })
 
     return (
         <MainLayout>
-            <Head>
-                <title>{article.title} | Persekutuan Mahasiswa Kristen ITERA</title>
-                <meta name="description" content={article.excerpt || "Renungan harian PMK ITERA"} />
-                <meta property="og:title" content={article.title} />
-                <meta property="og:description" content={article.excerpt || "Renungan harian PMK ITERA"} />
-                <meta property="og:image" content={article.imageUrl} />
-                <meta property="og:url" content={shareUrl} />
-                <meta property="og:type" content="article" />
-                <meta property="og:site_name" content={`${article.title} Persekutuan Mahasiswa Kristen ITERA`} />
-                <meta
-                    name="keywords"
-                    content="artikel, tulisan, PMK ITERA, mahasiswa kristen, persekutuan, iman, rohani, spiritual, kekristenan"
-                />
-                <meta name="author" content="PMK ITERA" />
-                <meta name="creator" content="PMK ITERA" />
-                <meta name="publisher" content="Persekutuan Mahasiswa Kristen ITERA" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={`${article.title} Persekutuan Mahasiswa Kristen ITERA`} />
-                <meta
-                    name="twitter:description"
-                    content="Artikel dan tulisan dari Persekutuan Mahasiswa Kristen ITERA"
-                />
-                <meta name="twitter:creator" content="@pmkitera" />
-                <meta name="twitter:image" content={article.imageUrl} />
-
-                <meta name="robots" content="index, follow" />
-                <meta name="googlebot" content="index, follow, max-video-preview:-1, max-snippet:-1" />
-                <meta name="googlebot" content="noimageindex:false" />
-                <meta name="robots" content="nocache:false" />
-
-                <meta name="category" content="article" />
-            </Head>
-
+            <StructuredData data={articleSchema} />
+            
             {/* Hero section with article title and image */}
             <div className="relative h-[35vh] md:h-[40vh] w-full bg-brown-950">
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
@@ -191,7 +166,7 @@ const ArtikelDetail = () => {
                                 </div>
 
                                 {/* Markdown content */}
-                                <div className="prose prose-brown text-justify max-md:leading-normal max-w-none">
+                                <div className="prose prose-brown text-justify max-md:leading-normal max-w-none [&_h1]:text-2xl [&_h1]:md:text-3xl [&_h1]:font-bold">
                                     <ReactMarkdown>{article.content}</ReactMarkdown>
                                 </div>
 
@@ -240,7 +215,7 @@ const ArtikelDetail = () => {
                                 <CardContent className="p-6">
                                     <h3 className="text-xl font-serif text-brown-800 mb-4">Lihat Artikel Lainnya</h3>
                                     <div className="space-y-4">
-                                        {articles
+                                        {latestArticles
                                             // .filter((item) => item.id !== article.id)
                                             .map((item) => (
                                                 <Link
