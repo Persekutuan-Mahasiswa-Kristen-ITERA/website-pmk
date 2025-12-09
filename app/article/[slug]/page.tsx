@@ -16,13 +16,14 @@ import { generatePageMetadata, generateArticleSchema } from "@/lib/seo-utils"
 import StructuredData from "@/components/seo/StructuredData"
 
 interface Props {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const articles = await getArticleBySlug(params.slug)
+    const { slug } = await params
+    const articles = await getArticleBySlug(slug)
     const article = articles && Array.isArray(articles) && articles.length > 0 ? articles[0] : null
 
     if (!article) {
@@ -32,12 +33,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
     }
 
-    const url = `https://www.pmkitera.com/article/${params.slug}`
+    const url = `https://www.pmkitera.com/article/${slug}`
 
     return generatePageMetadata({
         title: article.title,
         description: article.excerpt || "Artikel dari PMK ITERA",
-        path: `/article/${params.slug}`,
+        path: `/article/${slug}`,
         image: article.imageUrl,
         keywords: [
             "artikel",
@@ -59,7 +60,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const ArtikelDetail = async ({ params }: Props) => {
-    const articles = await getArticleBySlug(params.slug)
+    const { slug } = await params
+    const articles = await getArticleBySlug(slug)
     const article = articles && Array.isArray(articles) && articles.length > 0 ? articles[0] : null
 
     if (!article) {
@@ -67,12 +69,12 @@ const ArtikelDetail = async ({ params }: Props) => {
     }
 
     const latestArticles = await getLatestArticles(3)
-    const shareUrl = `https://www.pmkitera.com/article/${params.slug}`
+    const shareUrl = `https://www.pmkitera.com/article/${slug}`
 
     const articleSchema = generateArticleSchema({
         title: article.title,
         description: article.excerpt || "Artikel dari PMK ITERA",
-        slug: params.slug,
+        slug: slug,
         author: article.author.name,
         publishedTime: article.createdAt ? new Date(article.createdAt).toISOString() : new Date().toISOString(),
         modifiedTime: article.updatedAt ? new Date(article.updatedAt).toISOString() : undefined,
