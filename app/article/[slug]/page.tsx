@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ArtikelDetail = async ({ params }: Props) => {
     const articles = await getArticleBySlug(params.slug)
     const article = articles && Array.isArray(articles) && articles.length > 0 ? articles[0] : null
-    
+
     if (!article) {
         notFound()
     }
@@ -82,7 +82,7 @@ const ArtikelDetail = async ({ params }: Props) => {
     return (
         <MainLayout>
             <StructuredData data={articleSchema} />
-            
+
             {/* Hero section with article title and image */}
             <div className="relative h-[35vh] md:h-[40vh] w-full bg-brown-950">
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-950/80 to-brown-950/40">
