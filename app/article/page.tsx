@@ -151,11 +151,11 @@ const ArtikelPage = () => {
                                                             <div className="flex items-center">
                                                                 <Calendar className="h-3 w-3 text-brown-400 mr-1" />
                                                                 <span className="text-xs text-brown-500">
-                                                                    {article.createdAt?.toLocaleDateString("id-ID", {
+                                                                    {article.createdAt ? new Date(article.createdAt).toLocaleDateString("id-ID", {
                                                                         year: "numeric",
                                                                         month: "long",
                                                                         day: "numeric",
-                                                                    })}
+                                                                    }) : ""}
                                                                 </span>
                                                             </div>
                                                         </div>

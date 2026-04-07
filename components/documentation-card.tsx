@@ -30,11 +30,11 @@ const DocumentationCard = ({ documentation, className }: DocumentationCardProps)
                 <p className="text-brown-600 line-clamp-2 mb-4">{documentation.description}</p>
                 <div className="flex items-center text-brown-500 text-sm">
                     <Calendar className="w-4 h-4 mr-2" />
-                    {documentation.createdAt?.toLocaleDateString("id-ID", {
+                    {documentation.createdAt ? new Date(documentation.createdAt).toLocaleDateString("id-ID", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
-                    })}
+                    }) : ""}
                 </div>
             </CardContent>
             <CardFooter className="px-6 pb-6 pt-0">

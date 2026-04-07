@@ -79,11 +79,11 @@ export const RecentArticles = () => {
                                         <span>{article.author.name}</span>
                                     </div>
                                     <span>
-                                        {article.createdAt?.toLocaleDateString("id-ID", {
+                                        {article.createdAt ? new Date(article.createdAt).toLocaleDateString("id-ID", {
                                             year: "numeric",
                                             month: "long",
                                             day: "numeric",
-                                        })}
+                                        }) : ""}
                                     </span>
                                 </div>
                                 <Button

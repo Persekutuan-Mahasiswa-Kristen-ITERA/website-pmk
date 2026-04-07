@@ -33,11 +33,11 @@ const DevotionCard: React.FC<DevotionCardProps> = ({ className, devotion }) => {
                 <div className="flex justify-between items-center text-sm text-brown-500 mt-2">
                     <span>{devotion.author}</span>
                     <span>
-                        {devotion.createdAt?.toLocaleDateString("id-ID", {
+                        {devotion.createdAt ? new Date(devotion.createdAt).toLocaleDateString("id-ID", {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
-                        })}
+                        }) : ""}
                     </span>
                 </div>
                 <Link

@@ -147,11 +147,11 @@ const DevotionalDetail = () => {
                                             <div className="flex items-center">
                                                 <Calendar className="h-4 w-4 mr-1" />
                                                 <span className="text-sm">
-                                                    {devotional.createdAt?.toLocaleDateString("id-ID", {
+                                                    {devotional.createdAt ? new Date(devotional.createdAt).toLocaleDateString("id-ID", {
                                                         year: "numeric",
                                                         month: "long",
                                                         day: "numeric",
-                                                    })}
+                                                    }) : ""}
                                                 </span>
                                             </div>
                                             <div className="flex items-center">
@@ -226,11 +226,11 @@ const DevotionalDetail = () => {
                                                             </h4>
                                                             <p className="text-xs text-brown-500 mt-1">{item.verse}</p>
                                                             <p className="text-xs text-brown-500 mt-1">
-                                                                {item.createdAt?.toLocaleDateString("id-ID", {
+                                                                {item.createdAt ? new Date(item.createdAt).toLocaleDateString("id-ID", {
                                                                     year: "numeric",
                                                                     month: "long",
                                                                     day: "numeric",
-                                                                })}
+                                                                }) : ""}
                                                             </p>
                                                         </div>
                                                     </div>
