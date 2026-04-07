@@ -17,19 +17,19 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
     }
 
     if (data instanceof admin.firestore.Timestamp) {
-        // Convert to Unix timestamp (seconds since epoch)
-        return Math.floor(data.toDate().getTime() / 1000)
+        // Convert to Unix timestamp (milliseconds since epoch)
+        return data.toDate().getTime()
     }
 
     // Handle Firestore Timestamp objects that come as plain objects with _seconds and _nanoseconds
     if (typeof data === 'object' && data && '_seconds' in data && '_nanoseconds' in data) {
         const timestampObj = data as FirestoreTimestampObject
-        return timestampObj._seconds
+        return (timestampObj._seconds * 1000) + Math.floor(timestampObj._nanoseconds / 1000000)
     }
 
     // Handle Date objects
     if (data instanceof Date) {
-        return Math.floor(data.getTime() / 1000)
+        return data.getTime()
     }
 
     if (Array.isArray(data)) {

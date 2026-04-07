@@ -100,8 +100,23 @@ export function SimpleAdminTable<T extends { id: string }>({
         switch (field.type) {
             case "textarea":
                 return <Textarea {...inputProps} rows={3} />
-            case "date":
-                return <Input {...inputProps} type="date" />
+            case "date": {
+                let dateValue = ""
+                if (value) {
+                    let d: Date
+                    if (typeof value === "number") {
+                        d = new Date(value > 100000000000 ? value : value * 1000)
+                    } else if (typeof value === "string" && !isNaN(Number(value))) {
+                        d = new Date(Number(value) > 100000000000 ? Number(value) : Number(value) * 1000)
+                    } else {
+                        d = new Date(value as string)
+                    }
+                    if (!isNaN(d.getTime())) {
+                        dateValue = d.toISOString().split("T")[0]
+                    }
+                }
+                return <Input {...inputProps} value={dateValue} type="date" />
+            }
             case "number":
                 return <Input {...inputProps} type="number" />
             case "image":

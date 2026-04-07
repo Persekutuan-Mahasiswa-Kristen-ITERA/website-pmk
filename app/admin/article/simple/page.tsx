@@ -22,8 +22,17 @@ const displayFields: (keyof Article)[] = ["title", "excerpt", "imageUrl", "date"
 const imageFields: (keyof Article)[] = ["imageUrl"]
 
 const formatValue = (key: keyof Article, value: unknown) => {
-    if (key === "date" && typeof value === "string") {
-        return new Date(value).toLocaleDateString()
+    if (key === "date") {
+        if (!value) return ""
+        let d: Date
+        if (typeof value === "number") {
+            d = new Date(value > 100000000000 ? value : value * 1000)
+        } else if (typeof value === "string" && !isNaN(Number(value))) {
+            d = new Date(Number(value) > 100000000000 ? Number(value) : Number(value) * 1000)
+        } else {
+            d = new Date(value as string)
+        }
+        return !isNaN(d.getTime()) ? d.toLocaleDateString() : String(value)
     }
     if (key === "readTime" && typeof value === "number") {
         return `${value} min`
