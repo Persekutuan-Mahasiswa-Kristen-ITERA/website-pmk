@@ -28,8 +28,13 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         const { id } = await params
         const data = await request.json()
 
+        const cleanData = { ...data }
+        delete cleanData.id
+        delete cleanData.createdAt
+        delete cleanData.updatedAt
+
         const updateData = {
-            ...data,
+            ...cleanData,
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }
 

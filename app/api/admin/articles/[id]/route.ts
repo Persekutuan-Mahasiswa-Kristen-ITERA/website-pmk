@@ -60,6 +60,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         delete cleanData["author.bio"]
         delete cleanData.authorImage
         delete cleanData.authorBio
+        delete cleanData.createdAt
+        delete cleanData.updatedAt
+        delete cleanData.id
 
         const updateData = {
             ...cleanData,
