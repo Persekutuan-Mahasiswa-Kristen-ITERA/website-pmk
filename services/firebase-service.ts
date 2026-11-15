@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { firestore as clientFirestore } from "@/lib/firebase"
 import { BaseEntity, PaginationState, SortOption } from "@/types/common"
+import { encodeDates } from "@/lib/admin-crud-codec"
 import {
-    addDoc,
     collection,
-    deleteDoc,
     doc,
     DocumentData,
     Firestore,
@@ -16,10 +15,8 @@ import {
     Query,
     query,
     QueryDocumentSnapshot,
-    serverTimestamp,
     startAfter,
     Timestamp,
-    updateDoc,
     where,
 } from "firebase/firestore"
 
@@ -205,18 +202,37 @@ export class FirebaseService<T extends BaseEntity> {
         }
     }
 
+    /**
+     * Writes go through the server (/api/admin/crud), which checks the signed admin
+     * session and writes with the Admin SDK. The browser never writes to Firestore
+     * directly, so Firestore rules can deny all client writes.
+     */
+    private async adminWrite(method: "POST" | "PUT" | "DELETE", id?: string, data?: unknown): Promise<{ id?: string }> {
+        const path = id
+            ? `/api/admin/crud/${encodeURIComponent(this.collectionName)}/${encodeURIComponent(id)}`
+            : `/api/admin/crud/${encodeURIComponent(this.collectionName)}`
+        const response = await fetch(path, {
+            method,
+            headers: data === undefined ? undefined : { "Content-Type": "application/json" },
+            body: data === undefined ? undefined : JSON.stringify(encodeDates(data)),
+            credentials: "same-origin",
+        })
+        const result = await response.json().catch(() => ({}))
+        if (!response.ok || !result.success) {
+            const message =
+                response.status === 401 ? "Sesi admin berakhir, silakan login ulang" : result.error || "Request failed"
+            throw new Error(message)
+        }
+        return result
+    }
+
     async create(data: Omit<T, "id">): Promise<T> {
         try {
-            const dataWithTimestamps = {
-                ...prepareDatesForFirestore(data),
-                createdAt: data.createdAt ?? serverTimestamp(),
-                updatedAt: serverTimestamp(),
-            }
-
-            const docRef = await addDoc(collection(this.firestore, this.collectionName), dataWithTimestamps)
+            const { id } = await this.adminWrite("POST", undefined, data)
+            if (!id) throw new Error("Server did not return an id")
 
             return {
-                id: docRef.id,
+                id,
                 ...data,
                 createdAt: data.createdAt ?? new Date(),
                 updatedAt: new Date(),
@@ -229,13 +245,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async update(id: string, data: Partial<T>): Promise<T> {
         try {
-            const docRef = doc(this.firestore, this.collectionName, id)
-            const dataWithTimestamps = {
-                ...prepareDatesForFirestore(data),
-                updatedAt: serverTimestamp(),
-            }
-
-            await updateDoc(docRef, dataWithTimestamps)
+            await this.adminWrite("PUT", id, data)
 
             // Get the updated document
             const updatedDoc = await this.getById(id)
@@ -248,8 +258,7 @@ export class FirebaseService<T extends BaseEntity> {
 
     async delete(id: string): Promise<void> {
         try {
-            const docRef = doc(this.firestore, this.collectionName, id)
-            await deleteDoc(docRef)
+            await this.adminWrite("DELETE", id)
         } catch (error) {
             console.error("Error deleting document:", error)
             throw error

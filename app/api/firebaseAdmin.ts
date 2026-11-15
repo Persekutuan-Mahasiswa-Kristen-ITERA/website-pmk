@@ -7,11 +7,11 @@ if (!serviceAccountBase64) {
 
 const serviceAccount = JSON.parse(Buffer.from(serviceAccountBase64, "base64").toString("utf8"))
 
-let app: admin.app.App | null = null
-
-if (!app) {
-    app = admin.initializeApp({ credential: admin.credential.cert(serviceAccount) }, "adminApp")
-}
+// Reuse the named app when this module is evaluated more than once (several
+// route bundles, dev hot reload); initializeApp throws on a duplicate name.
+const app: admin.app.App =
+    admin.apps.find((existing) => existing?.name === "adminApp") ??
+    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) }, "adminApp")
 const firestore = admin.firestore(app)
 
 export { app, firestore }
