@@ -16,6 +16,8 @@ jobs:
               id: vercel-deploy
               with:
                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
+                  # Vercel rejects CLI versions older than 47.2.2 (the action defaults to 25.1.0).
+                  vercel-version: "48.10.2"
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   vercel-org-id: ${{ secrets.ORG_ID }}
                   vercel-project-id: ${{ secrets.PROJECT_ID }}
