@@ -1,5 +1,3 @@
-"use server"
-
 import { Devotional } from "@/types/devotional"
 import { firestore } from "../../firebaseAdmin"
 import { FieldValue, Timestamp } from "firebase-admin/firestore"
@@ -62,7 +60,6 @@ export async function addDevotional(devotional: Devotional): Promise<Devotional 
 }
 
 export async function formatDevotionalGemini(message: string): Promise<Devotional | null> {
-    "use server"
 
     console.log("Formatting devotional content with Gemini AI...")
 
