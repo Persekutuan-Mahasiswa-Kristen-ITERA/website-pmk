@@ -32,6 +32,8 @@ jobs:
             - uses: amondnet/vercel-action@v25
               with:
                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
+                  # Vercel rejects CLI versions older than 47.2.2 (the action defaults to 25.1.0).
+                  vercel-version: "48.10.2"
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   vercel-args: "--prod"
                   vercel-org-id: ${{ secrets.ORG_ID }}
