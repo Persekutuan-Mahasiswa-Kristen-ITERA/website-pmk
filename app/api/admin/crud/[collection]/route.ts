@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import admin from "firebase-admin"
+import { FieldValue, Timestamp } from "firebase-admin/firestore"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { decodeDates, isAdminWritableCollection, isPlainObject } from "@/lib/admin-crud-codec"
 import { requireWebAccess } from "@/lib/admin-access"
@@ -24,12 +24,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     }
 
     try {
-        const data = decodeDates(body, (ms) => admin.firestore.Timestamp.fromMillis(ms)) as Record<string, unknown>
+        const data = decodeDates(body, (ms) => Timestamp.fromMillis(ms)) as Record<string, unknown>
         delete data.id
         const docRef = await firestore.collection(collection).add({
             ...data,
-            createdAt: data.createdAt ?? admin.firestore.FieldValue.serverTimestamp(),
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: data.createdAt ?? FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
         })
         await recordAudit(guard.caller, { action: "create", collection, docId: docRef.id, title: titleOf(data) })
         return NextResponse.json({ success: true, id: docRef.id })

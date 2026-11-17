@@ -3,7 +3,7 @@ import { recordAudit, titleOf } from "@/lib/admin-audit"
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { serializeFirestoreDocs, serializeFirestoreDoc } from "@/lib/firestore-utils"
-import admin from "firebase-admin"
+import { FieldValue } from "firebase-admin/firestore"
 
 export async function GET(request: NextRequest) {
     const guard = await requireWebAccess("events")
@@ -53,8 +53,8 @@ export async function POST(request: NextRequest) {
 
         const eventData = {
             ...data,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("events").add(eventData)
