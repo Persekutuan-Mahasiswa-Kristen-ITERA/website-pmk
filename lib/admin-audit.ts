@@ -1,4 +1,4 @@
-import admin from "firebase-admin"
+import { FieldValue } from "firebase-admin/firestore"
 import { firestore } from "@/app/api/firebaseAdmin"
 import type { WebCaller } from "@/lib/admin-access"
 
@@ -22,7 +22,7 @@ export async function recordAudit(
             collection: entry.collection,
             docId: entry.docId,
             title: entry.title ?? null,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: FieldValue.serverTimestamp(),
         })
     } catch (error) {
         console.error("AUDIT LOG WRITE FAILED", entry.action, entry.collection, entry.docId, error)

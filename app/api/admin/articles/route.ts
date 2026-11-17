@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { serializeFirestoreDocs, serializeFirestoreDoc } from "@/lib/firestore-utils"
 import { Article } from "@/types/article"
-import admin from "firebase-admin"
+import { FieldValue } from "firebase-admin/firestore"
 
 export async function GET(request: NextRequest) {
     const guard = await requireWebAccess("articles")
@@ -88,8 +88,8 @@ export async function POST(request: NextRequest) {
         const articleData = {
             ...cleanData,
             author: authorData,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
         }
 
         const docRef = await firestore.collection("articles").add(articleData)

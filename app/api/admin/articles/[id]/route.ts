@@ -3,7 +3,7 @@ import { recordAudit, titleOf } from "@/lib/admin-audit"
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { serializeFirestoreDoc } from "@/lib/firestore-utils"
-import admin from "firebase-admin"
+import { FieldValue } from "firebase-admin/firestore"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const guard = await requireWebAccess("articles")
@@ -73,7 +73,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         const updateData = {
             ...cleanData,
             author: authorData,
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
         }
 
         const docRef = firestore.collection("articles").doc(id)

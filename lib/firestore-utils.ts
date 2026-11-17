@@ -1,4 +1,4 @@
-import admin from "firebase-admin"
+import { Timestamp, type DocumentSnapshot } from "firebase-admin/firestore"
 
 type FirestoreData = string | number | boolean | null | undefined | FirestoreData[] | { [key: string]: FirestoreData }
 
@@ -16,7 +16,7 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
         return data
     }
 
-    if (data instanceof admin.firestore.Timestamp) {
+    if (data instanceof Timestamp) {
         // Convert to Unix timestamp (milliseconds since epoch)
         return data.toDate().getTime()
     }
@@ -50,7 +50,7 @@ export function serializeFirestoreData(data: unknown): FirestoreData {
 /**
  * Serializes a Firestore document with its ID
  */
-export function serializeFirestoreDoc(doc: admin.firestore.DocumentSnapshot): { id: string; [key: string]: FirestoreData } | null {
+export function serializeFirestoreDoc(doc: DocumentSnapshot): { id: string; [key: string]: FirestoreData } | null {
     if (!doc.exists) {
         return null
     }
@@ -65,6 +65,6 @@ export function serializeFirestoreDoc(doc: admin.firestore.DocumentSnapshot): { 
 /**
  * Serializes multiple Firestore documents
  */
-export function serializeFirestoreDocs(docs: admin.firestore.DocumentSnapshot[]): Array<{ id: string; [key: string]: FirestoreData }> {
+export function serializeFirestoreDocs(docs: DocumentSnapshot[]): Array<{ id: string; [key: string]: FirestoreData }> {
     return docs.map(doc => serializeFirestoreDoc(doc)).filter((doc): doc is { id: string; [key: string]: FirestoreData } => doc !== null)
 }

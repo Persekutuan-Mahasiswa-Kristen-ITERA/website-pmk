@@ -65,7 +65,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "firebase": "^10.14.1",
-    "firebase-admin": "^13.6.0",
+    "firebase-admin": "^14.5.1",
     "input-otp": "^1.4.2",
     "jsonwebtoken": "^9.0.3",
     "lodash": "^4.17.21",
@@ -100,5 +100,15 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "15.5.29",
     "@eslint/eslintrc": "^3.3.3"
+  },
+  "overrides": {
+    "protobufjs": "^7.6.6",
+    "websocket-driver": "^0.7.5",
+    "@grpc/grpc-js": "^1.14.4",
+    "@fastify/busboy": "^3.2.1",
+    "postcss": "^8.5.23",
+    "source-map-js": "^1.2.2",
+    "lodash": "^4.18.1",
+    "nanoid": "^3.3.16"
   }
 }

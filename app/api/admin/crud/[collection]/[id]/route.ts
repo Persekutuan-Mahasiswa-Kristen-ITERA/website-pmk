@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import admin from "firebase-admin"
+import { FieldValue, Timestamp } from "firebase-admin/firestore"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { DOC_ID_PATTERN, decodeDates, isAdminWritableCollection, isPlainObject } from "@/lib/admin-crud-codec"
 import { requireWebAccess } from "@/lib/admin-access"
@@ -31,9 +31,9 @@ export async function PUT(request: NextRequest, { params }: Params) {
     }
 
     try {
-        const data = decodeDates(body, (ms) => admin.firestore.Timestamp.fromMillis(ms)) as Record<string, unknown>
+        const data = decodeDates(body, (ms) => Timestamp.fromMillis(ms)) as Record<string, unknown>
         delete data.id
-        await docRef.update({ ...data, updatedAt: admin.firestore.FieldValue.serverTimestamp() })
+        await docRef.update({ ...data, updatedAt: FieldValue.serverTimestamp() })
         const after = await docRef.get()
         await recordAudit(guard.caller, { action: "update", collection, docId: docRef.id, title: titleOf(after.data()) })
         return NextResponse.json({ success: true, id: docRef.id })
