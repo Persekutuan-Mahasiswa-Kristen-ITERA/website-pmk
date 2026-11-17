@@ -1,9 +1,13 @@
+import { requireWebAccess } from "@/lib/admin-access"
+import { recordAudit, titleOf } from "@/lib/admin-audit"
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { serializeFirestoreDoc } from "@/lib/firestore-utils"
 import admin from "firebase-admin"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const guard = await requireWebAccess("articles")
+    if (!guard.ok) return guard.response
     try {
         const { id } = await params
         const docRef = firestore.collection("articles").doc(id)
@@ -24,6 +28,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const guard = await requireWebAccess("articles")
+    if (!guard.ok) return guard.response
     try {
         const { id } = await params
         const data = await request.json()
@@ -74,6 +80,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         await docRef.update(updateData)
 
         const updatedDoc = await docRef.get()
+        await recordAudit(guard.caller, { action: "update", collection: "articles", docId: docRef.id, title: titleOf(updatedDoc.data()) })
 
         return NextResponse.json({
             success: true,
@@ -86,9 +93,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const guard = await requireWebAccess("articles")
+    if (!guard.ok) return guard.response
     try {
         const { id } = await params
-        await firestore.collection("articles").doc(id).delete()
+        const ref = firestore.collection("articles").doc(id)
+        const before = await ref.get()
+        await ref.delete()
+        await recordAudit(guard.caller, { action: "delete", collection: "articles", docId: id, title: titleOf(before.data()) })
 
         return NextResponse.json({
             success: true,
