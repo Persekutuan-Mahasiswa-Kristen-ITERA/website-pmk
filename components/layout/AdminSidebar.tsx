@@ -29,12 +29,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ onLogout, user }) => {
     const items = NAV_ITEMS.filter((item) => !item.role || isAdmin || user.roles.includes(item.role))
 
     return (
-        <aside className="bg-brown-700 border-r w-64 min-h-screen hidden md:block">
+        <aside className="bg-brown-700 border-r w-64 min-h-screen hidden md:flex md:flex-col">
             <div className="p-8 border-b flex gap-2">
                 <Image src="/logo-128.png" alt="logo" width={24} height={24} />
                 <p className="text-xl font-bold text-white">Admin Panel</p>
             </div>
-            <nav className="p-4 space-y-2 flex flex-col h-full">
+            <nav className="p-4 space-y-2 flex flex-col flex-1">
                 <div className="flex-1">
                     {items.map((item) => {
                         const isActive = pathname === item.path
