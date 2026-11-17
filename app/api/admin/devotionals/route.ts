@@ -1,9 +1,13 @@
+import { requireWebAccess } from "@/lib/admin-access"
+import { recordAudit, titleOf } from "@/lib/admin-audit"
 import { NextRequest, NextResponse } from "next/server"
 import { firestore } from "@/app/api/firebaseAdmin"
 import { serializeFirestoreDocs, serializeFirestoreDoc } from "@/lib/firestore-utils"
 import admin from "firebase-admin"
 
 export async function GET(request: NextRequest) {
+    const guard = await requireWebAccess("devotionals")
+    if (!guard.ok) return guard.response
     try {
         const { searchParams } = new URL(request.url)
         const page = parseInt(searchParams.get("page") || "1")
@@ -42,6 +46,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+    const guard = await requireWebAccess("devotionals")
+    if (!guard.ok) return guard.response
     try {
         const data = await request.json()
 
@@ -53,6 +59,7 @@ export async function POST(request: NextRequest) {
 
         const docRef = await firestore.collection("devotionals").add(devotionalData)
         const newDoc = await docRef.get()
+        await recordAudit(guard.caller, { action: "create", collection: "devotionals", docId: docRef.id, title: titleOf(newDoc.data()) })
 
         return NextResponse.json({
             success: true,

@@ -1,27 +1,32 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Users, BookOpen, ImageIcon, CreditCard, Home, Settings, Book, Calendar, LogOut } from "lucide-react"
+import { FileText, BookOpen, ImageIcon, CreditCard, Home, Settings, Calendar, LogOut, History } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
+/** `role`: the PI-CORE website role that shows the item (admin sees everything). No role = everyone. */
 const NAV_ITEMS = [
     { name: "Dashboard", path: "/admin", icon: Home },
-    { name: "Renungan", path: "/admin/devotional/simple", icon: BookOpen },
-    { name: "Event", path: "/admin/event/simple", icon: Calendar },
-    { name: "Artikel", path: "/admin/article/simple", icon: FileText },
-    { name: "Dokumentasi", path: "/admin/documentation/simple", icon: ImageIcon },
-    { name: "Persembahan", path: "/admin/contribution", icon: CreditCard },
-    { name: "Pengaturan", path: "/admin/settings", icon: Settings },
+    { name: "Renungan", path: "/admin/devotional/simple", icon: BookOpen, role: "renungan" },
+    { name: "Event", path: "/admin/event/simple", icon: Calendar, role: "acara" },
+    { name: "Artikel", path: "/admin/article/simple", icon: FileText, role: "artikel" },
+    { name: "Dokumentasi", path: "/admin/documentation/simple", icon: ImageIcon, role: "dokumentasi" },
+    { name: "Persembahan", path: "/admin/contribution", icon: CreditCard, role: "admin" },
+    { name: "Riwayat", path: "/admin/history", icon: History, role: "admin" },
+    { name: "Pengaturan", path: "/admin/settings", icon: Settings, role: "admin" },
 ]
 
 interface SidebarProps {
     onLogout: () => void
+    user: { email: string; name: string; roles: string[] }
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ onLogout, user }) => {
     const pathname = usePathname()
+    const isAdmin = user.roles.includes("admin")
+    const items = NAV_ITEMS.filter((item) => !item.role || isAdmin || user.roles.includes(item.role))
 
     return (
         <aside className="bg-brown-700 border-r w-64 min-h-screen hidden md:block">
@@ -31,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
             </div>
             <nav className="p-4 space-y-2 flex flex-col h-full">
                 <div className="flex-1">
-                    {NAV_ITEMS.map((item) => {
+                    {items.map((item) => {
                         const isActive = pathname === item.path
 
                         return (
@@ -53,6 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
 
                 {/* Logout Button */}
                 <div className="pt-4 border-t border-brown-600">
+                    <p className="px-3 pb-2 text-xs text-brown-100 break-all">{user.email}</p>
                     <Button
                         onClick={onLogout}
                         variant="ghost"
