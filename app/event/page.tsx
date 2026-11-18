@@ -77,7 +77,7 @@ const EventPage = () => {
                             >
                                 <div className="h-48 overflow-hidden bg-brown-200">
                                     <Image
-                                        src={event.image ?? "https://picsum.photos/seed/picsum/400/300"}
+                                        src={event.image || "/img/event-placeholder.webp"}
                                         alt={event.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                                         width={400}
@@ -137,7 +137,7 @@ const EventPage = () => {
                             {/* Event Image */}
                             <div className="w-full h-64 rounded-lg overflow-hidden">
                                 <Image
-                                    src={selectedEvent.image ?? "https://picsum.photos/seed/picsum/600/400"}
+                                    src={selectedEvent.image || "/img/event-placeholder.webp"}
                                     alt={selectedEvent.title}
                                     className="w-full h-full object-cover"
                                     width={600}
@@ -188,12 +188,6 @@ const EventPage = () => {
                                     onClick={() => setIsModalOpen(false)}
                                 >
                                     Tutup
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="flex-1 border-brown-300 text-brown-700 hover:bg-brown-50"
-                                >
-                                    Daftar Kegiatan
                                 </Button>
                             </div>
                         </div>

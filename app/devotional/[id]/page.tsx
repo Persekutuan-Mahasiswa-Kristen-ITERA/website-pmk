@@ -7,7 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ReactMarkdown from "react-markdown"
-import { Calendar, Book, Share, ChevronLeft } from "lucide-react"
+import { Calendar, Book, ChevronLeft } from "lucide-react"
+import ShareDropdown from "@/components/share-dropdown"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -18,6 +19,9 @@ import Head from "next/head"
 const DevotionalDetail = () => {
     const { id } = useParams()
     const [devotional, setDevotional] = useState<Devotional | null>(null)
+    // The page's own address, read after mount (window is not available on the server).
+    const [shareUrl, setShareUrl] = useState("")
+    useEffect(() => setShareUrl(window.location.href), [])
     const [devotionals, setDevotionals] = useState<Devotional[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -172,15 +176,10 @@ const DevotionalDetail = () => {
                                                 Kembali
                                             </Link>
                                         </Button>
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            className="flex items-center text-brown-600 hover:text-brown-800"
-                                            onClick={() => alert("Fitur berbagi renungan belum diimplementasikan")}
-                                        >
-                                            <Share className="h-3 w-3" />
-                                            <span className="max-md:text-xs">Bagikan</span>
-                                        </Button>
+                                        <ShareDropdown
+                                            message={`${devotional.title}\n${devotional.verse}\n\n${devotional.preview}\n\n${shareUrl}`}
+                                            shareUrl={shareUrl}
+                                        />
                                     </div>
                                 </div>
 
