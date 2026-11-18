@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Service-account credentials must never be committed
+scripts/firebase_keys.json
+*service-account*.json

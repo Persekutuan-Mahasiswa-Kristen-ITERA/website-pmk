@@ -38,6 +38,8 @@ export function SimpleAdminTable<T extends { id: string }>({
     const [editingId, setEditingId] = useState<string | null>(null)
     const [isCreating, setIsCreating] = useState(false)
     const [formData, setFormData] = useState<Record<string, unknown>>({})
+    // Labels of required fields left empty on the last Save attempt.
+    const [missing, setMissing] = useState<string[]>([])
 
     useEffect(() => {
         fetchData()
@@ -59,12 +61,24 @@ export function SimpleAdminTable<T extends { id: string }>({
         setFormData(defaultData)
     }
 
+    const isEmpty = (value: unknown) => value === undefined || value === null || String(value).trim() === ""
+
     const handleSave = async () => {
+        const empty = fields.filter((f) => f.required && isEmpty(formData[f.key])).map((f) => f.label)
+        setMissing(empty)
+        if (empty.length > 0) return
+
+        // An optional image left empty must not be stored as "" (it breaks the public card image).
+        const payload: Record<string, unknown> = { ...formData }
+        fields.forEach((f) => {
+            if (f.type === "image" && !f.required && isEmpty(payload[f.key])) delete payload[f.key]
+        })
+
         try {
             if (isCreating) {
-                await createItem(formData as Omit<T, "id">)
+                await createItem(payload as Omit<T, "id">)
             } else if (editingId) {
-                await updateItem(editingId, formData as Partial<T>)
+                await updateItem(editingId, payload as Partial<T>)
             }
             setEditingId(null)
             setIsCreating(false)
@@ -78,6 +92,7 @@ export function SimpleAdminTable<T extends { id: string }>({
         setEditingId(null)
         setIsCreating(false)
         setFormData({})
+        setMissing([])
     }
 
     const handleDelete = async (id: string) => {
@@ -90,8 +105,10 @@ export function SimpleAdminTable<T extends { id: string }>({
         setFormData((prev) => ({ ...prev, [key]: value }))
     }
 
-    const renderField = (field: Field, value: unknown, onChange: (value: unknown) => void) => {
+    const renderField = (field: Field, value: unknown, onChange: (value: unknown) => void, id: string) => {
         const inputProps = {
+            id,
+            "aria-invalid": missing.includes(field.label) || undefined,
             value: String(value || ""),
             onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e.target.value),
             className: "w-full",
@@ -209,12 +226,20 @@ export function SimpleAdminTable<T extends { id: string }>({
                                                 {field.label}
                                                 {field.required && <span className="text-red-500 ml-1">*</span>}
                                             </Label>
-                                            {renderField(field, formData[field.key], (value) =>
-                                                handleInputChange(field.key, value)
+                                            {renderField(
+                                                field,
+                                                formData[field.key],
+                                                (value) => handleInputChange(field.key, value),
+                                                field.key
                                             )}
                                         </div>
                                     ))}
                                 </div>
+                                {missing.length > 0 && (
+                                    <p role="alert" className="text-sm text-red-600">
+                                        Lengkapi kolom wajib: {missing.join(", ")}.
+                                    </p>
+                                )}
                                 <div className="flex gap-2 pt-4">
                                     <Button onClick={handleSave} disabled={loading}>
                                         <Save className="h-4 w-4 mr-2" />
@@ -256,12 +281,20 @@ export function SimpleAdminTable<T extends { id: string }>({
                                                                     <span className="text-red-500 ml-1">*</span>
                                                                 )}
                                                             </Label>
-                                                            {renderField(field, formData[field.key], (value) =>
-                                                                handleInputChange(field.key, value)
+                                                            {renderField(
+                                                                field,
+                                                                formData[field.key],
+                                                                (value) => handleInputChange(field.key, value),
+                                                                `edit-${field.key}`
                                                             )}
                                                         </div>
                                                     ))}
                                                 </div>
+                                                {missing.length > 0 && (
+                                                    <p role="alert" className="text-sm text-red-600">
+                                                        Lengkapi kolom wajib: {missing.join(", ")}.
+                                                    </p>
+                                                )}
                                                 <div className="flex gap-2 pt-4">
                                                     <Button onClick={handleSave} disabled={loading}>
                                                         <Save className="h-4 w-4 mr-2" />

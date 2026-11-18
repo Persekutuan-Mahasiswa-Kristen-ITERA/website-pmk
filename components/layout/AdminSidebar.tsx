@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, BookOpen, ImageIcon, CreditCard, Home, Settings, Calendar, LogOut, History } from "lucide-react"
+import { FileText, BookOpen, ImageIcon, CreditCard, Home, Calendar, LogOut, History } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -15,7 +15,6 @@ const NAV_ITEMS = [
     { name: "Dokumentasi", path: "/admin/documentation/simple", icon: ImageIcon, role: "dokumentasi" },
     { name: "Persembahan", path: "/admin/contribution", icon: CreditCard, role: "admin" },
     { name: "Riwayat", path: "/admin/history", icon: History, role: "admin" },
-    { name: "Pengaturan", path: "/admin/settings", icon: Settings, role: "admin" },
 ]
 
 interface SidebarProps {

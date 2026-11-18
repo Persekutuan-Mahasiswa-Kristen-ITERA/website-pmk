@@ -48,7 +48,7 @@ export const UpcomingEvents = () => {
                         >
                             <div className="h-40 sm:h-44 overflow-hidden">
                                 <Image
-                                    src={event.image ?? "https://picsum.photos/seed/picsum/400/300"}
+                                    src={event.image || "/img/event-placeholder.webp"}
                                     alt={`${event.title} | PMK ITERA`}
                                     className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                                     width={1200}
@@ -79,10 +79,11 @@ export const UpcomingEvents = () => {
                             </CardContent>
                             <CardFooter className="p-4 sm:p-6 pt-2 pb-4 sm:pb-6">
                                 <Button
+                                    asChild
                                     variant="outline"
                                     className="w-full border-brown-300 text-brown-700 hover:bg-brown-50 text-sm sm:text-base"
                                 >
-                                    Lihat Detail
+                                    <Link href="/event">Lihat Detail</Link>
                                 </Button>
                             </CardFooter>
                         </Card>
